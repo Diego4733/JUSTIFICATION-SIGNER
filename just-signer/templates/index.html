@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>JUSTIFICATION SIGNER</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body { background: #f5f7fb; }
+    .card { box-shadow: 0 2px 6px rgba(0,0,0,0.06); border: 1px solid #eef1f6; }
+    .section-title { font-weight: 600; font-size: 1.05rem; color: #2c3e50; }
+    .btn-wide { width: 100%; max-width: 420px; }
+    pre#log { background: #0f172a; color: #cbd5e1; min-height: 180px; max-height: 360px; overflow: auto; padding: 12px; border-radius: 6px; }
+    .badge-status { font-size: .85rem; }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <div class="d-flex align-items-center justify-content-between mb-3">
+      <div class="d-flex align-items-center gap-2">
+        <i class="bi bi-robot fs-3 text-primary"></i>
+        <div>
+          <h4 class="mb-0">ROBOT - JUSTIFICACIONES</h4>
+          <small class="text-secondary">Interfaz Web | Automatización de Firma (Red.es)</small>
+        </div>
+      </div>
+      <div>
+        <span id="badgeServer" class="badge text-bg-success badge-status">Conectado</span>
+        <span id="badgeRobot" class="badge text-bg-secondary badge-status ms-1">Detenido</span>
+      </div>
+    </div>
+
+    <!-- 1. Configuración -->
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="section-title mb-3">1. Configuración</div>
+
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label">Selecciona Categoría</label>
+            <div class="d-flex gap-3">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkKD" checked>
+                <label class="form-check-label" for="chkKD">Kit Digital</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="chkKC">
+                <label class="form-check-label" for="chkKC">Kit Consulting</label>
+              </div>
+            </div>
+            <div class="form-text">Se aplicará Justificaciones de KD o KC según selección (excluyentes).</div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label for="selCert" class="form-label">Certificado (CN)</label>
+            <select id="selCert" class="form-select">
+              <option value="">Cargando certificados...</option>
+            </select>
+            <div class="form-text">Se usará Número de serie para seleccionar exactamente en Cl@ve.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Opciones de Ejecución -->
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="section-title mb-3">2. Opciones de Ejecución</div>
+
+        <div class="row g-3">
+          <div class="col-12 col-md-4">
+            <label for="selSpeed" class="form-label">Velocidad</label>
+            <select id="selSpeed" class="form-select">
+              <option value="rapido">Rápido</option>
+              <option value="medio" selected>Medio</option>
+              <option value="lento">Lento</option>
+            </select>
+            <div class="form-text">Ajusta tiempos de espera y ritmo de clics.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Control del Robot -->
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="section-title mb-3">3. Control del Robot</div>
+
+        <div class="d-flex flex-column flex-sm-row gap-2">
+          <button id="btnOpen" class="btn btn-primary btn-wide">
+            <i class="bi bi-globe2 me-1"></i> Abrir Chrome y Red.es
+          </button>
+          <button id="btnStart" class="btn btn-success btn-wide">
+            <i class="bi bi-play-circle me-1"></i> Iniciar Proceso
+          </button>
+          <button id="btnStop" class="btn btn-danger btn-wide">
+            <i class="bi bi-stop-circle me-1"></i> Detener
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Log de Actividad -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="section-title mb-3">Log de Actividad</div>
+        <pre id="log">Inicia la sesión. Configura una opción y pulsa "Abrir Chrome y Red.es".
+</pre>
+      </div>
+    </div>
+
+    <div class="text-center text-secondary">
+      <small>Servidor local: http://localhost:{{ port }}</small>
+    </div>
+  </div>
+
+  <!-- Socket.IO (servido por Flask-SocketIO) -->
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script>
+    const logEl = document.getElementById('log');
+    const badgeServer = document.getElementById('badgeServer');
+    const badgeRobot = document.getElementById('badgeRobot');
+
+    function appendLog(msg) {
+      const t = new Date().toLocaleTimeString();
+      logEl.textContent += "[" + t + "] " + msg + "\n";
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    // Socket
+    const socket = io();
+
+    socket.on('connect', () => {
+      badgeServer.className = 'badge text-bg-success badge-status';
+      badgeServer.textContent = 'Conectado';
+    });
+
+    socket.on('disconnect', () => {
+      badgeServer.className = 'badge text-bg-secondary badge-status';
+      badgeServer.textContent = 'Desconectado';
+    });
+
+    socket.on('log', (data) => {
+      if (data && data.message) appendLog(data.message);
+    });
+
+    socket.on('status', (state) => {
+      // state: {server, robot, speed}
+      if (state.robot === 'En ejecución') {
+        badgeRobot.className = 'badge text-bg-warning badge-status';
+      } else {
+        badgeRobot.className = 'badge text-bg-secondary badge-status';
+      }
+      badgeRobot.textContent = state.robot || 'Detenido';
+    });
+
+    // Certificados
+    const selCert = document.getElementById('selCert');
+    let certs = [];
+    function loadCertificates() {
+      fetch('/api/certificates').then(r => r.json()).then(j => {
+        selCert.innerHTML = '';
+        if (!j.ok) throw new Error(j.error || 'Error listando certificados');
+        certs = j.certificates || [];
+        if (certs.length === 0) {
+          selCert.innerHTML = '<option value="">(No hay certificados válidos en el almacén personal)</option>';
+          return;
+        }
+        for (const c of certs) {
+          const opt = document.createElement('option');
+          opt.value = c.thumbprint;
+          opt.textContent = c.cn;
+          selCert.appendChild(opt);
+        }
+      }).catch(err => {
+        selCert.innerHTML = '<option value="">Error cargando certificados</option>';
+        appendLog('Error certificados: ' + err.message);
+      });
+    }
+
+    // KD/KC excluyentes
+    const chkKD = document.getElementById('chkKD');
+    const chkKC = document.getElementById('chkKC');
+    chkKD.addEventListener('change', () => { if (chkKD.checked) chkKC.checked = false; else chkKC.checked = true; });
+    chkKC.addEventListener('change', () => { if (chkKC.checked) chkKD.checked = false; else chkKD.checked = true; });
+
+    // Botones
+    const btnOpen = document.getElementById('btnOpen');
+    const btnStart = document.getElementById('btnStart');
+    const btnStop = document.getElementById('btnStop');
+    const selSpeed = document.getElementById('selSpeed');
+
+    function currentCategoria() {
+      return chkKC.checked ? 'KC' : 'KD';
+    }
+
+    btnOpen.addEventListener('click', () => {
+      const body = {
+        categoria: currentCategoria(),
+        speed: selSpeed.value
+      };
+      fetch('/api/open', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)})
+        .then(r => r.json())
+        .then(j => {
+          if (!j.ok) throw new Error(j.error || 'Error');
+          appendLog('Abriendo portal en Chrome...');
+        })
+        .catch(err => appendLog('Error: ' + err.message));
+    });
+
+    btnStart.addEventListener('click', () => {
+      const thumb = selCert.value || (certs[0] ? certs[0].thumbprint : '');
+      if (!thumb) {
+        appendLog('Selecciona un certificado válido antes de iniciar.');
+        return;
+      }
+      const body = {
+        categoria: currentCategoria(),
+        thumbprint: thumb,
+        speed: selSpeed.value
+      };
+      fetch('/api/start', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)})
+        .then(r => r.json())
+        .then(j => {
+          if (!j.ok) throw new Error(j.error || 'Error');
+          appendLog('Proceso iniciado.');
+        })
+        .catch(err => appendLog('Error: ' + err.message));
+    });
+
+    btnStop.addEventListener('click', () => {
+      fetch('/api/stop', {method:'POST'}).then(r => r.json()).then(j => {
+        if (!j.ok) throw new Error(j.error || 'Error');
+        appendLog('Detención solicitada.');
+      }).catch(err => appendLog('Error: ' + err.message));
+    });
+
+    // Inicialización
+    loadCertificates();
+    // Diagnóstico: confirmar backend correcto y versión
+    appendLog('UI origin: ' + window.location.origin);
+    fetch('/api/ping').then(r => r.json()).then(p => {
+      appendLog('Ping backend: port=' + (p.port || '?') + ' engine=' + (p.engine || '?'));
+    }).catch(err => appendLog('Ping backend error: ' + err.message));
+    appendLog('Listo. Configura las opciones y pulsa "Abrir Chrome y Red.es".');
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

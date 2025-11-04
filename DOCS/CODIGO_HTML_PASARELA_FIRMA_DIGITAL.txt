@@ -1,0 +1,460 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es" class="no-js"><input type="hidden" id="__yoroi_connector_api_injected_type" value="prod"><head>
+        <!-- Etiquetas META-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Clave">
+    <meta name="keywords" content="ESPAŃA, EUROPA, CLAVE, CL@VE, ADMINISTRACIÓN PÚBLICA, DNIE, PIN24H, EIDAS">
+    <meta name="description" content="Servicio de claves electrónicas para la autenticación del ciudadano">
+    <meta name="subject" content="2018-08-27">
+    <meta name="Author" content="MINPTFP-ES">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=Edge; Chrome1">
+    <script type="text/javascript" async="" defer="" src="//visitas-web.redsara.es/js/"></script><script type="text/javascript" src="/Proxy2/ruxitagentjs_ICANVfgqrux_10323250822043923.js" data-dtconfig="app=e6725d114674a6f7|cuc=ouei22vu|owasp=1|mel=100000|featureHash=ICANVfgqrux|dpvc=1|lastModification=1761045976626|tp=500,50,0|rdnt=1|uxrgce=1|srbbv=2|agentUri=/Proxy2/ruxitagentjs_ICANVfgqrux_10323250822043923.js|reportUrl=/Proxy2/rb_38993f78-c97c-4ab5-8f9e-8df5e35f736d|rid=RID_1574330071|rpid=1233080125|domain=clave.gob.es"></script><script>
+        function selectedIdP(selectedIdP) {
+            document.getElementById("SelectedIdP").value = selectedIdP;
+        }
+        
+        function selectedLanguage() {
+            document.getElementById("SelectedLanguage").value = document.getElementById("language-select").value;
+        }
+        
+        function showChat(e) {
+            e.preventDefault();
+            var div = document.getElementById("frame");
+            console.log(div.style.display)
+            if (div.style.display === "block") {
+                console.log("CIERRO");
+                div.style.display = "none";
+            } else {
+                console.log("ABRO");
+                div.style.display = "block";
+            }
+        }
+    </script>
+    
+    <!-- Titulo pagina-->
+    <title>Página Principal - Clave</title>
+    
+    <!-- icono de la pagina-->
+    <link rel="shortcut icon" type="image/ico" href="./resources/images/favicon.ico">
+    <!-- Archivos CSS-->
+    <link rel="stylesheet" type="text/css" href="./resources/css/pasarela.css">
+    <!-- Iconos Apple-->
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    
+    </head>
+    
+    <body id="home">
+        <!-- Pagina principal Clave -->
+        <form name="ssoRedirect" id="ssoRedirect" action="https://pasarela.clave.gob.es/Proxy2/ResponseRedirect" method="post">
+            <input type="hidden" name="logoCabecera" value=""> <input type="hidden" name="logoText" value=""> <input type="hidden" name="version" value="2.8.4">
+            
+        </form>
+        
+        <!-- Cabecera WEB -->
+        <div class="main-container">
+        <header id="header" class="mf-header" data-scroll_disable="true">
+            <a href="#ID_main" class="skip-to-content-link">Ir al contenido</a>
+            <!-- Cabecera Clave -->
+            <!-- HEADER_RESPONSIVE -->
+            <div class="header_responsive wrapper">
+                <div class="mod_claim_izq">
+                    <div class="mod_claim_in mod_claim_in_izq">
+                        <div class="hide">Gobierno de España</div>
+                        <img class="img" alt="Logo Gobierno de España" src="./resources/images/logo_gobierno.png">
+                        
+                        <div>
+                            <a class="header_link" href="https://clave.gob.es/clave_Home/es/clave.html" title="Ir a la página de Cl@ve. Abre en una ventana nueva" target="_blank" rel="noopener noreferrer">
+                                <div class="logo-header">
+                                    <img class="img-clave" alt="Cl@ve - Identidad electrónica para las administraciones" src="./resources/images/logo_clave_cabecera_2.png">
+                                    <div class="logo-text-div">
+                                        <span aria-hidden="true">
+                                            Identidad electrónica para las administraciones
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="mod_claim_in mod_claim_in_der">
+                        <div class="language-div">
+                            <form name="idpLanguage" action="ServiceLanguage" method="post">
+                                <input type="hidden" name="SAMLRequest" id="SAMLRequest3" value="PHNhbWwycDpBdXRoblJlcXVlc3QgeG1sbnM6c2FtbDJwPSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6cHJvdG9jb2wiIHhtbG5zOmRzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjIiB4bWxuczplaWRhcz0iaHR0cDovL2VpZGFzLmV1cm9wYS5ldS9zYW1sLWV4dGVuc2lvbnMiIHhtbG5zOnNhbWwyPSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YXNzZXJ0aW9uIiBBc3NlcnRpb25Db25zdW1lclNlcnZpY2VVUkw9Imh0dHBzOi8vcG9ydGFsLmdlc3Rpb24uc2VkZXBrZC5yZWQuZ29iLmVzL2NsYXZlLXNpZ25hdHVyZS9sb2dpbi9zYW1sMi9zc28vY2xhdmUiIENvbnNlbnQ9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjIuMDpjb25zZW50OnVuc3BlY2lmaWVkIiBEZXN0aW5hdGlvbj0iaHR0cHM6Ly9wYXNhcmVsYS5jbGF2ZS5nb2IuZXMvUHJveHkyL1NlcnZpY2VQcm92aWRlciIgRm9yY2VBdXRobj0idHJ1ZSIgSUQ9Il8uSWdVUXZoNUFxN25pRXp0UUs3WFF5QXJTcE1mUERWNTVnR3k5U0hpNV96SDUzQ1VyQXhBWS4tbFMweDBqeTEiIElzUGFzc2l2ZT0iZmFsc2UiIElzc3VlSW5zdGFudD0iMjAyNS0xMC0yN1QyMToyOTo1OS4xNTJaIiBQcm92aWRlck5hbWU9IlEyODAyMjE2SF9JOTk5OTk5OTc7S0lURElHLUFwcC1DbGF2ZVNpZ24iIFZlcnNpb249IjIuMCI+PGRzOlNpZ25hdHVyZSB4bWxuczpkcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+PGRzOlNpZ25lZEluZm8+PGRzOkNhbm9uaWNhbGl6YXRpb25NZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzEwL3htbC1leGMtYzE0biMiLz48ZHM6U2lnbmF0dXJlTWV0aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8wNC94bWxkc2lnLW1vcmUjcnNhLXNoYTUxMiIvPjxkczpSZWZlcmVuY2UgVVJJPSIjXy5JZ1VRdmg1QXE3bmlFenRRSzdYUXlBclNwTWZQRFY1NWdHeTlTSGk1X3pINTNDVXJBeEFZLi1sUzB4MGp5MSI+PGRzOlRyYW5zZm9ybXM+PGRzOlRyYW5zZm9ybSBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyNlbnZlbG9wZWQtc2lnbmF0dXJlIi8+PGRzOlRyYW5zZm9ybSBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMTAveG1sLWV4Yy1jMTRuIyIvPjwvZHM6VHJhbnNmb3Jtcz48ZHM6RGlnZXN0TWV0aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8wNC94bWxlbmMjc2hhNTEyIi8+PGRzOkRpZ2VzdFZhbHVlPlk3SnBWa29rRjJMbXNIWkpRbWtkUEhOOGV2OVkvQWV1SUhPS0IrbUJUTE15TVZ0QVRNMjRHMnl6OUtrZytFODdjRkw3MnVzdUJ1ZlNnS0NPdG1xN3VnPT08L2RzOkRpZ2VzdFZhbHVlPjwvZHM6UmVmZXJlbmNlPjwvZHM6U2lnbmVkSW5mbz48ZHM6U2lnbmF0dXJlVmFsdWU+UFVyR2wxWWVWdUdhVVV2bXlRL296NjNDWGNMYmJFSVlRYmNsd0xVendMNXdPVkxkTFBXOXQ5SzRJenppc2FnVUdpd04wd1pZK2FXVWc2ZkM4SGVMQ1h5MFIrNzh3T0hwTnhtMFlwMGpDSmxGMnNNSzEyNnpNR2xIQlhFYW5sQUVsdW5yK0dqbVBmQU92UER5aDEyczR0aG1DU1FmcTV1QmFQOWZINWdjeGZvWFA3YXVYblM5ZHVMb2xoejZXNW0wdXpIVC83NFF4WjROWitJZCs1ZmlVV1JLYm9pN0g0b0NSbzQra3RnU1lxMEM4TTRjKzN4MFcyNjZIYm5RaGJrNDFGQXd6L0xGNEFLMVdxN3JxQ0RkdkN1cGZsWkp1N0xzOTIwb0YyNFF2V1VwQUVjczNSb2N3VDIvZGJJZHZhaGFyeVpBZUtkL0VoRWR5dkpYRVVEbXJ3PT08L2RzOlNpZ25hdHVyZVZhbHVlPjxkczpLZXlJbmZvPjxkczpYNTA5RGF0YT48ZHM6WDUwOUNlcnRpZmljYXRlPk1JSUtMekNDQ0JlZ0F3SUJBZ0lKR2dYVHlCWmNIT0NHTUEwR0NTcUdTSWIzRFFFQkN3VUFNSUlCSURFTE1Ba0dBMVVFQmhNQ1JWTXgKRHpBTkJnTlZCQWNNQmsxQlJGSkpSREVQTUEwR0ExVUVDQXdHVFVGRVVrbEVNVUl3UUFZRFZRUUxERGx6WldVZ1kzVnljbVZ1ZENCaApaR1J5WlhOeklHRjBJR2gwZEhCek9pOHZkM2QzTG1OaGJXVnlabWx5YldFdVkyOXRMMkZrWkhKbGMzTXhMekF0QmdOVkJBc01Ka0ZECklFTkJUVVZTUmtsU1RVRWdSazlTSUV4RlIwRk1JRkJGVWxOUFRsTWdMU0F5TURFMk1SSXdFQVlEVlFRRkV3bEJPREkzTkRNeU9EY3gKR0RBV0JnTlZCR0VNRDFaQlZFVlRMVUU0TWpjME16STROekViTUJrR0ExVUVDZ3dTUVVNZ1EwRk5SVkpHU1ZKTlFTQlRMa0V1TVM4dwpMUVlEVlFRRERDWkJReUJEUVUxRlVrWkpVazFCSUVaUFVpQk1SVWRCVENCUVJWSlRUMDVUSUMwZ01qQXhOakFlRncweU5EQTJNamd4Ck16STFNek5hRncweU56QTJNamd4TXpJMU16TmFNSUhYTVRVd013WURWUVFEREN4RHc0Rk5RVkpCSUVSRklFVlRVRUhEa1VFZ1FVTlUKVlVGRFNVOU9SVk1nUVZWVVQwMUJWRWxhUVVSQlV6RVNNQkFHQTFVRUJSTUpVVEk0TURJeU1UWklNUmd3RmdZRFZRUmhEQTlXUVZSRgpVeTFSTWpnd01qSXhOa2d4R2pBWUJnTlZCQXNNRVZORlRFeFBJRVZNUlVOVVVrOU9TVU5QTVVjd1JRWURWUVFLREQ1RFFVMUJVa0VnClJFVWdRMDlOUlZKRFNVOGdTVTVFVlZOVVVrbEJJRk5GVWxaSlEwbFBVeUJaSUU1QlZrVkhRVU5KVDA0Z1JFVWdSVk5RUWNPUlFURUwKTUFrR0ExVUVCaE1DUlZNd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUMyTUZNSUpXL2Qwd1V0b1JlUgpPUVhXQzJwQU85WGVpM2lZSU84Z0cxL3dtZnhXUGJmYzIzcldzZ1BzWEZpUndlZ1ZCb1BNeWdTOVdNSzNxOXBZQkNYT01Xb1Fjb3Z3Ci9DdG1tb2RJU0lVNU42U0VnTExpUEZXVDdpM1k1SGVHT21QWUpDakVUaWJqNUx3TFBjbnFwZkpBaE1qcVhvUVNJd0ZiMzh6TFFBK2wKeDM0S0luWTZza1hZaE1oRFozSkYzZmlYM1MxbXVCY09iYjB2UEtKajM4Wmtudi9YQ3JyTUtnY2taNWdRSmMzaHhubGwwbzg3dkovcwpuZUhzTm00SVMzU2ZrZ3laNitXS3B0NjZvSTVxME84bTh1b0tCQXRFZ0tjY1Y3NEdQdzhJaTdjQzduNjVJTWFwVSt6b213Wkx4cGZMCkh6NnNGQ0VEcWQxbWVQbTlzYUZKQWdNQkFBR2pnZ1N3TUlJRXJEQU1CZ05WSFJNQkFmOEVBakFBTUE0R0ExVWREd0VCL3dRRUF3SUYKNERBZEJnTlZIU1VFRmpBVUJnZ3JCZ0VGQlFjREFnWUlLd1lCQlFVSEF3UXdIUVlEVlIwT0JCWUVGRU1QRUU4YVlkemh5TkpTYTJlZQpwN2I3dDgwYU1JR0lCZ2dyQmdFRkJRY0JBUVI4TUhvd1VBWUlLd1lCQlFVSE1BS0dSR2gwZEhBNkx5OTNkM2N1WTJGdFpYSm1hWEp0CllTNWpiMjB2WTJWeWRITXZZV05mWTJGdFpYSm1hWEp0WVY5c1pXZGhiRjl3WlhKemIyNXpMVEl3TVRZdVkzSjBNQ1lHQ0NzR0FRVUYKQnpBQmhocG9kSFJ3T2k4dmIyTnpjQzVqWVcxbGNtWnBjbTFoTG1OdmJUQWZCZ05WSFNNRUdEQVdnQlRESjRXVDF5K1d4UnVzZGpQWgpocUpLZldnVVFqQ0JtQVlEVlIwZkJJR1FNSUdOTUVTZ1FxQkFoajVvZEhSd09pOHZZM0pzTG1OaGJXVnlabWx5YldFdVkyOXRMMkZqClgyTmhiV1Z5Wm1seWJXRmZiR1ZuWVd4ZmNHVnljMjl1Y3kweU1ERTJMbU55YkRCRm9FT2dRWVkvYUhSMGNEb3ZMMk55YkRFdVkyRnQKWlhKbWFYSnRZUzVqYjIwdllXTmZZMkZ0WlhKbWFYSnRZVjlzWldkaGJGOXdaWEp6YjI1ekxUSXdNVFl1WTNKc01JSFpCZ05WSFJFRQpnZEV3Z2M2a2djc3dnY2d4SURBZUJnbGdoVlFCQXdVR0FnRU1FVk5GVEV4UElFVk1SVU5VVWs5T1NVTlBNVTB3U3dZSllJVlVBUU1GCkJnSUNERDVEUVUxQlVrRWdSRVVnUTA5TlJWSkRTVThnU1U1RVZWTlVVa2xCSUZORlVsWkpRMGxQVXlCWklFNUJWa1ZIUVVOSlQwNGcKUkVVZ1JWTlFRY09SUVRFWU1CWUdDV0NGVkFFREJRWUNBd3dKVVRJNE1ESXlNVFpJTVRzd09RWUpZSVZVQVFNRkJnSUZEQ3hEdzRGTgpRVkpCSUVSRklFVlRVRUhEa1VFZ1FVTlVWVUZEU1U5T1JWTWdRVlZVVDAxQlZFbGFRVVJCVXpBY0JnTlZIUklFRlRBVGdSRmpZVUJqCllXMWxjbVpwY20xaExtTnZiVENDQVRnR0ExVWRJQVNDQVM4d2dnRXJNSUlCRUFZUUt3WUJCQUdCaHk0S0VBSUNBUVFEQVRDQit6QXAKQmdnckJnRUZCUWNDQVJZZGFIUjBjSE02THk5d2IyeHBZM2t1WTJGdFpYSm1hWEp0WVM1amIyMHdnYzBHQ0NzR0FRVUZCd0lDTUlIQQpESUc5UTJWeWRHbG1hV05oWkc4Z1kzVmhiR2xtYVdOaFpHOGdaR1VnYzJWc2JHOGdaV3hsWTNSeWIyNXBZMjhnWkdVZ1FXUnRhVzVwCmMzUnlZV05wYjI0c0lHOXlaMkZ1YnlCdklHVnVkR2xrWVdRZ1pHVWdaR1Z5WldOb2J5QndkV0pzYVdOdkxDQnVhWFpsYkNCTlpXUnAKYnk5VGRYTjBZVzVqYVdGc0xpQkRiMjV6ZFd4MFpTQnNZWE1nWTI5dVpHbGphVzl1WlhNZ1pHVWdkWE52SUdWdUlHaDBkSEJ6T2k4dgpjRzlzYVdONUxtTmhiV1Z5Wm1seWJXRXVZMjl0TUFvR0NHQ0ZWQUVEQlFZQ01Ba0dCd1FBaSt4QUFRRXdnZEFHQ0NzR0FRVUZCd0VECkJJSERNSUhBTUFnR0JnUUFqa1lCQVRBTEJnWUVBSTVHQVFNQ0FROHdnWkVHQmdRQWprWUJCVENCaGpCQkZqdG9kSFJ3Y3pvdkwzQmsKY3k1allXMWxjbVpwY20xaExtTnZiUzlrYjJOekwxQkVVMTlNWldkaGJGOVFaWEp6YjI0dGRqRXVNRVZPTG5Ca1poTUNaVzR3UVJZNwphSFIwY0hNNkx5OXdaSE11WTJGdFpYSm1hWEp0WVM1amIyMHZaRzlqY3k5UVJGTmZUR1ZuWVd4ZlVHVnljMjl1TFhZeExqQkZVeTV3ClpHWVRBbVZ6TUJNR0JnUUFqa1lCQmpBSkJnY0VBSTVHQVFZQ01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQ0FRQjVDWUsxQnluZTMzWVEKRU1JeFMvYWFEUE5iZ29iKzlxRWVBZVVjc1E0TlNoTnlFT1RGa1U0QXFKb1EyMlV2aWU4YmhLY3RWUjdTamQxYjBMZFNwR0RzbkFWZwpzdWdTQ05kNGJCQkZkUFlaVm1xZU9TL3ltYVN3UHYxYnJEOFczbHNtWFQ5WjBmWG5WMG5aTWdrcittakJXcTlRQ0JlNVdHMFpLWFdOCm1WRXhtcHRSdXRpWGh1UUJZS3AxWlZXSEQrU3NHRW5UMGkrbUVwSFV5ZHJJRHRDbllZMDMrK2ZXZnRhazZOaWNiZU5hWHlTZHVYSC8KQ0RJZzU5eE1ZSmpLcFNLNTR5Y25YRnNFV3lyMDhVZjhrQytxVlpVd0hGeDRhMVFyNGRJdHl6MEprd1lJV2ErQ3paTFJFQmpJSk9IRQpiZGQvYW83WmJJeXYyVDkyWnpLRjl4RWduZmdsNmpZWUxKdGE5ZllwV2VObW9iOXljVjV0U1FMRVpYQ3ZQOFN4K3czeUJERE5aV1NPCmxKVDJiNVVHc3R2cXNNNE0vanowdDU2SnRSN0xoVy9CVHVqK011Ry8rbWZzTUw3b2lsdlIwZndlc0tKeUV4M3lHbHVuaS9Dc2o0Tm4KcDVLQ0YzQitFRThSSzFFeHZDLzRkd0RLMGhSVFUrZDl6OXhsNmMyTXB5a3FETm5qeXVjdDMvUldhRVRuZC9oVHRNaHVxQlJXQTg2Ugp0cFhyaXdjcVQwejRlWUNmZ3NzcFAwNlRSS0tZZzFyVnU0bmJWSVFMYlpyNS9xQU5RQytlMjZ5VldLdVhicVJCV3o5V2VHcnU3SS84Clp4OWpXOEtyWDAvNGtiS0tMc3RRdlF3MVpvNUJ5eW5HVllpV3FwNGt0YTk3VXZYbnRWVW5YSCtCS3VGeWFBPT08L2RzOlg1MDlDZXJ0aWZpY2F0ZT48L2RzOlg1MDlEYXRhPjwvZHM6S2V5SW5mbz48L2RzOlNpZ25hdHVyZT48c2FtbDJwOkV4dGVuc2lvbnM+PGVpZGFzOlJlcXVlc3RlZEF0dHJpYnV0ZXMvPjwvc2FtbDJwOkV4dGVuc2lvbnM+PHNhbWwycDpOYW1lSURQb2xpY3kgQWxsb3dDcmVhdGU9InRydWUiIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6MS4xOm5hbWVpZC1mb3JtYXQ6dW5zcGVjaWZpZWQiLz48c2FtbDJwOlJlcXVlc3RlZEF1dGhuQ29udGV4dCBDb21wYXJpc29uPSJtaW5pbXVtIj48c2FtbDI6QXV0aG5Db250ZXh0Q2xhc3NSZWY+aHR0cDovL2VpZGFzLmV1cm9wYS5ldS9Mb0Evc3Vic3RhbnRpYWw8L3NhbWwyOkF1dGhuQ29udGV4dENsYXNzUmVmPjwvc2FtbDJwOlJlcXVlc3RlZEF1dGhuQ29udGV4dD48L3NhbWwycDpBdXRoblJlcXVlc3Q+">
+                                
+                                <input type="hidden" name="SelectedLanguage" id="SelectedLanguage" value="">
+                            </form>
+                            <p class="page-language">
+                                <label id="languageLabel" for="language-select"> Idioma <span id="idIdioma" class="visually-hidden">.El cambio de idioma recargará automáticamente la página al idioma seleccionado.</span>
+                                </label> <select name="language" id="language-select" title="El cambio de idioma recargará automáticamente la página al idioma seleccionado." onchange="JAVASCRIPT:selectedLanguage();idpLanguage.submit();">
+                                    <option lang="es" value="es" selected="">Español</option>
+                                    <option lang="ca" value="ca">Català</option>
+                                    <option lang="eu" value="eu">Euskera</option>
+                                    <option lang="gl" value="gl">Galego</option>
+                                    <option lang="va" value="va">Valencià</option>
+                                    <option lang="en" value="en">English</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div class="link-div">
+                            <a class="about link_logo" href="https://clave.gob.es/clave_Home/es/clave/queEs.html" target="_blank" rel="noopener noreferrer"> <span aria-hidden="true"> ¿Qué es Cl@ve?
+                            </span> <span class="visually-hidden"> ¿Qué es Cl@ve?
+                            </span> <img class="external_link" alt="Abre en una ventana nueva." width="12" height="12" src="./resources/images/open_in_new.svg">
+                            </a> .
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- FIN HEADER_RESPONSIVE -->
+        </header>
+        
+        <main id="ID_main" class="mod_subhome contenido">
+            <div class="mod_subhome_titulo mod_subhome_gen_wrapper">
+                <div class="wrapper">
+                    <div class="mod_subhome_wrapper">
+                    <h1 class="titulo">
+                        <span>Plataforma de identificación para las Administraciones</span>
+                    </h1>
+                        <p>
+                            <span aria-hidden="true">Seleccione el método de identificación de Cl@ve </span>
+                            <span class="visually-hidden">Seleccione el método de identificación de Cl@ve </span>
+                        </p><p>
+                    </p></div>
+                </div>
+            </div>
+            
+            <div class="wrapper_main">
+                <!-- MAIN -->
+                <div class="main">
+                    <div class="mss_items_info">
+                        <form name="idpRedirect" action="ServiceRedirect" method="post">
+                            <input type="hidden" name="SAMLRequest" id="SAMLRequest2" value="PHNhbWwycDpBdXRoblJlcXVlc3QgeG1sbnM6c2FtbDJwPSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6cHJvdG9jb2wiIHhtbG5zOmRzPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwLzA5L3htbGRzaWcjIiB4bWxuczplaWRhcz0iaHR0cDovL2VpZGFzLmV1cm9wYS5ldS9zYW1sLWV4dGVuc2lvbnMiIHhtbG5zOnNhbWwyPSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YXNzZXJ0aW9uIiBBc3NlcnRpb25Db25zdW1lclNlcnZpY2VVUkw9Imh0dHBzOi8vcG9ydGFsLmdlc3Rpb24uc2VkZXBrZC5yZWQuZ29iLmVzL2NsYXZlLXNpZ25hdHVyZS9sb2dpbi9zYW1sMi9zc28vY2xhdmUiIENvbnNlbnQ9InVybjpvYXNpczpuYW1lczp0YzpTQU1MOjIuMDpjb25zZW50OnVuc3BlY2lmaWVkIiBEZXN0aW5hdGlvbj0iaHR0cHM6Ly9wYXNhcmVsYS5jbGF2ZS5nb2IuZXMvUHJveHkyL1NlcnZpY2VQcm92aWRlciIgRm9yY2VBdXRobj0idHJ1ZSIgSUQ9Il8uSWdVUXZoNUFxN25pRXp0UUs3WFF5QXJTcE1mUERWNTVnR3k5U0hpNV96SDUzQ1VyQXhBWS4tbFMweDBqeTEiIElzUGFzc2l2ZT0iZmFsc2UiIElzc3VlSW5zdGFudD0iMjAyNS0xMC0yN1QyMToyOTo1OS4xNTJaIiBQcm92aWRlck5hbWU9IlEyODAyMjE2SF9JOTk5OTk5OTc7S0lURElHLUFwcC1DbGF2ZVNpZ24iIFZlcnNpb249IjIuMCI+PGRzOlNpZ25hdHVyZSB4bWxuczpkcz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC8wOS94bWxkc2lnIyI+PGRzOlNpZ25lZEluZm8+PGRzOkNhbm9uaWNhbGl6YXRpb25NZXRob2QgQWxnb3JpdGhtPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzEwL3htbC1leGMtYzE0biMiLz48ZHM6U2lnbmF0dXJlTWV0aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8wNC94bWxkc2lnLW1vcmUjcnNhLXNoYTUxMiIvPjxkczpSZWZlcmVuY2UgVVJJPSIjXy5JZ1VRdmg1QXE3bmlFenRRSzdYUXlBclNwTWZQRFY1NWdHeTlTSGk1X3pINTNDVXJBeEFZLi1sUzB4MGp5MSI+PGRzOlRyYW5zZm9ybXM+PGRzOlRyYW5zZm9ybSBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvMDkveG1sZHNpZyNlbnZlbG9wZWQtc2lnbmF0dXJlIi8+PGRzOlRyYW5zZm9ybSBBbGdvcml0aG09Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvMTAveG1sLWV4Yy1jMTRuIyIvPjwvZHM6VHJhbnNmb3Jtcz48ZHM6RGlnZXN0TWV0aG9kIEFsZ29yaXRobT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS8wNC94bWxlbmMjc2hhNTEyIi8+PGRzOkRpZ2VzdFZhbHVlPlk3SnBWa29rRjJMbXNIWkpRbWtkUEhOOGV2OVkvQWV1SUhPS0IrbUJUTE15TVZ0QVRNMjRHMnl6OUtrZytFODdjRkw3MnVzdUJ1ZlNnS0NPdG1xN3VnPT08L2RzOkRpZ2VzdFZhbHVlPjwvZHM6UmVmZXJlbmNlPjwvZHM6U2lnbmVkSW5mbz48ZHM6U2lnbmF0dXJlVmFsdWU+UFVyR2wxWWVWdUdhVVV2bXlRL296NjNDWGNMYmJFSVlRYmNsd0xVendMNXdPVkxkTFBXOXQ5SzRJenppc2FnVUdpd04wd1pZK2FXVWc2ZkM4SGVMQ1h5MFIrNzh3T0hwTnhtMFlwMGpDSmxGMnNNSzEyNnpNR2xIQlhFYW5sQUVsdW5yK0dqbVBmQU92UER5aDEyczR0aG1DU1FmcTV1QmFQOWZINWdjeGZvWFA3YXVYblM5ZHVMb2xoejZXNW0wdXpIVC83NFF4WjROWitJZCs1ZmlVV1JLYm9pN0g0b0NSbzQra3RnU1lxMEM4TTRjKzN4MFcyNjZIYm5RaGJrNDFGQXd6L0xGNEFLMVdxN3JxQ0RkdkN1cGZsWkp1N0xzOTIwb0YyNFF2V1VwQUVjczNSb2N3VDIvZGJJZHZhaGFyeVpBZUtkL0VoRWR5dkpYRVVEbXJ3PT08L2RzOlNpZ25hdHVyZVZhbHVlPjxkczpLZXlJbmZvPjxkczpYNTA5RGF0YT48ZHM6WDUwOUNlcnRpZmljYXRlPk1JSUtMekNDQ0JlZ0F3SUJBZ0lKR2dYVHlCWmNIT0NHTUEwR0NTcUdTSWIzRFFFQkN3VUFNSUlCSURFTE1Ba0dBMVVFQmhNQ1JWTXgKRHpBTkJnTlZCQWNNQmsxQlJGSkpSREVQTUEwR0ExVUVDQXdHVFVGRVVrbEVNVUl3UUFZRFZRUUxERGx6WldVZ1kzVnljbVZ1ZENCaApaR1J5WlhOeklHRjBJR2gwZEhCek9pOHZkM2QzTG1OaGJXVnlabWx5YldFdVkyOXRMMkZrWkhKbGMzTXhMekF0QmdOVkJBc01Ka0ZECklFTkJUVVZTUmtsU1RVRWdSazlTSUV4RlIwRk1JRkJGVWxOUFRsTWdMU0F5TURFMk1SSXdFQVlEVlFRRkV3bEJPREkzTkRNeU9EY3gKR0RBV0JnTlZCR0VNRDFaQlZFVlRMVUU0TWpjME16STROekViTUJrR0ExVUVDZ3dTUVVNZ1EwRk5SVkpHU1ZKTlFTQlRMa0V1TVM4dwpMUVlEVlFRRERDWkJReUJEUVUxRlVrWkpVazFCSUVaUFVpQk1SVWRCVENCUVJWSlRUMDVUSUMwZ01qQXhOakFlRncweU5EQTJNamd4Ck16STFNek5hRncweU56QTJNamd4TXpJMU16TmFNSUhYTVRVd013WURWUVFEREN4RHc0Rk5RVkpCSUVSRklFVlRVRUhEa1VFZ1FVTlUKVlVGRFNVOU9SVk1nUVZWVVQwMUJWRWxhUVVSQlV6RVNNQkFHQTFVRUJSTUpVVEk0TURJeU1UWklNUmd3RmdZRFZRUmhEQTlXUVZSRgpVeTFSTWpnd01qSXhOa2d4R2pBWUJnTlZCQXNNRVZORlRFeFBJRVZNUlVOVVVrOU9TVU5QTVVjd1JRWURWUVFLREQ1RFFVMUJVa0VnClJFVWdRMDlOUlZKRFNVOGdTVTVFVlZOVVVrbEJJRk5GVWxaSlEwbFBVeUJaSUU1QlZrVkhRVU5KVDA0Z1JFVWdSVk5RUWNPUlFURUwKTUFrR0ExVUVCaE1DUlZNd2dnRWlNQTBHQ1NxR1NJYjNEUUVCQVFVQUE0SUJEd0F3Z2dFS0FvSUJBUUMyTUZNSUpXL2Qwd1V0b1JlUgpPUVhXQzJwQU85WGVpM2lZSU84Z0cxL3dtZnhXUGJmYzIzcldzZ1BzWEZpUndlZ1ZCb1BNeWdTOVdNSzNxOXBZQkNYT01Xb1Fjb3Z3Ci9DdG1tb2RJU0lVNU42U0VnTExpUEZXVDdpM1k1SGVHT21QWUpDakVUaWJqNUx3TFBjbnFwZkpBaE1qcVhvUVNJd0ZiMzh6TFFBK2wKeDM0S0luWTZza1hZaE1oRFozSkYzZmlYM1MxbXVCY09iYjB2UEtKajM4Wmtudi9YQ3JyTUtnY2taNWdRSmMzaHhubGwwbzg3dkovcwpuZUhzTm00SVMzU2ZrZ3laNitXS3B0NjZvSTVxME84bTh1b0tCQXRFZ0tjY1Y3NEdQdzhJaTdjQzduNjVJTWFwVSt6b213Wkx4cGZMCkh6NnNGQ0VEcWQxbWVQbTlzYUZKQWdNQkFBR2pnZ1N3TUlJRXJEQU1CZ05WSFJNQkFmOEVBakFBTUE0R0ExVWREd0VCL3dRRUF3SUYKNERBZEJnTlZIU1VFRmpBVUJnZ3JCZ0VGQlFjREFnWUlLd1lCQlFVSEF3UXdIUVlEVlIwT0JCWUVGRU1QRUU4YVlkemh5TkpTYTJlZQpwN2I3dDgwYU1JR0lCZ2dyQmdFRkJRY0JBUVI4TUhvd1VBWUlLd1lCQlFVSE1BS0dSR2gwZEhBNkx5OTNkM2N1WTJGdFpYSm1hWEp0CllTNWpiMjB2WTJWeWRITXZZV05mWTJGdFpYSm1hWEp0WVY5c1pXZGhiRjl3WlhKemIyNXpMVEl3TVRZdVkzSjBNQ1lHQ0NzR0FRVUYKQnpBQmhocG9kSFJ3T2k4dmIyTnpjQzVqWVcxbGNtWnBjbTFoTG1OdmJUQWZCZ05WSFNNRUdEQVdnQlRESjRXVDF5K1d4UnVzZGpQWgpocUpLZldnVVFqQ0JtQVlEVlIwZkJJR1FNSUdOTUVTZ1FxQkFoajVvZEhSd09pOHZZM0pzTG1OaGJXVnlabWx5YldFdVkyOXRMMkZqClgyTmhiV1Z5Wm1seWJXRmZiR1ZuWVd4ZmNHVnljMjl1Y3kweU1ERTJMbU55YkRCRm9FT2dRWVkvYUhSMGNEb3ZMMk55YkRFdVkyRnQKWlhKbWFYSnRZUzVqYjIwdllXTmZZMkZ0WlhKbWFYSnRZVjlzWldkaGJGOXdaWEp6YjI1ekxUSXdNVFl1WTNKc01JSFpCZ05WSFJFRQpnZEV3Z2M2a2djc3dnY2d4SURBZUJnbGdoVlFCQXdVR0FnRU1FVk5GVEV4UElFVk1SVU5VVWs5T1NVTlBNVTB3U3dZSllJVlVBUU1GCkJnSUNERDVEUVUxQlVrRWdSRVVnUTA5TlJWSkRTVThnU1U1RVZWTlVVa2xCSUZORlVsWkpRMGxQVXlCWklFNUJWa1ZIUVVOSlQwNGcKUkVVZ1JWTlFRY09SUVRFWU1CWUdDV0NGVkFFREJRWUNBd3dKVVRJNE1ESXlNVFpJTVRzd09RWUpZSVZVQVFNRkJnSUZEQ3hEdzRGTgpRVkpCSUVSRklFVlRVRUhEa1VFZ1FVTlVWVUZEU1U5T1JWTWdRVlZVVDAxQlZFbGFRVVJCVXpBY0JnTlZIUklFRlRBVGdSRmpZVUJqCllXMWxjbVpwY20xaExtTnZiVENDQVRnR0ExVWRJQVNDQVM4d2dnRXJNSUlCRUFZUUt3WUJCQUdCaHk0S0VBSUNBUVFEQVRDQit6QXAKQmdnckJnRUZCUWNDQVJZZGFIUjBjSE02THk5d2IyeHBZM2t1WTJGdFpYSm1hWEp0WVM1amIyMHdnYzBHQ0NzR0FRVUZCd0lDTUlIQQpESUc5UTJWeWRHbG1hV05oWkc4Z1kzVmhiR2xtYVdOaFpHOGdaR1VnYzJWc2JHOGdaV3hsWTNSeWIyNXBZMjhnWkdVZ1FXUnRhVzVwCmMzUnlZV05wYjI0c0lHOXlaMkZ1YnlCdklHVnVkR2xrWVdRZ1pHVWdaR1Z5WldOb2J5QndkV0pzYVdOdkxDQnVhWFpsYkNCTlpXUnAKYnk5VGRYTjBZVzVqYVdGc0xpQkRiMjV6ZFd4MFpTQnNZWE1nWTI5dVpHbGphVzl1WlhNZ1pHVWdkWE52SUdWdUlHaDBkSEJ6T2k4dgpjRzlzYVdONUxtTmhiV1Z5Wm1seWJXRXVZMjl0TUFvR0NHQ0ZWQUVEQlFZQ01Ba0dCd1FBaSt4QUFRRXdnZEFHQ0NzR0FRVUZCd0VECkJJSERNSUhBTUFnR0JnUUFqa1lCQVRBTEJnWUVBSTVHQVFNQ0FROHdnWkVHQmdRQWprWUJCVENCaGpCQkZqdG9kSFJ3Y3pvdkwzQmsKY3k1allXMWxjbVpwY20xaExtTnZiUzlrYjJOekwxQkVVMTlNWldkaGJGOVFaWEp6YjI0dGRqRXVNRVZPTG5Ca1poTUNaVzR3UVJZNwphSFIwY0hNNkx5OXdaSE11WTJGdFpYSm1hWEp0WVM1amIyMHZaRzlqY3k5UVJGTmZUR1ZuWVd4ZlVHVnljMjl1TFhZeExqQkZVeTV3ClpHWVRBbVZ6TUJNR0JnUUFqa1lCQmpBSkJnY0VBSTVHQVFZQ01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQ0FRQjVDWUsxQnluZTMzWVEKRU1JeFMvYWFEUE5iZ29iKzlxRWVBZVVjc1E0TlNoTnlFT1RGa1U0QXFKb1EyMlV2aWU4YmhLY3RWUjdTamQxYjBMZFNwR0RzbkFWZwpzdWdTQ05kNGJCQkZkUFlaVm1xZU9TL3ltYVN3UHYxYnJEOFczbHNtWFQ5WjBmWG5WMG5aTWdrcittakJXcTlRQ0JlNVdHMFpLWFdOCm1WRXhtcHRSdXRpWGh1UUJZS3AxWlZXSEQrU3NHRW5UMGkrbUVwSFV5ZHJJRHRDbllZMDMrK2ZXZnRhazZOaWNiZU5hWHlTZHVYSC8KQ0RJZzU5eE1ZSmpLcFNLNTR5Y25YRnNFV3lyMDhVZjhrQytxVlpVd0hGeDRhMVFyNGRJdHl6MEprd1lJV2ErQ3paTFJFQmpJSk9IRQpiZGQvYW83WmJJeXYyVDkyWnpLRjl4RWduZmdsNmpZWUxKdGE5ZllwV2VObW9iOXljVjV0U1FMRVpYQ3ZQOFN4K3czeUJERE5aV1NPCmxKVDJiNVVHc3R2cXNNNE0vanowdDU2SnRSN0xoVy9CVHVqK011Ry8rbWZzTUw3b2lsdlIwZndlc0tKeUV4M3lHbHVuaS9Dc2o0Tm4KcDVLQ0YzQitFRThSSzFFeHZDLzRkd0RLMGhSVFUrZDl6OXhsNmMyTXB5a3FETm5qeXVjdDMvUldhRVRuZC9oVHRNaHVxQlJXQTg2Ugp0cFhyaXdjcVQwejRlWUNmZ3NzcFAwNlRSS0tZZzFyVnU0bmJWSVFMYlpyNS9xQU5RQytlMjZ5VldLdVhicVJCV3o5V2VHcnU3SS84Clp4OWpXOEtyWDAvNGtiS0tMc3RRdlF3MVpvNUJ5eW5HVllpV3FwNGt0YTk3VXZYbnRWVW5YSCtCS3VGeWFBPT08L2RzOlg1MDlDZXJ0aWZpY2F0ZT48L2RzOlg1MDlEYXRhPjwvZHM6S2V5SW5mbz48L2RzOlNpZ25hdHVyZT48c2FtbDJwOkV4dGVuc2lvbnM+PGVpZGFzOlJlcXVlc3RlZEF0dHJpYnV0ZXMvPjwvc2FtbDJwOkV4dGVuc2lvbnM+PHNhbWwycDpOYW1lSURQb2xpY3kgQWxsb3dDcmVhdGU9InRydWUiIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6MS4xOm5hbWVpZC1mb3JtYXQ6dW5zcGVjaWZpZWQiLz48c2FtbDJwOlJlcXVlc3RlZEF1dGhuQ29udGV4dCBDb21wYXJpc29uPSJtaW5pbXVtIj48c2FtbDI6QXV0aG5Db250ZXh0Q2xhc3NSZWY+aHR0cDovL2VpZGFzLmV1cm9wYS5ldS9Mb0Evc3Vic3RhbnRpYWw8L3NhbWwyOkF1dGhuQ29udGV4dENsYXNzUmVmPjwvc2FtbDJwOlJlcXVlc3RlZEF1dGhuQ29udGV4dD48L3NhbWwycDpBdXRoblJlcXVlc3Q+">
+                            
+                            <input type="hidden" name="SelectedIdP" id="SelectedIdP" value="">
+                        </form>
+                        <div class="idps">
+                            
+                                
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                
+                                    
+                                    
+                                        
+                                            
+                                                <article class="idp-card1">
+                                                    <div class="badges1">
+                                                        <span class="badge badge-pill badge-warning recommended">Novedad</span>
+                                                    </div>
+                                            
+                                            
+                                        
+                                        <div class="mss_item_img">
+                                            <picture class="spLogo">
+                                                <source srcset="./resources/images/blank.png" media="(max-width: 640px)">
+                                                <img class="spLogo" src="ImageRetrieve?id=IDP_IDP_MOVIL" alt="">
+                                            </picture>
+                                        </div>
+                                        <div class="cardText">
+                                            <h2 class="idp-title">
+                                                <span aria-hidden="true">Cl@ve Móvil</span>
+                                                <span class="visually-hidden">Clave Móvil</span>
+                                            </h2>
+                                            <p class="idp-description">
+                                                <span aria-hidden="true">Incluye Cl@ve PIN.</span>
+                                                <span class="visually-hidden">Incluye Clave PIN.</span>
+                                                
+                                                        Puede descargar la aplicación en
+                                                        <a class="register" href="https://apps.apple.com/es/app/cl-ve/id842624380" title="Puede descargar la aplicación en Apple Store" target="_blank">
+                                                            <span lang="en">Apple Store</span>
+                                                            <img class="external_link" width="12" height="12" src="./resources/images/open_in_new.svg" alt="Abre en una ventana nueva.">
+                                                        </a>
+                                                        o en
+                                                        <a class="register" href="https://play.google.com/store/apps/details?id=es.aeat.pin24h" title="Puede descargar la aplicación en Google Play" target="_blank">
+                                                            <span lang="en">Google Play</span>
+                                                            <img class="external_link" width="12" height="12" src="./resources/images/open_in_new.svg" alt="Abre en una ventana nueva.">
+                                                        </a>
+														.
+                                                
+                                                 <span class="register-link regular">
+                                            
+                                        </span>
+                                            </p>
+                                        </div>
+                                        
+                                        
+                                            <div class="card-button1">
+                                        
+                                        
+                                        <button class="idp-button" onclick="JAVASCRIPT:selectedIdP('IDP_MOVIL');idpRedirect.submit();">
+                                            <span aria-hidden="true">Acceso Cl@ve Móvil</span>
+                                            <span class="visually-hidden">Acceso Clave Móvil</span>
+                                        </button>
+                                        </div>
+                                       
+                                    </article>
+                            
+                                
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                
+                                    
+                                    
+                                        
+                                            
+                                            
+                                                <article class="idp-card2">
+                                                    <div class="badges2">
+                                                        <span class="badge badge-pill badge-warning recommended"></span>
+                                                    </div>
+                                            
+                                        
+                                        <div class="mss_item_img">
+                                            <picture class="spLogo">
+                                                <source srcset="./resources/images/blank.png" media="(max-width: 640px)">
+                                                <img class="spLogo" src="ImageRetrieve?id=IDP_AFIRMA" alt="">
+                                            </picture>
+                                        </div>
+                                        <div class="cardText">
+                                            <h2 class="idp-title">
+                                                <span aria-hidden="true">DNIe / Certificado electrónico</span>
+                                                <span class="visually-hidden">DNIe / Certificado electrónico</span>
+                                            </h2>
+                                            <p class="idp-description">
+                                                <span aria-hidden="true">Cualquier certificado electrónico cualificado.</span>
+                                                <span class="visually-hidden">Cualquier certificado electrónico cualificado.</span>
+                                                
+                                                 <span class="register-link regular">
+                                            
+                                        </span>
+                                            </p>
+                                        </div>
+                                        
+                                        
+                                            <div class="card-button1">
+                                        
+                                        
+                                        <button class="idp-button" onclick="JAVASCRIPT:selectedIdP('AFIRMA');idpRedirect.submit();">
+                                            <span aria-hidden="true">Acceso DNIe / Certificado electrónico</span>
+                                            <span class="visually-hidden">Acceso DNIe / Certificado electrónico</span>
+                                        </button>
+                                        </div>
+                                       
+                                    </article>
+                            
+                                
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                
+                                    
+                                    
+                                        
+                                            
+                                            
+                                                <article class="idp-card2">
+                                                    <div class="badges2">
+                                                        <span class="badge badge-pill badge-warning recommended"></span>
+                                                    </div>
+                                            
+                                        
+                                        <div class="mss_item_img">
+                                            <picture class="spLogo">
+                                                <source srcset="./resources/images/blank.png" media="(max-width: 640px)">
+                                                <img class="spLogo" src="ImageRetrieve?id=IDP_EIDAS" alt="">
+                                            </picture>
+                                        </div>
+                                        <div class="cardText">
+                                            <h2 class="idp-title">
+                                                <span aria-hidden="true">Ciudadanos UE</span>
+                                                <span class="visually-hidden">Ciudadanos UE</span>
+                                            </h2>
+                                            <p class="idp-description">
+                                                <span aria-hidden="true">Sistemas de identificación de otros países de la UE.</span>
+                                                <span class="visually-hidden">Sistemas de identificación de otros países de la UE.</span>
+                                                
+                                                 <span class="register-link regular">
+                                            
+                                        </span>
+                                            </p>
+                                        </div>
+                                        
+                                        
+                                            <div class="card-button1">
+                                        
+                                        
+                                        <button class="idp-button" onclick="JAVASCRIPT:selectedIdP('EIDAS');idpRedirect.submit();">
+                                            <span aria-hidden="true">Acceso Ciudadanos UE</span>
+                                            <span class="visually-hidden">Acceso Ciudadanos UE</span>
+                                        </button>
+                                        </div>
+                                       
+                                    </article>
+                            
+                                
+                                    
+                                        
+                                        
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                
+                                    
+                                    
+                                        
+                                            
+                                            
+                                                <article class="idp-card2">
+                                                    <div class="badges2">
+                                                        <span class="badge badge-pill badge-warning recommended"></span>
+                                                    </div>
+                                            
+                                        
+                                        <div class="mss_item_img">
+                                            <picture class="spLogo">
+                                                <source srcset="./resources/images/blank.png" media="(max-width: 640px)">
+                                                <img class="spLogo" src="ImageRetrieve?id=IDP_SEGSOC" alt="">
+                                            </picture>
+                                        </div>
+                                        <div class="cardText">
+                                            <h2 class="idp-title">
+                                                <span aria-hidden="true">Cl@ve permanente</span>
+                                                <span class="visually-hidden">Clave permanente</span>
+                                            </h2>
+                                            <p class="idp-description">
+                                                <span aria-hidden="true">Usuario y contraseña.</span>
+                                                <span class="visually-hidden">Usuario y contraseña.</span>
+                                                
+                                                 <span class="register-link regular">
+                                            
+                                                Para usarlo, es necesario
+                                                <a class="register" href="https://clave.gob.es/clave_Home/es/registro/Como-puedo-registrarme.html" target="_blank">
+                                                    <span>registrarse</span>
+                                                    <img class="external_link" width="12" height="12" src="./resources/images/open_in_new.svg" alt="Ir a la página que describe como puedo registrarme. Abre en una ventana nueva">
+                                                </a>
+												.
+                                            
+                                        </span>
+                                            </p>
+                                        </div>
+                                        
+                                            <div class="card-button">
+                                        
+                                        
+                                        
+                                        <button class="idp-button" onclick="JAVASCRIPT:selectedIdP('SEGSOC');idpRedirect.submit();">
+                                            <span aria-hidden="true">Acceso Cl@ve permanente</span>
+                                            <span class="visually-hidden">Acceso Clave permanente</span>
+                                        </button>
+                                        </div>
+                                       
+                                    </article>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+                
+                
+                    <p class="auth">
+                        La identificación se realizará automáticamente si no han transcurrido más de 60 minutos desde su última identificación.
+                    </p>
+                
+            
+            
+            
+            <!-- FIN MAIN -->
+        </main>
+        
+        <footer class="mod_footer" id="footer">
+            <h2 class="visually-hidden">Pie Clave</h2>
+            <div class="opciones-footer">
+            <ul>
+                <li>
+                    <a class="pie link_logo" href="./resources/files/Politica_de_Privacidad_del_servicio_v4.pdf" target="_blank" rel="noreferrer noopener"> 
+                       <span aria-hidden="true">
+                           Política de privacidad
+                       </span>
+                       <img alt="Abre en una ventana nueva." src="./resources/images/open_in_new-white.svg" class="external_link" width="12" height="12">
+                    </a>
+                </li>
+                <li>
+                    <a class="pie link_logo" href="./resources/files/Declaracion_de_Accesibilidad.pdf" target="_blank" rel="noreferrer noopener">
+                       <span aria-hidden="true">
+                           Accesibilidad
+                       </span>
+                       <img alt="Abre en una ventana nueva." src="./resources/images/open_in_new-white.svg" class="external_link" width="12" height="12">
+                    </a>
+                </li>
+                <li>
+                    <a class="pie link_logo" href="https://clave.gob.es/clave_Home/es/clave/queEs.html" target="_blank" rel="noopener noreferrer">
+                    <span aria-hidden="true">
+                        ¿Qué es Cl@ve?
+                    </span>
+                    <span class="visually-hidden">
+                        ¿Qué es Cl@ve?
+                    </span>
+                        <img class="external_link" alt="Abre en una ventana nueva." width="12" height="12" src="./resources/images/open_in_new-white.svg">
+                    </a>
+                </li>
+                <li>
+                    <a class="pie link_logo" href="https://clave.gob.es/clave_Home/es/clave/funcionalidad.html" target="_blank">
+                        <span aria-hidden="true">
+                            ¿Cómo funciona?
+                        </span>
+                        <img alt="Abre en una ventana nueva." src="./resources/images/open_in_new-white.svg" class="external_link" width="12" height="12">
+                    </a>
+                </li>
+                <li>
+                    <a class="pie link_logo" href="https://clave.gob.es/clave_Home/es/preguntas-frecuentes.html" target="_blank">
+                        <span aria-hidden="true">
+                            Preguntas Frecuentes
+                        </span>
+                        <img alt="Abre en una ventana nueva." src="./resources/images/open_in_new-white.svg" class="external_link" width="12" height="12">
+                    </a>
+                </li>
+            </ul>
+            </div>
+            <div class="logo-footer">
+                <div class="footer-left">
+                    <figure>
+                        <img class="img" alt="Logo Clave" src="./resources/images/logo_clave_pie.png">
+                        <p class="footer-text">
+                            &nbsp;© Gobierno de España <span class="bold">·</span>
+                            Cl<span aria-hidden="true">@</span><span class="visually-hidden">a</span>ve
+                            v2.8.4
+                        </p>
+                    </figure>
+                </div>
+            </div>
+            
+        </footer>
+    </div>
+    <!--Accesos--><script type="text/javascript"> var _paq=_paq || []; _paq.push(["disableCookies"]); _paq.push(["setDomains", ["*.pasarela.clave.gob.es"]]); _paq.push(['trackPageView']); _paq.push(['enableLinkTracking']); (function() { var u="//visitas-web.redsara.es/"; _paq.push(['setTrackerUrl', u+'js/']); _paq.push(['setSiteId', 26]); var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'js/'; s.parentNode.insertBefore(g,s); })();</script><noscript><p><img src="//visitas-web.redsara.es/js/?idsite=26" style="border:0;" alt="" /></p></noscript><!--End Accesos-->
+
+</body></html>

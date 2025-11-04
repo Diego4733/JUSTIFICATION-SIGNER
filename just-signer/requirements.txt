@@ -1,0 +1,4 @@
+Flask>=2.3
+Flask-SocketIO>=5.3
+simple-websocket>=0.10
+playwright>=1.46

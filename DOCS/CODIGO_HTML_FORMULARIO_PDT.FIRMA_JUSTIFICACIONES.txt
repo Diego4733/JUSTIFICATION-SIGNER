@@ -1,0 +1,2607 @@
+<html lang="es" class="h-100"><input type="hidden" id="__yoroi_connector_api_injected_type" value="prod"><head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    	<meta name="description" content="">
+
+    	<title>Kit Digital</title>
+		<link rel="shortcut icon" href="/justificaciones/styles/img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="/justificaciones/styles/img/favicon.ico" type="image/x-icon">
+    	<link rel="stylesheet" href="/justificaciones/styles/css/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" href="/justificaciones/styles/css/bootstrap-icons.css" type="text/css">
+		<link href="/justificaciones/styles/css/styles.css" rel="stylesheet" type="text/css">
+	    <link href="/justificaciones/styles/DataTables/datatables.min.css" rel="stylesheet" type="text/css">
+        <link href="/justificaciones/styles/DataTables/Buttons-2.4.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css">
+        
+        
+		<script src="/justificaciones/styles/js/bootstrap.bundle.min.js"></script>
+		<script src="/justificaciones/styles/js/jquery-3.6.0.min.js"></script> 
+		<script src="/justificaciones/styles/js/scripts.js"></script>
+	  	<script src="/justificaciones/styles/js/autoscript.js"></script>
+        <script src="/justificaciones/styles/js/vfs_fonts.js"></script>
+        <script src="/justificaciones/styles/js/jszip.min.js" type="text/javascript"></script>
+        <script src="/justificaciones/styles/js/pdfmake.min.js" type="text/javascript"></script>
+        <script src="/justificaciones/styles/DataTables/datatables.min.js"></script>
+        <script src="/justificaciones/styles/DataTables/Buttons-2.4.2/js/buttons.print.min.js"></script>
+        <script src="/justificaciones/styles/DataTables/Buttons-2.4.2/js/buttons.html5.min.js"></script>
+        <script src="/justificaciones/styles/DataTables/Buttons-2.4.2/js/dataTables.buttons.min.js"></script>
+	</head>
+
+<body class="d-flex flex-column h-100">
+
+	<!-- Inicio Header -->
+	<div>
+		<div>
+			<header>		<nav class="topnavbar navbar navbar-expand-md">
+			<div class="container-fluid">
+				<div class="d-none d-lg-block">
+					<a href="/portal/kitdigital"><img src="/portal/common/img/logo_kit_digital.png" class="img-fluid" alt="Kit Digital" width="200" height=""></a>
+					<a href="/portal/kitdigital"><img src="/portal/common/img/logo_kit_consulting.png" class="img-fluid" alt="Kit Consulting" width="350" height=""></a>
+				</div>
+				<div class="d-none d-sm-block d-md-block d-lg-none">
+					<a href="/portal/kitdigital"><img src="/portal/common/img/logo_kd.png" class="img-fluid" alt="Kit Digital" width="60" height=""></a>
+					<a href="/portal/kitdigital"><img src="/portal/common/img/logo_kc.png" class="img-fluid" alt="Kit Consulting" width="50" height=""></a>
+				</div>
+				<h1 class="text-center">ESPACIO <span>ADA</span></h1>
+			</div>
+		</nav></header>
+		</div>
+		
+	</div>
+	
+	<!-- Fin Header -->
+
+	<!-- Inicio Main -->
+	<main class="flex-shrink-0">
+
+		<!-- Inicio Menú -->
+		<div>
+			<div>
+				<div>		<!-- Inicio Menú -->   
+			<style>
+				.dropdown-divider {
+				    height: 0;
+				    margin: 0;
+				    border-top: 2px solid #fff;
+				    background-color: #fff;
+				    opacity: 1;
+				}
+			</style>
+				
+		<div class="menu-bar mb-2">
+			<div class="container container-xs">	
+				<nav class="nav nav-menu" aria-label="Navegación">
+					<a class="nav-link" aria-current="page" href="/portal/espacioAD">Inicio</a>
+					<a class="nav-link dropdown-toggle" href="#" id="navbargestAgDig" role="button" data-bs-toggle="dropdown" aria-expanded="false">Gestión ADA</a>
+						<ul class="dropdown-menu" aria-labelledby="navbargestAgDig">
+							<li><a href="/adautoaltausuario/alta" class="dropdown-item nav-link">Alta como representante</a></li>
+							<li><a href="/adusuarios/home" class="dropdown-item nav-link">Usuarios</a></li>	
+							<li><a href="/adcuentaspago/consulta-cuentas-cobro-digitalizador" class="dropdown-item nav-link">Gestión de cuentas bancarias de cobro</a></li>
+						</ul>
+						
+					<a class="nav-link dropdown-toggle" href="#" id="navbarAcuerdos" role="button" data-bs-toggle="dropdown" aria-expanded="false">Acuerdos</a>
+						<div class="dropdown-menu container-xs" aria-labelledby="navbarAcuerdos" data-popper-placement="bottom-start"> 
+							<div class="row ms-0">
+								<div class="col">
+									<ul aria-labelledby="navbarAcuerdosKD">
+										<li><span>Kit Digital</span></li>										
+										<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=CC_01&amp;viewAcuerdos=1" class="dropdown-item nav-link" id="kd-aela">En Elaboración</a></li>
+										<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=CC_01&amp;viewAcuerdos=2" class="dropdown-item nav-link" id="kd-afir">Firmados</a></li>
+										<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=CC_01&amp;viewAcuerdos=3" class="dropdown-item nav-link" id="kd-afin">Finalizados</a></li>
+									</ul>							
+								</div>
+							<div class="col">
+								<ul aria-labelledby="navbarAcuerdoKC">
+									<li><span>Kit Consulting</span></li>										
+									<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=KC_01&amp;viewAcuerdos=1" class="dropdown-item nav-link" id="kc-aela">En Elaboración</a></li>
+									<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=KC_01&amp;viewAcuerdos=2" class="dropdown-item nav-link" id="kc-afir">Firmados</a></li>
+									<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=KC_01&amp;viewAcuerdos=3" class="dropdown-item nav-link" id="kc-afin">Finalizados</a></li>
+								</ul>
+							</div>
+							</div>
+						</div>							
+
+					<a class="nav-link dropdown-toggle" href="#" id="navbarTramitAcuerdos" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tramitación de Acuerdos</a>
+						<div class="dropdown-menu container-xs" aria-labelledby="navbarTramitAcuerdos" data-popper-placement="bottom-start"> 
+							<div class="row ms-0">
+								<div class="col">
+									<ul aria-labelledby="navbarTramitAcuerdosKD">
+										<li><span>Kit Digital</span></li>
+										<li><a href="/justificaciones/tic/" class="dropdown-item nav-link" id="kd-jus">Justificaciones</a></li>
+										<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=CC_05" class="dropdown-item nav-link" id="kd-odes">Observaciones al desistimiento</a></li>
+										<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=CC_07" class="dropdown-item nav-link" id="kd-oren">Observaciones a la renuncia</a></li>
+										<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=CC_08" class="dropdown-item nav-link" id="kd-adf1">Ampliación de documentación fase 1</a></li>
+										<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=CC_09" class="dropdown-item nav-link" id="kd-adf2">Ampliación de documentación fase 2</a></li>
+										<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=CC_10" class="dropdown-item nav-link" id="kd-adpp">Ampliación de documentación post-pago</a></li>								
+										<li><hr class="dropdown-divider"></li>
+										<li><a href="/portal/espacioAD/guias/justificaciones" class="dropdown-item nav-link">Guías y plantillas</a></li>											
+									</ul>
+								</div>
+								<div class="col">
+									<ul aria-labelledby="navbarTramitAcuerdosKC">
+										<li><span>Kit Consulting</span></li>
+										<li><a href="/justificaciones/kitconsulting/tic/" class="dropdown-item nav-link" id="kc-jus">Justificaciones</a></li> 
+										<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=KC_05" class="dropdown-item nav-link" id="kc-odes">Observaciones al desistimiento</a></li>
+										<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=KC_07" class="dropdown-item nav-link" id="kc-oren">Observaciones a la renuncia</a></li>
+										<li><a href="/adacuerdos/action/inicio?organismo=ER1&amp;tramite=KC_08" class="dropdown-item nav-link" id="kd-adf1">Ampliación de documentación IA</a></li>							
+										<li><hr class="dropdown-divider"></li>
+										<li><a href="/portal/espacioAD/guias/justificacionesKC" class="dropdown-item nav-link">Guías y plantillas</a></li>													
+									</ul>
+								</div>
+							</div>			
+						</div> 	
+						
+																
+					<a class="nav-link dropdown-toggle" href="#" id="navbarBuzon" role="button" data-bs-toggle="dropdown" aria-expanded="false">Buzón</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarBuzon">
+							<li><a href="/buzon/action/notificaciones/list?organismo=ER1&amp;espacio=dig&amp;authMethod=Clave" class="dropdown-item nav-link">Notificaciones</a></li>
+							<li><a href="/buzon/action/comunicaciones/list?organismo=ER1&amp;espacio=dig&amp;authMethod=Clave" class="dropdown-item nav-link">Comunicaciones</a></li>
+						</ul>
+					
+					<a class="nav-link" href="/adusuarios/profiles">Mis representaciones</a>
+				</nav>
+		 	</div>
+		 </div>
+		<!-- Fin Menú -->  
+	</div>
+			</div>
+			
+		</div>
+		
+		<!-- Inicio Barra Usuario -->
+		<div>
+	<!-- Inicio Barra Usuario -->
+	<div class="user-bar d-flex flex-row-reverse mx-3">
+		<span title="Usuario conectado" class="pt-1">11086279A - PABLO YUSTA PLIEGO</span> <i class="bi bi-person px-1"></i>
+		
+	</div>
+	<!-- Fin Barra Usuario -->
+
+</div>
+		<!-- Fin Barra Usuario -->
+		<div class="container pb-4">
+			<div id="spinner-div" class="pt-5">
+				<div class="spinner-border text-primary" role="status"></div>
+			</div>
+			<form id="form" method="post" action="./" enctype="multipart/form-data" novalidate="">
+				 <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page"><span id="estado">Estado: </span><span id="estado">Pdte. presentar</span></li>
+        </ol>
+    </nav>
+
+				<!--inicio recuadro-->
+				<h2 class="pb-2">
+					Cuenta justificativa <span>KD/0001214211-001</span>
+				</h2>
+				
+				
+				
+				
+				
+				<div class="alert alert-warning d-none" id="globalAlertJS">La cumplimentación del formulario de justificación no se considera correcta conforme a lo especificado en la Orden de Bases, la Convocatoria y/o Acuerdo de Prestación de Soluciones de Digitalización<br>Revise todas las páginas del formulario para identificar las condiciones de la justificación que no se consideran conformes. Por cada disconformidad detectada encontrará una descripción específica de la misma.</div>
+				<div class="alert alert-warning d-none" id="processAlert"></div><div>
+      
+    </div>
+				
+
+				<script>
+					var hasError = false;
+				</script>
+				<div class="accordion accordion-flush" id="accordionInfoJust">
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="infoJust">
+							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+								<ul class="list-group list-group-horizontal">
+									<li class="list-group-item py-0 ps-0 fs-5">
+										<span class="fw-bold me-2">Nº acuerdo:</span>
+										<span>KD/0001214211</span>
+									</li>
+									<li class="list-group-item py-0 fs-5">
+										<span class="fw-bold me-2">
+											Categoría de solución de digitalización:
+										</span>
+										<span>Gestión de Procesos</span>
+									</li>
+								</ul>
+							</button>
+						</h2>
+						<!--fin recuadro-->
+						<input id="numeroAcuerdo" name="numeroAcuerdo" type="hidden" value="KD/0001214211">
+						<input type="hidden" id="pagaDigitalizadorABeneficiario" name="pagaDigitalizadorABeneficiario" value="PAYMENT_BENEF_TO_ADA">
+						<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="infoJust" data-bs-parent="#accordionInfoJust">
+							<div class="accordion-body">
+								<div class="row">
+									<div class="col-md-4">
+										<label for="nifPyme">NIF Pyme</label>
+										<div>
+											<input id="nifPyme" class="form-control" type="text" value="F72682446" readonly="" name="nifPyme">
+											
+										</div>
+									</div>
+									<div class="col-md-4">
+										<label for="nifDig">NIF Digitalizador</label>
+										<div>
+											<input id="nifDig" class="form-control" type="text" value="A56760267" readonly="" name="nifDig">
+											
+										</div>
+									</div>
+									<div class="col-md-4">
+										<label for="solucion">Nombre de la solución</label>
+										<div>
+											<input id="solucion" class="form-control" type="text" value="DIGITALIZACION INTEGRAL GESTION DE PROCESOS" readonly="" name="nombreSolucion">
+											
+										</div>
+									</div>
+									<div class="col-md-4">
+										<label for="fabricante">Fabricante</label>
+										<div>
+											<input id="fabricante" class="form-control" type="text" value="AI Consortivm" required="" maxlength="200" readonly="readonly" name="fabricante">
+											
+										</div>
+									</div>
+									<div class="col-md-4">
+										<label for="version">Versión</label>
+										<div>
+											<input id="version" class="form-control" type="text" value="1.9" required="" maxlength="200" readonly="readonly" name="version">
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab" id="tab1">
+					<div class="panel-title-just-form mb-3"><p class="lead fw-bold-light mb-0">Mediante la cumplimentación de la siguiente MEMORIA TÉCNICA, cuya totalidad de los campos deberá ser obligatoriamente respondida, yo, AGENTE DIGITALIZADOR ADHERIDO, presento en nombre del Beneficiario, de conformidad con el artículo 31 de la Orden ETD/1498/2021, de 29 de diciembre, modificada por la Orden ETD/734/2022, de 26 de julio, el detalle técnico y funcional de las soluciones instaladas y prestadas.</p></div>
+					<p class="lead">Al marcar las casillas y/o completar los cuadros de texto, <span class="text-decoration-underline">declaro responsablemente</span> que he proporcionado al Beneficiario las funcionalidades o los servicios detallados a continuación:</p>
+					
+					<div id="memoriaTecnica">
+						<p class="lead fw-bold-light title-just-form fs-4">
+							MEMORIA TÉCNICA
+						</p>
+                        <div id="memoria-tecnica-subsanacion" class="alert alert-warning d-none">Se habilita la memoria técnica para que Vd. pueda realizar las modificaciones que resulten de aplicación en atención a lo solicitado en el requerimiento de subsanación. IMPORTANTE: modifique únicamente la memoria técnica si resulta necesario para subsanar las deficiencias que le han sido comunicadas.</div>
+						
+						<div class="mb-4 ps-3 pe-3">
+							<h5 class="lead fw-bold-light">USUARIO/-S SUMINISTRADO/-S</h5>
+							<div class="form-check form-switch">
+								<label class="form-check-label" for="usuarioSuministrado">
+									Declaro expresamente que se han proporcionado las funcionalidades y/o servicios
+									para, al menos, <span>1</span> usuarios, según lo dispuesto en el Anexo IV de la Orden
+									ETD/1498/2021, de 29 de diciembre.
+								</label>
+								<input class="form-check-input" type="checkbox" id="usuarioSuministrado" required="" disabled="disabled" name="usuarioSuministrado" value="true" checked="checked" placeholder="">
+								
+							</div>
+						</div>
+						<div class="mb-4 ps-3 pe-3">
+							<h5 class="lead fw-bold-light">PARAMETRIZACIÓN</h5>
+							<p class="mb-2">
+								La solución incluye un número de horas destinadas a la parametrización para la
+								definición de las particularidades de los procesos de comercialización, así como para la
+								carga de datos (mín. <span>15</span> horas):
+							</p>
+														<div id="procesosComercialBi" class="row">
+								<div class="col-lg-10 col-md-9 col-sm-12">
+									<label for="parametrizacion" class="d-inline-block">Procesos de comercialización:</label>
+									<textarea id="parametrizacion" class="form-control" type="text" maxlength="2000" placeholder="" required="" disabled="disabled" name="parametrizacionComercializacionDTO.parametrizacion">Se han implementado diversas estrategias personalizadas para atender las necesidades específicas del cliente. Hemos establecido un canal dedicado de resolución de dudas que ha permitido esclarecer cualquier inquietud sobre el servicio de manera oportuna y eficaz. Adicionalmente, se han realizado videoconferencias informativas donde se han comunicado detalladamente las características de la plataforma, el alcance del servicio y su relevancia para el cliente.
+ También se han organizado sesiones para contextualizar la importancia de adoptar soluciones basadas en inteligencia artificial en el actual entorno de transformación tecnológica, brindando al cliente una perspectiva clara sobre las ventajas competitivas que estas herramientas representan para su negocio.
+</textarea>
+									
+								</div>
+								<div class="col-lg-2 col-md-3 col-sm-12">
+									<label class="d-inline-block" for="numHorasParam">Nº de horas:</label> <input class="d-inline-block form-control" id="numHorasParam" type="number" value="5.0" required="" disabled="disabled" name="parametrizacionComercializacionDTO.horas" placeholder="">
+									
+								</div>
+							</div>
+                            <div id="procesosComercialBi" class="row">
+                                <div class="col-lg-10 col-md-9 col-sm-12">
+                                    <label for="parametrizacion" class="d-inline-block">Carga de datos:</label>
+                                    <textarea id="parametrizacion" class="form-control" type="text" maxlength="2000" placeholder="" required="" disabled="disabled" name="parametrizacionDatosDTO.parametrizacion">Configuración de correos de salida (configuración SMTP en el ERP)
+Configuración de correos de entrada (configuración IMAP en el ERP)
+Carga de datos de la empresa y los usuarios para la personalización de la plataforma a nivel departamental
+Carga de información contextual de la empresa para la adaptación sectorial de las diferentes "herramientas" y "casos de uso" generativos de la plataforma
+Creación de bases de datos (individual para cada organización) necesaria para los módulos ERP de la plataforma, usuarios y credenciales de acceso.
+Creación de infraestructura individualizada para el cliente:
+- Almacén de documentos individualizado.  (Azure)
+- Almacenamiento de copias de seguridad (Azure)
+</textarea>
+                                    
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-12">
+                                    <label class="d-inline-block" for="numHorasParam">Nº de horas:</label> <input class="d-inline-block form-control" id="numHorasParam" type="number" value="15.0" required="" disabled="disabled" name="parametrizacionDatosDTO.horas" placeholder="">
+                                    
+                                </div>
+                            </div>
+                            
+						</div>
+						<div class="mb-4 ps-3 pe-3">
+							<h5 class="lead fw-bold-light">
+								DIGITALIZACIÓN Y/O AUTOMATIZACIÓN DE PROCESOS Y FLUJOS DE TRABAJO
+							</h5>
+							<p>
+								La solución permite a la PYME la automatización de las siguientes funcionalidades o
+								servicios:
+							</p>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="true" id="contabilidadCheck" required="" disabled="disabled" name="automatizacionProcesosYFlujosTrabajo.contabilidad" checked="checked" placeholder="">
+								<label class="form-check-label" for="contabilidadCheck">
+									Contabilidad/Finanzas: cuentas por cobrar/por pagar, gestión de activos y generación
+									de cierres y balances, etc.
+								</label>
+								
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="true" id="facturacionCheck" required="" disabled="disabled" name="automatizacionProcesosYFlujosTrabajo.facturacion" placeholder="">
+								<label class="form-check-label" for="facturacionCheck">
+									Facturación: automatización de los procesos de facturación con la generación de
+									presupuestos, albaranes y facturas.
+								</label>
+								
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="true" id="proyectosCheck" required="" disabled="disabled" name="automatizacionProcesosYFlujosTrabajo.proyectos" checked="checked" placeholder="">
+								<label class="form-check-label" for="proyectosCheck">
+									Proyectos: control de presupuestos, costes, estimaciones, optimización de los
+									recursos, etc.
+								</label>
+								
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="true" id="inventarioCheck" required="" disabled="disabled" name="automatizacionProcesosYFlujosTrabajo.inventario" placeholder="">
+								<label class="form-check-label" for="inventarioCheck">
+									Inventario: previsión, niveles de stock, envíos, distribuciones, devoluciones y
+									cancelaciones, etc.
+								</label>
+								
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="true" id="comprasCheck" required="" disabled="disabled" name="automatizacionProcesosYFlujosTrabajo.comprasYPagos" placeholder="">
+								<label class="form-check-label" for="comprasCheck">
+									Compras y Pagos: gestión de pedidos de compra y proveedores.
+								</label>
+								
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="true" id="rrhhCheck" required="" disabled="disabled" name="automatizacionProcesosYFlujosTrabajo.recursosHumanos" checked="checked" placeholder="">
+								<label class="form-check-label" for="rrhhCheck">
+									Recursos Humanos: gestión de los recursos humanos, nóminas, etc.
+								</label>
+								
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="true" id="logisticaCheck" required="" disabled="disabled" name="automatizacionProcesosYFlujosTrabajo.logistica" placeholder="">
+								<label class="form-check-label" for="logisticaCheck">
+									Logística: gestión de flotas y rutas, entre otras.
+								</label>
+								
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="true" id="otrosCheck" required="" disabled="disabled" name="automatizacionProcesosYFlujosTrabajo.otros" checked="checked" placeholder="">
+								<label class="form-check-label" for="otrosCheck">
+									Otros
+								</label>
+								
+							</div>
+							<textarea id="descDigitalizacion" rows="4" maxlength="2000" class="form-control mt-2" aria-label="DIGITALIZACIÓN Y/O AUTOMATIZACIÓN DE PROCESOS Y FLUJOS DE TRABAJO: Detallar el funcionamiento de las automatizaciones implementadas" placeholder="Detallar el funcionamiento de las automatizaciones implementadas." required="" readonly="readonly" name="automatizacionProcesosYFlujosTrabajo.detalle">* Contabilidad y finanzas
+Incluye estas funcionalidades para digitalizar y automatizar procesos:
+Gestión de cuentas por cobrar/pagar
+Gestión de libros
+Gestión de activos
+Extracción automática de datos de recibos, albaranes y facturas
+Análisis estadístico sobre libros de contabilidad
+
+* Proyectos
+Incluye estas funcionalidades para digitalizar y automatizar procesos:
+Organización de proyectos con metodologías variadas
+- Listados de tareas pendientes
+- Tableros Kanban
+- Tablas tipo Pivot
+Programación temporal de tareas
+Creación de roadmaps
+Asignación de responsables, etiquetas, costes y estimaciones
+Validación de tareas y solicitud de cambios
+Espacio para documentación de tareas y subtareas
+Dashboards de medidas y progreso
+Planificación automática con "Planificador Inteligente" usando deep learning generativo
+
+* Recursos humanos
+Incluye estas funcionalidades para digitalizar y automatizar procesos:
+Funnels de contratación con etapas, notas, etiquetas, responsables y programación
+Funnels de onboarding para coordinar integración de nuevos empleados
+Registro de fichas de empleados categorizadas
+Planificación de vacaciones y nóminas
+Evaluación automatizada de candidatos desde currículums PDF
+Comparación y ranking de candidatos vía currículums PDF
+Herramientas de IA para humanos
+
+* Otros
+** Comunicación interna
+Permite actuar como nexo central: enviar mensajes, crear canales, adjuntar ficheros y videollamadas.
+** Formación
+Permite gestionar formación creando, revisando y consumiendo contenidos didácticos con "Tutor de aprendizaje" y herramientas "Asesor".
+** Asistentes de IA profesional
+Ofrece IA generativa para crear contenidos profesionales (marketing, redes sociales, comunicación). Incluye generación de imágenes, síntesis de voz, transcripción de llamadas, búsqueda semántica y optimización de flujos para mejorar productividad y eficiencia.
+</textarea>
+							
+							
+							
+						</div>
+
+						<div class="mb-4 ps-3 pe-3">
+							<h5 class="lead fw-bold-light">INTEGRACIÓN CON DIVERSAS PLATAFORMAS</h5>
+							<p class="mb-2">
+								La solución dispone de APIs o Web Services para su integración con otras herramientas.
+							</p>
+							<textarea id="integraPlat" rows="4" maxlength="2000" class="form-control" aria-label="INTEGRACIÓN CON DIVERSAS PLATAFORMAS: A identificar APIs que ofrece para la integración con terceros" placeholder="A identificar APIs que ofrece para la integración con terceros." required="" readonly="readonly" name="integracionPlataformasDetalle">Todos los contenidos y datos de contabilidad, finanzas, proyectos y recursos humanos son accesibles y modificables de forma externa mediante los protocolos XML-RPC y JSON-RPC.
+ 
+Nuestra plataforma se apoya en la API externa de Odoo para permitir la integración directa desde cualquier plataforma. La documentación de esta API junto con SDKs en múltiples lenguajes puede encontrarse en el siguiente enlace: https://www.odoo.com/documentation/18.0/developer/reference/external_api.html
+</textarea>
+							
+						</div>
+						<div class="mb-4 ps-3 pe-3">
+							<h5 class="lead fw-bold-light">ACTUALIZABLE</h5>
+							<div class="form-check form-switch">
+								<label class="form-check-label" for="actualizableCheck">
+									La solución es objeto de actualizaciones con nuevas versiones.
+								</label>
+								<input class="form-check-input" type="checkbox" id="actualizableCheck" required="" disabled="disabled" name="actualizable" value="true" checked="checked" placeholder="">
+								
+							</div>
+						</div>
+						<div class="mb-4 ps-3 pe-3">
+							<h5 class="lead fw-bold-light">ESCALABLE</h5>
+							<div class="form-check form-switch">
+								<label class="form-check-label" for="escalableCheck">
+									La solución se adapta a posibles crecimientos o cambios en la estructura empresarial
+									de la PYME.
+								</label>
+								<input class="form-check-input" type="checkbox" id="escalableCheck" required="" disabled="disabled" name="escalable" value="true" checked="checked" placeholder="">
+								
+							</div>
+						</div>
+						<div class="mb-4 ps-3 pe-3" id="normativaCheckDiv">
+							<h5 class="lead fw-bold-light">CUMPLIMIENTO DE LA NORMATIVA EN MATERIA FISCAL Y DE FACTURACIÓN</h5>
+							<div class="form-check form-switch">
+								<label class="form-check-label" for="normativaCheck">
+									La solución permite a la PYME asegurar el cumplimiento del Reglamento por el que se
+                                     regulan las obligaciones de facturación del Real Decreto 1619/2012, de 30 de noviembre,
+                                     y reúne los requisitos recogidos en el artículo 29.2.j) de la Ley 58/2003, de 17 de diciembre,
+                                     General Tributaria, así como en normativa de desarrollo.
+								</label>
+								<input class="form-check-input" type="checkbox" id="normativaCheck" required="" disabled="disabled" name="cumplimientoNormativaFacturacion" value="true" checked="checked" placeholder="">
+								
+							</div>
+						</div>
+						<!-- INICIO 2ªCONVOCATORIA: nuevo -->
+						<div class="mb-4 ps-3 pe-3">
+							<h5 class="lead fw-bold-light">MÓDULOS INDIVIDUALES</h5>
+							<div class="form-check form-switch">
+								<label class="form-check-label" for="modIndCheck">
+									He implantado uno o varios módulos nuevo/-s individual/-es el/los cual/-es
+									soporta/-n un único subproceso de la cadena de valor de la pyme sobre la solución de
+									gestión de procesos ya existente.
+								</label>
+								<input class="form-check-input" type="checkbox" id="modIndCheck" required="" disabled="disabled" name="modulosIndividuales" value="true" placeholder="">
+								
+							</div>
+							<!-- Mensaje de error del campo:
+	Debe indicarse en el apartado "Módulos individuales" si se han implementados módulos individuales nuevos sobre una solución del Beneficiario ya existente. 
+-->
+							<div id="modulosIndDiv" class="d-none">
+								<div class="mt-3">
+									<p class="mb-2">Especifique el/los modulo/-s individuales incorporados:</p>
+									<div class="table-responsive mh-300 col-sm-12" id="modulosInd">
+										<!-- Obligatoria al menos una línea -->
+										
+									</div>
+									
+								</div>
+								<div class="form-check form-switch mt-5">
+									<label class="form-check-label" for="declInstCheck">
+										Declaro responsablemente que el nuevo módulo instalado no consiste en un
+										desarrollo, progreso, aumento o enriquecimiento de los servicios y
+										funcionalidades de la solución existente. Así mismo, declaro que el módulo no
+										supone una actualización de versiones de software, ni una mejora de las ya
+										existentes.
+									</label>
+									<input class="form-check-input" type="checkbox" id="declInstCheck" required="" disabled="disabled" name="modulosIndividualesDeclaracionInstalacion" value="true" placeholder="">
+									
+								</div>
+								<!-- Mensajes de error de la tabla (se debe cumplimentar, al menos, una línea de la tabla) y del check:	
+Debe indicarse en el apartado "Módulos Individuales", al menos, uno de los módulos individuales nuevos implementados en la solución ya existente del Beneficiario.
+
+En el apartado "Módulos Individuales" no se ha confirmado que el/los modulo/-s nuevo/-s cumplan los requisitos recogidos en el Anexo IV.VI de la Orden de Bases Reguladoras.
+-->
+							</div>
+						</div>
+
+						<div class="mb-4 ps-3 pe-3">
+	<h5 class="lead fw-bold-light">HARDWARE: Sólo en el caso que el acuerdo incluya el suministro de dispositivos hardware.</h5>
+	<div class="form-check form-switch">
+		<label class="form-check-label" for="hardwareCheck">Para la prestación y uso de la solución es imprescindible el suministro de dispositivos cuyo coste será imputado a la subvención. IMPORTANTE: Únicamente serán subvencionables como parte de la solución de digitalización, dispositivos hardware específicos si: se requieren expresamente para su uso y si la solución se comercializa con ese hardware. Estos dispositivos hardware no podrán ser utilizados para otros fines distintos que los de prestar esta solución de digitalización. Por tanto, en ningún caso, serán subvencionables ordenadores personales, portátiles ni smartphones.</label>
+		<input class="form-check-input" type="checkbox" id="hardwareCheck" required="" disabled="disabled" name="hardware" value="true" placeholder="">
+		
+		<div id="suministroHwDiv" class="d-none">
+			<div class="mt-3">
+				<p class="mb-2">
+					Especifique el producto, marca, modelo y n.º de serie de los productos suministrados:
+				</p>
+				<div class="table-responsive mb-3 mh-300">
+					<table id="productosHw" class="table table-responsive table-bordered" aria-label="Información de los productos suministrados">
+						<thead>
+							<tr>
+								<th scope="col" class="w-40">PRODUCTO</th>
+								<th scope="col">MARCA</th>
+								<th scope="col">MODELO</th>
+								<th scope="col">Nº SERIE</th>
+								<th scope="col" class="no-pdf  buttonremovehw">ELIMINAR</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+						<tr id="table-0"><td><input type="text" class="form-control" id="producto" value="" required="" name="productosHardwareModel[0].producto"></td><td><input type="text" class="form-control" id="marca" value="" required="" name="productosHardwareModel[0].marca"></td><td><input type="text" class="form-control" id="modelo" value="" required="" name="productosHardwareModel[0].modelo"></td><td><input type="text" class="form-control" id="numSerie" value="" required="" name="productosHardwareModel[0].numSerie"></td><td class="no-pdf"><button type="button" class="btn btn-link" onclick="deleteRow(0)" aria-label="Eliminar"><i class="bi bi-x-circle"></i></button></td></tr></tbody>
+					</table>
+					
+					<input id="hardwareIndex" name="hardwareIndex" type="hidden" value="1">
+				</div>
+				
+			</div>
+			<div class="mt-5">
+				<p class="mb-2">
+					Indique, a continuación, el motivo por el que ha sido necesario el suministro de los dispositivos
+					mencionados para la implantación de la solución:
+				</p>
+				<textarea id="motivoHw" rows="4" class="form-control" aria-label="Justifique el motivo por el que los dispositivos suministrados son necesarios para el correcto funcionamiento de la solución." placeholder="Justifique el motivo por el que los dispositivos suministrados son necesarios para el correcto funcionamiento de la solución." required="" maxlength="2000" readonly="readonly" name="motivoHw"></textarea>
+				
+			</div>
+			<!-- Mensaje de error del campo textarea y de la tabla (se debe cumplimentar, al menos, una línea de la tabla):    
+Deben indicarse en el apartado "Hardware" los dispositivos suministrados que van a ser imputados a subvención y la justificación del uso de los mismos para la implantación de la solución. Recuerde que en ningún caso serán subvencionables ordenadores personales ni portátiles.
+-->
+		</div>
+	</div>
+</div>
+                        
+					</div>
+				</div>
+				<div class="tab invisible d-none" id="tab2">
+					<div class="panel-title-just-form mb-3"><p class="lead fw-bold-light mb-0">Mediante la cumplimentación del siguiente DESGLOSE DE COSTES, cuya totalidad de los campos deberá ser obligatoriamente respondida, yo, AGENTE DIGITALIZADOR ADHERIDO, presento, en nombre del Beneficiario, de conformidad con el artículo 31 de la Orden ETD/1498/2021, de 29 de diciembre, modificada por la Orden ETD/734/2022, de 26 de julio, el desglose de costes de la solución instalada y prestada.</p></div>
+					<p class="lead mb-2">Al completar las casillas y adjuntar las evidencias documentales, <span class="text-decoration-underline">declaro responsablemente</span> la veracidad de los datos y que he proporcionado al Beneficiario las funcionalidades o los servicios detallados previamente:</p>
+					<div class="table-responsive mb-3" id="desgloseCostes">
+						<p class="lead fw-bold-light title-just-form fs-4">
+							DESGLOSE DE COSTES
+						</p>
+                        <div id="desglose-costes-subsanacion" class="alert alert-warning d-none">Se habilita el desglose de costes y evidencias documentales para que Vd. pueda realizar las modificaciones y/o aportación de documentación necesaria que resulten de aplicación en atención a lo solicitado en el requerimiento de subsanación. IMPORTANTE: modifique o aporte únicamente aquellos elementos necesarios para subsanar las deficiencias que le han sido comunicadas</div>
+						
+						<table class="table table-responsive table-bordered" caption="Desglose de costes">
+							<thead>
+								<tr>
+									<th scope="col">CONCEPTOS</th>
+									<th scope="col" class="w-50">DESCRIPCIÓN</th>
+									<th scope="col">
+										IMPORTE <span class="fw-lighter">(impuestos excluidos)</span>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<label for="implantancionInicial">IMPLANTACIÓN INICIAL</label>
+									</td>
+									<td class="w-50">
+										<input maxlength="200" type="text" class="form-control" id="implantancionInicial" value="Configuración inicial de la plataforma y creación, despliegue, provisionamiento y testing de la infraestructura individualizada del cliente." readonly="readonly" name="desgloseCostesGestionProcesosModel.implantacionDescription">
+									</td>
+									<td>
+										<input type="number" class="form-control importes" name="desgloseCostesGestionProcesosModel.implantacionImporte" id="valueImplantancionInicial" aria-label="Importe implantación inicial" value="300" required="" readonly="readonly">
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="servManten">SERVICIO MANTENIMIENTO (12 meses)</label>
+									</td>
+									<td class="w-50">
+										<input maxlength="200" type="text" class="form-control" id="servManten" value="Costes de infraestructura en Azure, labor de mantenimiento de las bases de datos y servicios back-end, gestión de copias de seguridad y backups diarios, costes de inferencia para herramientas de intel" readonly="readonly" name="desgloseCostesGestionProcesosModel.servicioMantenimientoDescripcion">
+									</td>
+									<td>
+										<input type="number" class="form-control importes" name="desgloseCostesGestionProcesosModel.servicioMantenimientoImporte" id="valueServManten" aria-label="Importe servicio mantenimiento" value="1400" required="" readonly="readonly">
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="formacion">FORMACIÓN</label>
+									</td>
+									<td class="w-50">
+										<input maxlength="200" type="text" class="form-control" id="formacion" value="Webinars de formación y creación de contenido formativo en la plataforma." readonly="readonly" name="desgloseCostesGestionProcesosModel.formacionDescripcion">
+									</td>
+									<td>
+										<input type="number" class="form-control importes" id="valueFormacion" name="desgloseCostesGestionProcesosModel.formacionImporte" aria-label="Importe formación" value="200" required="" readonly="readonly">
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="soporte">SOPORTE (12 meses)</label>
+									</td>
+									<td class="w-50"><input maxlength="200" type="text" class="form-control" id="soporte" value="Presupuesto provisionado para labores de soporte técnico." readonly="readonly" name="desgloseCostesGestionProcesosModel.soporteDescripcion">
+									</td>
+									<td>
+										<input type="number" class="form-control importes" id="valueSoporte" name="desgloseCostesGestionProcesosModel.soporteImporte" aria-label="Importe soporte" value="100" required="" readonly="readonly">
+										
+									</td>
+								</tr>
+								<tr class="hardware d-none">
+									<td>
+										<label for="hardware">HARDWARE IMPRESCINDIBLE PARA EL USO DE LA SOLUCIÓN (excluidos ordenadores personales, portátiles ni smartphones)</label>
+									</td>
+									<td class="w-50"><input maxlength="200" type="text" class="form-control" id="hardware" value="" readonly="readonly" name="desgloseCostesGestionProcesosModel.hardwareDescripcion">
+									</td>
+									<td>
+										<input type="number" class="form-control importes" id="valueHardware" name="desgloseCostesGestionProcesosModel.hardwareImporte" aria-label="Importe hardware" value="" required="" readonly="readonly">
+										
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="otrosConceptos">OTROS CONCEPTOS NO SUBVENCIONABLES</label>
+									</td>
+									<td class="w-50">
+										<input maxlength="200" type="text" class="form-control" id="otrosConceptos" value="" readonly="readonly" name="desgloseCostesGestionProcesosModel.otrosDescripcion">
+									</td>
+									<td>
+										<input type="number" class="form-control importes" name="desgloseCostesGestionProcesosModel.otrosImporte" id="valueOtrosConceptos" aria-label="Importe otros conceptos no subvencionables" value="0" required="" readonly="readonly">
+										
+									</td>
+								</tr>
+								<tr class="text-end table-light">
+									<td colspan="2" class="fw-bold">
+										TOTAL:
+									</td>
+									<td>
+										<span id="total">2000,00</span><span>€</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						
+					</div>
+					<!-- Inicio aparatdo listado de documentación -->
+
+					<div class="mb-4" id="listDocumentJustification"><div>
+
+
+
+	
+	<div>
+		<h5 class="lead fw-bold-light title-just-form fs-4">DOCUMENTOS ASOCIADOS</h5>
+		<div class="row ps-3 pe-3 mt-2 mb-3">
+			<div class="mb-4 panelInf">
+
+				<p class="lead mb-3">
+					En este apartado podrá consultar y obtener copia de los documentos presentados así como de
+					los
+					generados al presentar la justificación.</p>
+
+				<h5 class="lead fw-bold-light my-4">DOCUMENTOS ANEXADOS</h5>
+				<ul class="list-docs">
+
+					<div>
+
+    <li><a href="./download/62fcd51e-cba9-47d3-9b6c-c439d526c785?numberAgreement=KD/0001214211" target="_blank" title="Consultar factura XML" class="addDoc">
+            <i class="bi bi-file-earmark-code px-1"></i>Factura en formato XML(<span>FacturaE_KD-2025-0601.xsig</span>)</a>
+        
+    </li>
+</div>
+					<div>
+
+    
+</div>
+                    <div>
+
+    <li>
+        <a href="./download/cda2c1e9-b6e5-48fd-b47e-9ab4108ed8b3?numberAgreement=KD/0001214211" target="_blank" title="Logs de acceso o registro" class="addDoc">
+            <i class="bi bi-file-earmark-pdf px-1"></i>Logs de acceso o registros de acceso
+            (<span>access-logs.pdf</span>)
+        </a>
+        
+    </li>
+</div>
+					
+					<div class="hardware d-none">
+
+    
+</div>										
+					<div>
+
+    <li>
+        <a href="./download/53d16bc0-4f41-4952-a204-1dfbd8ef28b2?numberAgreement=KD/0001214211" target="_blank" title="Consultar capturas de pantalla" class="addDoc">
+            <i class="bi bi-file-earmark-pdf px-1"></i>Capturas de pantalla
+            (<span>PKD_PRC_Gestion_de_Procesos.pdf</span>)
+        </a>
+        
+    </li>
+</div>
+
+
+				</ul>
+				<h5 class="lead fw-bold-light my-4">DOCUMENTOS GENERADOS</h5>
+				<ul class="list-docs">
+					<div>
+
+    <li>
+        <a href="./download/944c5229-fc4c-4a07-a198-270aee571efb?numberAgreement=KD/0001214211" target="_blank" title="Consultar factura PDF" class="addDoc">
+            <i class="bi bi-file-earmark-pdf px-1"></i>Factura en formato PDF
+            (<span>FacturaE_KD-2025-0601.pdf</span>)
+        </a>
+    </li>
+</div>
+					<div>
+
+    <li>
+        <a href="./download/3d70f633-465e-4413-8f77-f847ce8b7acf?numberAgreement=KD/0001214211" id="memoriaPDF" target="_blank" title="Consultar Memoria técnica" class="addDoc">
+            <i class="bi bi-file-earmark-text px-1"></i>Memoria técnica
+        </a>
+    </li>
+</div>
+					<div>
+
+    
+</div>
+					<div>
+
+    
+</div>
+				</ul>
+
+			</div>
+		</div>
+
+	</div>
+
+	<div class="mb-4 no-pdf">
+        <!-- Modal Confirmar borrado de documentos-->
+        <div class="modal fade" id="modalConfirmarBorradoDocumento" tabindex="-1" aria-labelledby="modalConfirmarBorradoCPLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title color-text-modal text-center" id="modalConfirmarBorradoCPLabel">Confirmar
+                            borrado de documento.</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="lh-lg">Se va a proceder a eliminar el archivo, ¿confirma que quiere eliminar?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary me-md-2" type="button" id="aceptarBorrado" data-bs-dismiss="modal">Si
+                        </button>
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin modal Confirmar borrado de documentos-->
+    </div>
+
+</div></div>
+
+					<!-- Fin apartado listado de documentación -->
+
+
+					<div class="mb-4 no-pdf">
+	<h5 class="lead fw-bold-light title-just-form fs-4">DECLARACIONES RESPONSABLES Y CONFORMIDADES
+		EXPRESAS</h5>
+	<div class="row ps-3 pe-3 mt-2 mb-3">
+		<h5 class="lead fw-bold-light">AGENTE DIGITALIZADOR ADHERIDO</h5>
+		<div class="form-check form-switch">
+			<label class="form-check-label" for="declRespDigCheck"><span class="fw-bold">Declaro
+					expresamente</span> que el coste de la solución de digitalización objeto de este
+				Acuerdo en ningún
+				caso es superior al valor de mercado de conformidad con el artículo 19.3 de la Orden
+				de Bases. En particular,
+				que no se ha producido un incremento de costes no justificado en la solución de
+				digitalización objeto de este Acuerdo
+				respecto de los que esa misma solución venía soportando en su comercialización en el
+				mercado con anterioridad
+				a obtener la condición de Agente Digitalizador Adherido, ni que se comercialice la
+				solución de digitalización objeto
+				de este Acuerdo con costes inferiores para clientes que no tengan la condición de
+				beneficiarios.</label>
+			<input class="form-check-input" type="checkbox" id="declRespDigCheck" required="" disabled="disabled" name="agenteDigitalizadorAdherido" value="true" checked="checked" placeholder="">
+
+			
+		</div>
+       
+        <div class="form-check form-switch drabono">  
+        
+        
+            <div>
+                    <input id="pagoPymeValueAcuerdo" name="pagoPymeValueAcuerdo" type="hidden" value="420.00">
+                    
+                    <label class="form-check-label" for="pagaBenefToADACheck"><span class="fw-bold">Declaro
+                            expresamente</span> que, a la fecha de la presente declaración, se ha recibido por parte del Beneficiario el importe de <input id="pagoPymeValue" type="number" max="999999999" onkeypress="return event.charCode &gt;= 48 || event.charCode == 44 || event.charCode == 46" step="0.01" min="0" style="text-align: right;" name="pagoPymeValue" value="420.00" disabled="disabled" placeholder="">€, correspondiente al abono de la factura emitida por la Solución contratada y que dicho cobro se ha realizado en fecha <span field="14/07/2025">14/07/2025</span> y ha sido registrado contablemente en nuestros sistemas.
+                    </label>
+                    <input class="form-check-input" type="checkbox" id="pagaBenefToADACheck" required="" disabled="disabled" name="pagaBenefToADACheck" value="true" checked="checked" placeholder="">
+                        
+                    <div id="divAlerta" class="alert mt-2 alert-warning d-none">En el caso de que no se haya producido un abono (importe = 0€), la fecha a cumplimentar será la de validación del acuerdo, que podrá consultar en la pestaña “Acuerdo” dentro de su expediente. En caso de incluir otra fecha podría incurrirse en una PÉRDIDA DE DERECHO AL COBRO MINORADA</div>                             
+
+                    
+                        
+                    <div id="divMotivoPagoPymeDrAbono" class="mt-5 d-none">
+                        <p class="mb-2">
+                            Indique, a continuación, el motivo por el que la cantidad abonada por el beneficiario difiere de la contenida en el acuerdo:
+                        </p>
+                        <textarea id="motivoPagoPymeDrAbono" rows="4" class="form-control" aria-label="Indique motivos por los que la cantidad abonada por el beneficiario difiere de la contenida en el acuerdo" placeholder="Indique motivos por los que la cantidad abonada por el beneficiario difiere de la contenida en el acuerdo" required="" maxlength="399" readonly="readonly" name="motivoPagoPymeDrAbono"></textarea>
+                        
+                    </div>
+                    </div>
+            
+        
+          
+            </div>
+
+    </div>
+    <script>
+    pagoPymeValue.oninput = function () {
+        if (this.value.length > 10) {
+            this.value = this.value.slice(0,10); 
+        }
+    }
+    </script>
+	<div class="row  ps-3 pe-3 mt-2 mb-3">
+		<h5 class="lead fw-bold-light">BENEFICIARIO</h5>
+		<div class="form-check mb-2">
+			<input class="form-check-input" type="radio" value="NO" id="declBenefNoSubRadio" name="otraAyuda" disabled="disabled" checked="checked" placeholder="">
+			<label class="form-check-label" for="declBenefNoSubRadio">
+				<span class="fw-bold">Declaro responsablemente</span> que <span class="fw-bold">NO</span> he recibido
+				otra subvención, ayuda, ingreso o recurso, que cubra el mismo coste del Acuerdo de Prestación de
+				Soluciones de Digitalización, procedente de cualquier Administración o entes públicos o privados
+				nacionales, de la Unión Europea o de organismos internacionales.
+			</label>
+		</div>
+		<div class="form-check mb-2">
+			<input class="form-check-input" type="radio" value="SI" id="declBenefSiSubRadio" name="otraAyuda" disabled="disabled" placeholder="">
+			<label class="form-check-label" for="declBenefSiSubRadio">
+				<span class="fw-bold">Declaro responsablemente</span> que <span class="fw-bold">SÍ</span> he recibido
+				otra subvención, ayuda, ingreso o recurso, que cubra el mismo coste del Acuerdo de Prestación de
+				Soluciones de Digitalización, procedente de una o varias Administraciones o entes públicos o privados
+				nacionales, de la Unión Europea o de organismos internacionales y que la misma ha sido comunicada previamente
+				 a RED.es a través del canal que éste tiene habilitado.
+			</label>
+		</div>
+		
+		<div class="alert alert-warning d-none" id="declBenefSubAlert"></div>
+		<div class="form-check form-switch mb-2">
+			<input class="form-check-input" type="checkbox" id="confBenefCheck" required="" disabled="disabled" name="conformidadExpresa" value="true" checked="checked" placeholder="">
+			<label class="form-check-label" for="confBenefCheck"><span class="fw-bold">Doy mi
+					conformidad expresa</span> a las soluciones instaladas y prestadas.</label>
+			
+			<div class="alert alert-warning d-none" id="confBenefCheckAlert"></div>
+		</div>
+		<script>
+			/*<![CDATA[*/
+				var showRetencionIrpf = false;
+			/*]]>*/
+		</script>
+		<input type="hidden" id="retencionIrpf" name="retencionIrpf" value="false">
+		
+	</div>
+    
+    <input id="fechaFactura" name="fechaFactura" type="hidden" value="08/07/2025">
+    <input id="showDRAbono" name="showDRAbono" type="hidden" value="true">
+    <input id="showDRAbonoAutonomo" name="showDRAbonoAutonomo" type="hidden" value="false">
+    
+</div>
+
+					<!-- Inicio listado firmas mancomunadas -->
+					<div id="listSignatures"></div>
+
+				</div>
+
+				<div class="row mb-2 mt-6 no-pdf">
+				
+						
+				
+					<div class="col-12 d-grid gap-2 d-md-flex justify-content-md-end">
+						<button class="btn btn-secondary me-md-2 invisible" type="button" id="buttonAnterior" onclick="show(-1)">Anterior</button>
+						<button class="btn btn-primary" type="button" id="buttonSiguiente" onclick="show(1)">Siguiente</button>
+						<button class="btn btn-secondary me-md-2" type="submit" id="cancelBtn" name="action" value="cancel">Salir</button>
+						
+						
+						
+							
+						
+                        <button class="btn btn-secondary me-md-2" type="submit" id="retrocederBtn" name="action" value="retroceder">Retroceder</button>
+                        
+                        
+						
+                        							
+						<button class="btn btn-primary me-md-2" type="button" id="submitForm" name="action" value="submit">Presentar</button>
+                         <button class="btn btn-primary me-md-2" type="button" id="submitfirmaNotCrypto" name="action" value="submitfirmaNotCrypto">Firma con Cl@ve y presentar</button>
+					</div>
+				</div>
+				<input id="guid" name="guid" type="hidden" value="f6c3bd13-a404-4d83-a289-274d9eb030a6">
+				<input id="estado" name="estado" type="hidden" value="3">
+				<input id="correction" name="correction" type="hidden" value="false">
+
+			</form>
+			<input id="idUsuario" name="idUsuario" type="hidden" value="11086279A">
+			<input id="idPymeHidden" name="idPymeHidden" type="hidden" value="F72682446">
+			<input id="entorno" name="entorno" type="hidden" value="tic">
+			<input id="estadoJustificacion" name="estadoJustificacion" type="hidden" value="3">
+			<input id="numAcuerdo" name="numAcuerdo" type="hidden" value="KD/0001214211">
+			<input id="codJusti" name="codJusti" type="hidden" value="KD/0001214211-001">
+			<input id="convocatoria" name="convocatoria" value="2" type="hidden">
+
+			<!-- Modal para mostrrar una alerta de que tiene otra ayuda -->
+			<div class="modal fade" id="modalOtraAyuda" tabindex="-1" aria-labelledby="modalOtraAyudaCPLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title color-text-modal text-center" id="modalDesactivarCPLabel">
+								Atención
+							</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<p class="lh-lg">
+								Usted ha marcado la opción, ya he recibido otra ayuda. En este caso pierde el derecho al
+								cobro de esta ayuda
+							</p>
+
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-primary me-md-2" id="validate">Aceptar</button>
+							<button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Fin modal Activar cuentas de cobro -->
+
+			<!-- Modal Firma Poder Presentacion -->
+			<div>
+	<!-- Modales -->
+	<div class="modal fade" id="modalFirma" tabindex="-1" aria-labelledby="modalFirmaLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-xl">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="modalFirmaLabel">Antes de enviar</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+		  
+		  <div class="m-2">
+	  
+		  <p> Existe discordancia entre el número de firmantes de la presente justificación y el número de firmantes necesario en atención a la información facilitada en la solicitud de la ayuda, así como, en su caso, del posterior alta de representantes legales en el bono concedido. <span class="fw-bold-light">Solicite al resto de firmantes necesarios que firmen la justificación con carácter previo al envío de la misma.</span></p>
+		  
+	  	 <form>	 
+		 <p><span class="fw-bold-light">Si entiende que el número de firmas actual es suficiente, para poder continuar</span> la tramitación de la presente justificación debe confirmar expresamente que <span class="fw-bold-light">la justificación tiene las firmas suficientes y necesarias</span> por parte de los representantes legales de la Pyme beneficiaria, y adjuntar la siguiente documentación:</p>
+			<div class="form-check form-switch mb-2">
+				<label class="form-check-label" for="okCheckFilePoderPresentacion"><span class="fw-bold">Doy mi conformidad expresa</span>. </label>
+				<input class="form-check-input" type="checkbox" id="okCheckFilePoderPresentacion" name="okCheckFilePoderPresentacion" required="">
+			</div>
+			<div class="alert alert-warning w-75 mt-2 d-none" id="filePoderPresentacionAlert" role="alert">
+				Texto...
+			</div>
+			<div id="doc" class="mt-3">		
+				<p class="my-3"><span class="fw-bold-light">PODER DE PRESENTACIÓN</span>: poder legal suficiente de la/s persona/s firmante/s para actuar en nombre de la entidad beneficiaria del bono concedido. (pdf, zip)</p>
+				<div class="input-group" id="filePoderPresentacionDiv">									
+					<input type="file" accept="application/pdf,application/zip" id="filePoderPresentacion" class="form-control w-75" aria-label="Poder de presentación" required="">
+				</div>
+				<button class="btn btn-primary d-none" type="button" id="filePoderPresentacionLoading" disabled="" placeholder="">
+					<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+					<span class="sr-only">Loading...</span>
+				</button>
+			</div>
+			
+			</form>     
+	      </div>
+	      <div class="modal-footer">        
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="filePoderPresentacionCerrar">Cerrar</button>
+			<button type="button" class="btn btn-primary" onclick="uploadFilePoderPresentacion(event)" id="filePoderPresentacionEnviar">Enviar</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>	  	  		  
+	<!-- Fin Modales --> 
+</div> 
+
+
+			<!-- Fin Modal Firma Poder Presentacion -->
+
+			<!-- Modal otras ayudas si -->
+			<div>
+	<!-- Incio Modal -->
+	<div class="modal fade" id="modalOtraAyudaSi" tabindex="-1" aria-labelledby="modalOtraAyudaSiLabel" aria-modal="true">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalOtraAyudaSiLabel">Antes de enviar</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+					<div class="m-2">
+
+						<p>Según el art. 17.2 de la orden de bases, estas ayudas son incompatibles con la percepción de
+							otras subvenciones, ayudas, ingresos o recursos, que cubran el mismo coste. Por ello, prevé
+							el art. 29 de la Orden de Bases que la obtención concurrente de otras subvenciones y ayudas
+							dará lugar a la modificación o anulación de la resolución de concesión.</p>
+
+						<form>
+							<div id="doc" class="mt-3">
+								<p class="my-3">Documento acreditativo de la subvención, ayuda, ingreso o recurso
+									recibido para el mismo coste. (pdf, zip)</p>
+								<div class="input-group" id="fileOtraAyudaSiDiv">
+									<input type="file" accept="application/pdf,application/zip" id="fileOtraAyudaSi" class="form-control w-75" aria-label="Poder de presentación" required="">
+								</div>
+								<div class="alert alert-warning w-75 mt-2 d-none" id="OtraAyudaSiAlert" role="alert">
+									Texto...
+								
+								<button class="btn btn-primary d-none" type="button" id="fileOtraAyudaSiLoading" disabled="" placeholder="">
+									<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+									<span class="sr-only">Loading...</span>
+								</button>
+							</div>
+						
+					</div></form>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="fileOtraAyudaSiCerrar">Cerrar</button>
+						<button type="button" class="btn btn-primary" onclick="uploadFileOtraAyudaSi(event)" id="fileOtraAyudaSiEnviar">Enviar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Fin Modal -->
+</div>
+			<!-- Fin Modal otras ayudas si --> 
+
+		</div>
+
+		<script>
+			var currentTab = 1; // Current tab is set to be the first tab (0)
+
+			function show(n) {
+				$("#tab" + currentTab).addClass('invisible');
+				$("#tab" + currentTab).addClass('d-none');
+
+				currentTab = currentTab + n;
+
+				$("#tab" + currentTab).removeClass('invisible');
+				$("#tab" + currentTab).removeClass('d-none');
+
+				if (currentTab == 1) {
+					$("#buttonAnterior").addClass('invisible');
+					$("#buttonAnterior").addClass('d-none');
+
+					$("#buttonSiguiente").removeClass('invisible');
+					$("#buttonSiguiente").removeClass('d-none');
+					$('body,html').animate({scrollTop: 0, }, 0);
+
+				} else if (currentTab == 2) {
+					$("#buttonAnterior").removeClass('invisible');
+					$("#buttonAnterior").removeClass('d-none');
+
+					$("#buttonSiguiente").addClass('invisible');
+					$("#buttonSiguiente").addClass('d-none');
+					$('body,html').animate({scrollTop: 0, }, 0);
+
+				}
+
+			}
+
+		</script>
+		
+		<script>
+			var indexT1 = 2;
+			var indexT2 = 2;
+			var indexT3 = 2;
+			var indexModulos = 2;
+			$(document).ready(function () {
+
+				$('#addDocT1').click(function (e) {
+					e.preventDefault();
+					var row = $('.docT1:first').clone();
+					$('#capturaFile', row).attr('id', 'capturaFile' + indexT1);
+					$('#removecapturaFile', row).attr('id', 'removecapturaFile' + indexT1).removeClass("invisible");
+					$('.docsT1').append(row);
+					indexT1++;
+				});
+
+				$('body').on('click', '.removecapturaFile', function (e) {
+					e.preventDefault();
+					$(this).parent().remove();
+				});
+
+				$('#addDocT2').click(function (e) {
+					e.preventDefault();
+					var row = $('.docT2:first').clone();
+					$('#logFile', row).attr('id', 'logFile' + indexT2);
+					$('#removelogFile', row).attr('id', 'removelogFile' + indexT2).removeClass("invisible");
+					$('.docsT2').append(row);
+					indexT2++;
+				});
+
+				$('body').on('click', '.removelogFile', function (e) {
+					e.preventDefault();
+					$(this).parent().remove();
+				});
+
+				$('#addDocT3').click(function (e) {
+					e.preventDefault();
+					var row = $('.docT3:first').clone();
+					$('#capturaSolucionFile', row).attr('id', 'capturaSolucionFile' + indexT3);
+					$('#removeCapturaSolucionFile', row).attr('id', 'removeCapturaSolucionFile' + indexT3).removeClass("invisible");
+					$('.docsT3').append(row);
+					indexT3++;
+				});
+
+				$('body').on('click', '.removeCapturaSolucionFile', function (e) {
+					e.preventDefault();
+					$(this).parent().remove();
+				});
+
+				toogleNormativa();
+
+				
+				$('#contabilidadCheck').change(function () {
+					toogleNormativa();
+					
+				});
+				$('#facturacionCheck').change(function () {
+					toogleNormativa();
+					
+				});
+
+				function toogleNormativa(){
+					if (!$('#contabilidadCheck').is(":checked") && !$('#facturacionCheck').is(":checked") ) {
+						$("#normativaCheckDiv").addClass('d-none');
+					} 
+
+					if ($('#contabilidadCheck').is(":checked") || $('#facturacionCheck').is(":checked") ) {
+						$("#normativaCheckDiv").removeClass('d-none');
+					} 
+				}
+				
+				$('#addModulo').click(function (e) {
+					e.preventDefault();
+					var indexModulos = $('#modulosInd input').length;
+					if (indexModulos < 10) {
+						var row = $('<input type="text" maxlength="2000" class="form-control mb-2" placeholder="Especificar el módulo individual incorporado y sus funcionalidades">');
+						$('#modulosInd').append(row);
+						row.removeAttr('required');
+						row.attr('id', 'modulosIndividualesList' + indexModulos);
+						row.attr('name', 'modulosIndividualesList[' + indexModulos + ']');
+						row.val('');
+						$('#modulosInd').append(row);
+						indexModulos++;
+					}
+					if (indexModulos == 10) {
+						$("#addModulo").addClass("disabled_link");
+					}
+				});
+
+				//Cambio visibilidad div modIndCheck (paso 1)		
+				$('#modIndCheck').change(function () {
+					if ($("#modIndCheck").is(":checked")) {
+						$('#modulosIndDiv').removeClass("d-none");
+					} else {
+						$('#modulosIndDiv').addClass("d-none");
+						$('#declInstCheck').prop("checked", false);
+						//$('#modulosIndDiv').find('input:text').each(function () {
+						//	$(this).val('');
+						//});				
+					}
+				});
+
+				if ($("#modIndCheck").is(":checked")) {
+					$('#modulosIndDiv').removeClass("d-none");
+				}
+			});
+		</script>
+
+		<script>
+	$(document).ready(function () {
+		validardivMotivo();
+		$("#form").on('submit', function () {
+			$(':input').attr('disabled', false);
+			$("#spinner-div").show();
+		});
+
+		$(":disabled").attr('placeholder', '');
+
+		loadListFiles();
+		disableOnCorrectionForm();
+
+		updateTota();
+		var goTo = "";
+		if ($("#pagoPymeValue").length) {
+		   
+		 $("#pagoPymeValue").on('change', function () {
+			 validardivMotivo();
+	        });
+		 $("#date-started").on('focus', function () {
+			 textoAmpliado();
+	        });
+		
+		}
+		function textoAmpliado() {
+
+			if($("#pagoPymeValue").length){
+    			var pagoPymeValue=$("#pagoPymeValue").val();
+    			var pagoPymeValueNorm=pagoPymeValue.replace(",",".");
+				/*<![CDATA[*/
+				var showIcon= true;
+				if(showIcon){
+					if (parseFloat(pagoPymeValueNorm) === 0) {
+			            $("#divAlerta").removeClass("d-none");
+			        } else {
+			            $("#divAlerta").addClass("d-none");
+			        }
+				}}
+				/*]]>*/
+		    }
+		 
+		function validardivMotivo(){
+			if($("#pagoPymeValue").length){
+				$("#pagoPymeValue").val(parseFloat($("#pagoPymeValue").val()).toFixed(2));
+    			var pagoPymeValue=$("#pagoPymeValue").val();
+    			var pagoPymeValueNorm=pagoPymeValue.replace(",",".");
+				if( pagoPymeValueNorm!= $("#pagoPymeValueAcuerdo").val()){
+                	 $("#divMotivoPagoPymeDrAbono").removeClass("d-none");
+                }
+                if( pagoPymeValueNorm== $("#pagoPymeValueAcuerdo").val()){
+                	$("#motivoPagoPymeDrAbono").text("");
+               		$("#divMotivoPagoPymeDrAbono").addClass("d-none");
+               }
+			   /*<![CDATA[*/
+			   		var showIcon= true;
+			    	if(showIcon){
+			   			if (parseFloat(pagoPymeValueNorm) != 0) {
+							$("#divAlerta").addClass("d-none");
+			   	    	}
+			   		}
+				/*]]>*/
+			}
+		}
+	});
+</script>
+		<script>
+
+	var total = 0;
+	$("#total").text(total);
+	var suma = 0;
+
+	$("#valueImplantancionInicial").change(function () {
+		updateTota();
+	});
+	$("#valueServManten").change(function () {
+		updateTota();
+	});
+	$("#valueFormacion").change(function () {
+		updateTota();
+	});
+	$("#valueSoporte").change(function () {
+		updateTota();
+	});
+	$("#valueusuarios").change(function () {
+		updateTota();
+	});
+	$("#valueOtrosConceptos").change(function () {
+		updateTota();
+	});
+	$("#valueDispositivos").change(function () {
+		updateTota();
+	});
+	$("#valueHardware").change(function () {
+		updateTota();
+	});
+	function updateTota() {
+		total = 0;
+		$(".importes").each(function () {
+			let trClass = $(this).closest('tr').attr('class');
+			if ((!trClass || (trClass && !trClass.includes('d-none'))) && !isNaN(parseFloat($(this).val()))) {
+				total += parseFloat($(this).val());
+			}
+		});
+		// En el controlador se espera el numero con la configuracion regional "es-ES"
+		$("#total").text(total.toFixed(2).toString().replace(".", ","));
+	}
+</script>
+		<script>
+	
+	function validarRestricciones(){
+		 /*<![CDATA[*/
+	    var isHardDREnable = "true";
+		
+		$("#confBenefCheckAlert").addClass('d-none');
+		$("#agenciaTributariaCheckAlert").addClass('d-none');
+		$("#globalAlertJS").addClass('d-none');
+		$("#declBenefSub").addClass('d-none');
+		$("#declBenefSubAlert").addClass('d-none');
+		$("#confBenefCheckAlert").html("");
+		$("#declBenefSubAlert").html("");
+		if(isHardDREnable=="true"){
+			$("#declRespBeneficiarioHardwareAlert").addClass('d-none');
+    		$("#declRespBeneficiarioHardwareAlert").html("");
+    		if($("#hardwareCheck").is(":checked")){
+        		if (!$("#declRespBeneficiarioHardware").is(":checked")) {
+        			$("#declRespBeneficiarioHardwareAlert").removeClass('d-none');
+        			$("#globalAlertJS").removeClass('d-none');
+        
+        			$("#declRespBeneficiarioHardwareAlert").html("El Agente Digitalizador ha indicado que el acuerdo incluye el suministro de dispositivos hardware. Debe marcar la declaración expresa de conformidad con el uso de dicho hardware");
+        		}
+    		}
+		}
+		if (!$("#confBenefCheck").is(":checked")) {
+			$("#confBenefCheckAlert").removeClass('d-none');
+			$("#globalAlertJS").removeClass('d-none');
+
+			$("#confBenefCheckAlert").html("La opción marcada indica que no se cumple con las Declaraciones Responsables o Conformidad Expresa");
+		}
+
+		if (esSegundaConvocatoria() && !$("#agenciaTributariaCheck").is(":checked")) {
+			$("#agenciaTributariaCheckAlert").removeClass('d-none');
+			$("#globalAlertJS").removeClass('d-none');
+
+			$("#agenciaTributariaCheckAlert").html("La opción marcada indica que no se cumple con las Declaraciones Responsables o Conformidad Expresa");
+		}
+		var dclSubencionLegacy = true;
+		if(dclSubencionLegacy==null || dclSubencionLegacy){
+			if ($('input[name=otraAyuda]:checked').length == 0) {
+				$("#declBenefSubAlert").removeClass('d-none');
+				$("#globalAlertJS").removeClass('d-none');
+				$("#declBenefSubAlert").html("Se debe informar de la concurrencia de otras ayudas en el apartado de Declaraciones Responsables y Conformidades Expresas");
+			}
+		}
+//		//if(dclSubencionLegacy!=null && !dclSubencionLegacy){
+//			//if ($('input[name=dclrNoSubencion]:checked').length == 0) {
+//				//$("#declBenefSubAlert").removeClass('d-none');
+//				//$("#globalAlertJS").removeClass('d-none');
+//				//$("#declBenefSubAlert").html("Se debe informar de la concurrencia de otras ayudas en el apartado de Declaraciones Responsables y Conformidades Expresas");
+//			//}
+//		//}
+		
+	}
+	/*]]>*/
+	$("#preValidate").click(function () {
+
+		$("#validate").click();
+
+	});
+
+	$("#preValidatefirmaNotCrypto").click(function () {
+		prevalidateFirmaNotCrypto();
+	});
+	function prevalidateFirmaNotCrypto(){
+	validarRestricciones();
+		 /*<![CDATA[*/
+	    var isHardDREnable = "true";
+	    var dclSubencionLegacy = true;
+		var selectComponent='input[name=otraAyuda]:checked';
+		if(dclSubencionLegacy==null || dclSubencionLegacy){
+			selectComponent='input[name=otraAyuda]:checked';
+		}
+		//if(dclSubencionLegacy!=null && !dclSubencionLegacy){
+			//selectComponent='input[name=dclrNoSubencion]:checked';
+		//}
+	    if(isHardDREnable=="true"){
+	    	if($("#hardwareCheck").length != 0){
+	    		if($("#hardwareCheck").is(":checked")){
+
+	    			if ($("#confBenefCheck").is(":checked") &&
+	    				(!esSegundaConvocatoria() || (esSegundaConvocatoria() && $("#agenciaTributariaCheck").is(":checked")))&& 
+						$("#declRespBeneficiarioHardware").is(":checked")) {
+	    			
+						if(($(selectComponent).length != 0 && dclSubencionLegacy)||(!dclSubencionLegacy)){
+							goTo = "./aceptNC";
+
+							checkHaveFilesOtherGrantAcept();
+
+							//$("#spinner-div").show();
+							//getXmlAndSign();
+						}
+	    			}
+	    		}else{
+	    			if ($("#confBenefCheck").is(":checked") &&
+		    				(!esSegundaConvocatoria() || (esSegundaConvocatoria() && $("#agenciaTributariaCheck").is(":checked")))) {
+		    			
+						if(($(selectComponent).length != 0 && dclSubencionLegacy)||(!dclSubencionLegacy)){
+		    		
+								goTo = "./aceptNC";
+
+								checkHaveFilesOtherGrantAcept();
+
+								//$("#spinner-div").show();
+								//getXmlAndSign();
+		    			}
+		    			}
+	    		}
+			}else{
+				if ($("#confBenefCheck").is(":checked") &&
+	    			(!esSegundaConvocatoria() || (esSegundaConvocatoria() && $("#agenciaTributariaCheck").is(":checked")))) {
+	    			
+	    		   if(($(selectComponent).length != 0 && dclSubencionLegacy)||(!dclSubencionLegacy)){
+	    		    	
+	    		    
+	    			goTo = "./aceptNC";
+
+	    			checkHaveFilesOtherGrantAcept();
+
+	    			//$("#spinner-div").show();
+	    			//$('#form').attr('action', goTo);
+	    			//$(':checkbox').attr("disabled", false);
+	    			//$(':radio').attr('disabled', false);
+	    			//$('#form').submit();
+	    			//getXmlAndSign();
+	    		}
+	    		}
+			}
+	    }else{
+	    	if ($("#confBenefCheck").is(":checked") &&
+	    			(!esSegundaConvocatoria() || (esSegundaConvocatoria() && $("#agenciaTributariaCheck").is(":checked")))) {
+	    			
+	    		if(($(selectComponent).length != 0 && dclSubencionLegacy)||(!dclSubencionLegacy)){    
+	    		    	
+	    		    
+	    			goTo = "./aceptNC";
+
+	    			checkHaveFilesOtherGrantAcept();
+
+	    			//$("#spinner-div").show();
+	    			//$('#form').attr('action', goTo);
+	    			//$(':checkbox').attr("disabled", false);
+	    			//$(':radio').attr('disabled', false);
+	    			//$('#form').submit();
+	    			//getXmlAndSign();
+	    		}
+	    		}
+	    }
+		
+		/*]]>*/
+	}
+	$("#validate").click(function () {
+
+		validarRestricciones();
+		 /*<![CDATA[*/
+	    var isHardDREnable = "true";
+	    
+	    var dclSubencionLegacy = true;
+		var selectComponent='input[name=otraAyuda]:checked';
+		if(dclSubencionLegacy==null || dclSubencionLegacy){
+			selectComponent='input[name=otraAyuda]:checked';
+		}
+		//if(dclSubencionLegacy!=null && !dclSubencionLegacy){
+			//selectComponent='input[name=dclrNoSubencion]:checked';
+		//}
+	    if(isHardDREnable=="true"){
+	    	if($("#hardwareCheck").length != 0){
+	    		if($("#hardwareCheck").is(":checked")){
+	    			if ( $("#confBenefCheck").is(":checked") &&
+	    				(!esSegundaConvocatoria() || (esSegundaConvocatoria() && $("#agenciaTributariaCheck").is(":checked")))&& 
+						$("#declRespBeneficiarioHardware").is(":checked")) {
+	    				if(($(selectComponent).length != 0 && dclSubencionLegacy)||(!dclSubencionLegacy)){
+	    		
+							goTo = "./acept";
+
+							checkHaveFilesOtherGrantAcept();
+
+							//$("#spinner-div").show();
+							//getXmlAndSign();
+						}
+	    			}
+	    		}else{
+	    			if ($("#confBenefCheck").is(":checked") &&
+		    				(!esSegundaConvocatoria() || (esSegundaConvocatoria() && $("#agenciaTributariaCheck").is(":checked")))) {
+		    			if(($(selectComponent).length != 0 && dclSubencionLegacy)||(!dclSubencionLegacy)){
+		    		
+								goTo = "./acept";
+
+								checkHaveFilesOtherGrantAcept();
+
+								//$("#spinner-div").show();
+								//getXmlAndSign();
+		    			}
+		    			}
+		    			
+	    		}
+			}else{
+				if ($("#confBenefCheck").is(":checked") &&
+	    			(!esSegundaConvocatoria() || (esSegundaConvocatoria() && $("#agenciaTributariaCheck").is(":checked")))) {
+	    			if(($(selectComponent).length != 0 && dclSubencionLegacy)||(!dclSubencionLegacy)){
+	    		    
+	    		    	
+	    		    
+	    			goTo = "./acept";
+
+	    			checkHaveFilesOtherGrantAcept();
+
+	    			//$("#spinner-div").show();
+	    			//$('#form').attr('action', goTo);
+	    			//$(':checkbox').attr("disabled", false);
+	    			//$(':radio').attr('disabled', false);
+	    			//$('#form').submit();
+	    			//getXmlAndSign();
+	    		}
+	    		}
+			}
+	    }else{
+	    	if ($("#confBenefCheck").is(":checked") &&
+	    			(!esSegundaConvocatoria() || (esSegundaConvocatoria() && $("#agenciaTributariaCheck").is(":checked")))) {
+	    		if(($(selectComponent).length != 0 && dclSubencionLegacy)||(!dclSubencionLegacy)){	    			
+	    		    
+	    		    	
+	    		    
+	    			goTo = "./acept";
+
+	    			checkHaveFilesOtherGrantAcept();
+
+	    			//$("#spinner-div").show();
+	    			//$('#form').attr('action', goTo);
+	    			//$(':checkbox').attr("disabled", false);
+	    			//$(':radio').attr('disabled', false);
+	    			//$('#form').submit();
+	    			//getXmlAndSign();
+	    		}
+	    		}
+	    }
+	/*]]>*/
+	});
+
+
+	function checkHaveFilesOtherGrantAcept() {
+	 /*<![CDATA[*/
+	    var dclSubencionLegacy = true;
+	 /*]]>*/
+		var selectComponent='input[name=otraAyuda]:checked';
+		
+		if ($('input[name=otraAyuda]:checked').val() == 'SI' && (dclSubencionLegacy==null || dclSubencionLegacy)) {
+
+			var numberAgreement = $("#numeroAcuerdo").val();
+			var guid = $("#guid").val();
+
+			$.ajax({
+				url: './haveFileOtherGrant/?guidJustification=' + guid + '&numberAgreement=' + numberAgreement,
+				type: 'get',
+				data: {},
+				success: function (response) {
+
+					if (response == 'false') {
+						$("#modalOtraAyudaSi").modal("show");
+					} else {
+						if (goTo == './aceptNC') {
+							$("#spinner-div").show();
+							saveDeclaracionResponsableBeneficiario();
+						}
+						if (goTo == './acept') {
+							$("#spinner-div").show();
+							saveDeclaracionResponsableBeneficiario();
+							
+						}
+					}
+
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+
+					$("#processAlert").removeClass('d-none');
+					$("#processAlert").html(e.responseText);
+
+				}
+			});
+
+		} else {
+			if (goTo == './aceptNC') {
+				$("#spinner-div").show();
+				saveDeclaracionResponsableBeneficiario();
+
+			}
+			if (goTo == './acept') {
+				$("#spinner-div").show();
+				saveDeclaracionResponsableBeneficiario();
+			}
+		}
+
+	}
+
+	function uploadFileOtraAyudaSi(e) {
+
+		$("#OtraAyudaSiAlert").addClass('d-none');
+		$("#fileOtraAyudaSiEnviar").prop('disabled', true);
+		e.preventDefault();
+
+		var data = new FormData();
+		var guid = $("#guid").val();
+
+		if ($('#fileOtraAyudaSi').prop('files')[0] === undefined) {
+
+			$("#OtraAyudaSiAlert").removeClass('d-none');
+			$("#OtraAyudaSiAlert").html("Se debe adjuntar Documento acreditativo de la subvención, ayuda, ingreso o recurso recibido para el mismo coste");
+			$("#fileOtraAyudaSiEnviar").prop('disabled', false);
+		} else {
+
+			data.append("fileupload", $('#fileOtraAyudaSi').prop('files')[0]);
+
+			$("#fileOtraAyudaSiDiv").addClass('d-none');
+			$("#fileOtraAyudaSiLoading").removeClass('d-none');
+
+			data.append("type", "DOC_ACREDIT_SUB");
+			var agreementNumber = $("#numeroAcuerdo").val();
+			data.append("agreementNumber", agreementNumber);
+			data.append("justificationCode", agreementNumber + "-001");
+			data.append("justificationType", "1");
+			data.append("justificationGuid", guid);
+			data.append("estado", $("#estadoJustificacion").val());
+
+
+
+			$.ajax({
+				type: "POST",
+				enctype: 'multipart/form-data',
+				url: "./uploadFile",
+				data: data,
+				processData: false, //prevent jQuery from automatically transforming the data into a query string
+				contentType: false,
+				cache: false,
+				timeout: 600000,
+				success: function (data) {
+
+					$("#fileOtraAyudaSiLoading").addClass('d-none');
+					$("#fileOtraAyudaSiDiv").removeClass('d-none');
+					succesUploadFilesOtherGrant();
+				},
+				error: function (e) {
+					$("#OtraAyudaSiAlert").removeClass('d-none');
+					$("#OtraAyudaSiAlert").html(e.responseText);
+					$("#fileOtraAyudaSiLoading").addClass('d-none');
+					$("#fileOtraAyudaSiDiv").removeClass('d-none');
+					$("#fileOtraAyudaSiEnviar").prop('disabled', false);
+				}
+			});
+
+		}
+	}
+
+	function succesUploadFilesOtherGrant() {
+
+		$("#modalOtraAyudaSi").modal("hide");
+		if (goTo == './aceptNC') {
+			$("#spinner-div").show();
+			saveDeclaracionResponsableBeneficiario();
+		}
+
+		if (goTo == './acept') {
+			$("#spinner-div").show();
+			saveDeclaracionResponsableBeneficiario();
+			
+		}
+
+		if (goTo == '') {
+			$('#okCheckFilePoderPresentacion').attr("disabled", false);
+			$("#modalFirma").modal("show");
+		}
+
+
+
+
+
+	}
+
+
+	function esSegundaConvocatoria() {
+		if (($('#convocatoria').length > 0 && $('#convocatoria').val() == 2) && showRetencionIrpf) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	$("#submitfirmaNotCrypto").click(function () {
+		goTo = "./submitNC";
+		$("#spinner-div").show();
+		$("#processAlert").addClass('d-none');
+		//getXmlAndSign();
+		$('#form').attr('action', goTo);
+		$(':checkbox').attr("disabled", false);
+		$(':radio').attr('disabled', false);
+		$('#form').submit();
+
+	});
+	$("#submitForm").click(function () {
+		goTo = "./submit";
+		$("#spinner-div").show();
+		$("#processAlert").addClass('d-none');
+		getXmlAndSign();
+	});
+	var guid = $("#guid").val();
+	var idUsuario = $("#idUsuario").val();
+	AutoScript.cargarAppAfirma();
+
+	function saveDeclaracionResponsableBeneficiario() {
+		var declaroExpress=$("#confBenefCheck").val();
+		var declBenefNoSubRadio=$("#declBenefNoSubRadio").val();
+		var declRespDigCheck=$("#declRespDigCheck").val();
+		var declBenefSiSubRadio=$("#declBenefSiSubRadio").val();
+		var agenciaTributaria=$("#agenciaTributariaCheck").val();
+		var declRespBeneficiarioHardware=$("#declRespBeneficiarioHardware").val();
+		var decl='NO';
+		if($('#declBenefNoSubRadio').is(':checked')){
+			decl=false;
+		}
+		if($('#declBenefSiSubRadio').is(':checked')){
+			decl=true;
+		}
+		 /*<![CDATA[*/
+		 var dclSubencionLegacy = true;
+		 /*]]>*/
+		 var ajaxUrl='./saveDeclRespBenef/' + guid+'/'+declaroExpress +'/'+decl+'/'+agenciaTributaria+'/'+declRespBeneficiarioHardware;
+		 if(dclSubencionLegacy!=null && !dclSubencionLegacy){
+		 	var ajaxUrl='./saveDeclRespBenef/' + guid+'/'+declaroExpress +'/'+decl+'/'+agenciaTributaria+'/'+declRespBeneficiarioHardware+'/'+dclSubencionLegacy;
+		 
+		 }
+
+		$.ajax(ajaxUrl, {
+			timeout: 600000,
+			type: 'GET',
+			success: function (data, status, xhr) {   // success callback function
+				if (goTo == './aceptNC') {
+					$('#form').attr('action', goTo);
+					$(':checkbox').attr("disabled", false);
+					$(':radio').attr('disabled', false);
+					$('#form').submit();
+				}
+				if (goTo == './acept') {
+					console.log(data);
+					getXmlAndSign();
+				}
+
+			},
+			error: function (jqXhr, textStatus, errorMessage) { // error callback
+				//TODO mostrar error en caso de no actualizar los valores
+				goTo = "";
+				$('#form').attr('action', goTo);
+				$('#processAlert').append(jqXhr.responseText);
+				$("#processAlert").removeClass('d-none');
+				$("#spinner-div").hide();
+				console.log(errorMessage);
+			},
+			contentType: "text/plain"
+		});
+		
+	}
+	
+	function getXmlAndSign() {
+		$.ajax('./generateEvidence/' + guid, {
+			timeout: 600000,
+			type: 'GET',
+			success: function (data, status, xhr) {   // success callback function
+				console.log(data);
+
+				signEvidence(data, idUsuario);
+			},
+			error: function (jqXhr, textStatus, errorMessage) { // error callback
+				if(jqXhr.status == '403'){
+					msg = jqXhr.responseText;
+					const encodedMessage = msg;
+					window.location.href = "./error?message="+msg;
+					
+				}
+				goTo = "";
+				$('#form').attr('action', goTo);
+				$('#processAlert').append(jqXhr.responseText);
+				$("#processAlert").removeClass('d-none');
+				$("#spinner-div").hide();
+				console.log(errorMessage);
+			},
+			contentType: "text/plain"
+		});
+	}
+
+	function postXMLSign(data) {
+
+		var guid = $("#guid").val();
+
+		$.ajax('./storeEvidence/' + $("#idPymeHidden").val() + '/' + $("#entorno").val()
+			+ '?numeroAcuerdo=' + $("#numAcuerdo").val()
+			+ '&codigoJustificacion=' + $("#codJusti").val()
+			+ '&nifDig=' + $("#nifDig").val()
+			+ '&guidJustificacion=' + guid, {
+
+			processData: false, //prevent jQuery from automatically transforming the data into a query string
+			contentType: false,
+			cache: false,
+			timeout: 600000,
+			type: 'POST',
+			data: data,
+			success: function (data, status, xhr) {   // success callback function
+				$('#form').attr('action', goTo);
+				$(':checkbox').attr("disabled", false);
+				$(':radio').attr('disabled', false);
+				$('#form').submit();
+			},
+			error: function (jqXhr, textStatus, errorMessage) { // error callback 
+				goTo = "";
+				$('#form').attr('action', goTo);
+				$('#processAlert').append(jqXhr.responseText);
+				$("#processAlert").removeClass('d-none');
+				$("#spinner-div").hide();
+			}
+
+		});
+	}
+	var headless="";
+
+	function signEvidence(evidencia64, idUsuario) {
+
+		AutoScript.sign(evidencia64,
+			'SHA1withRSA',
+			'XAdES',
+			'filters.1=subject.rfc2254:(CN=*' + idUsuario + '*);nonexpired:true\nfilters.2=subject.rfc2254:(SERIALNUMBER=*' + idUsuario + '*);nonexpired:true'+headless,
+			(res => {
+				const xml = AutoScript.getTextFromBase64(res);
+
+				postXMLSign(xml);
+
+			}),
+			((err, msg) => {
+				msg = msg === 'Operacion cancelada por el usuario' ? 'Operación cancelada por el usuario' : msg;
+				const encodedMessage = encodeURIComponent(msg);
+				window.location.href = `./error?message=${encodedMessage}`;
+			}));
+	}
+
+</script>
+		<script>
+	$(document).ready(function () {
+
+		if ($('#hardwareCheck').prop('checked')) {
+			$("#suministroHwDiv").removeClass('d-none');
+			$(".hardware").removeClass('d-none');
+		} else {
+			$("#suministroHwDiv").addClass('d-none');
+			$(".hardware").addClass('d-none');
+		}
+		updateTota();
+
+		//Cambio visibilidad div suministroHwDiv (paso 1) y tr suministroHwTr (paso 2)		
+		$('#hwCheck').change(function () {
+			if ($("#hwCheck").is(":checked")) {
+				$('#suministroHwDiv').removeClass("d-none");
+				$('#suministroHwTr').removeClass("d-none");
+			} else {
+				$('#suministroHwDiv').addClass("d-none");
+				$('#suministroHwTr').addClass("d-none");
+				//Si se quieren resetear los valores
+				$('#suministroHwDiv').find('input:text, textarea').each(function () {
+					$(this).val('');
+				});
+				$('#suministroHwTr').find('input:text').each(function () {
+					$(this).val('');
+				});
+			}
+			$(".importes").text("0");
+			updateTota();
+		});
+	});
+
+	let hardwareIndex = parseInt($("#hardwareIndex").val());
+
+	if (hardwareIndex == 0) {
+		addRow();
+	}
+
+	$("#hardwareCheck").change(function () {
+		if ($('#hardwareCheck').prop('checked')) {
+			$("#suministroHwDiv").removeClass('d-none');
+			$(".hardware").removeClass('d-none');
+			if (hardwareIndex == 0) {
+				addRow();
+			}
+		} else {
+			$("#suministroHwDiv").addClass('d-none');
+			$(".hardware").addClass('d-none');
+			deleteAllRows();
+			$('#motivoHw').val("");
+
+		}
+		updateTota();
+	});
+	$("#addProducto").click(function () {
+		addRow();
+	});
+
+	function addRow() {
+		let markup = "<tr id=\"table-" + (hardwareIndex) + "\"><td><input type=\"text\" class=\"form-control\" id=\"producto\" value=\"\" required=\"\" name=\"productosHardwareModel[" + (hardwareIndex) + "].producto\">" +
+			"</td><td><input type=\"text\" class=\"form-control\" id=\"marca\" value=\"\" required=\"\" name=\"productosHardwareModel[" + (hardwareIndex) + "].marca\">" +
+			"</td><td><input type=\"text\" class=\"form-control\" id=\"modelo\" value=\"\" required=\"\" name=\"productosHardwareModel[" + (hardwareIndex) + "].modelo\">" +
+			"</td><td><input type=\"text\" class=\"form-control\" id=\"numSerie\" value=\"\" required=\"\" name=\"productosHardwareModel[" + (hardwareIndex) + "].numSerie\">" +
+			"</td><td class=\"no-pdf\"><button type=\"button\" class=\"btn btn-link\" onclick=\"deleteRow(" + hardwareIndex + ")\" aria-label=\"Eliminar\" ><i class=\"bi bi-x-circle\"></i></button></td></tr>";
+		let tableBody = $("#productosHw tbody");
+		tableBody.append(markup);
+		hardwareIndex++;
+		$("#hardwareIndex").val(hardwareIndex);
+	}
+
+	function deleteAllRows() {
+		for (let i = 0; i < hardwareIndex; i++) {
+			$("#table-" + i).remove();
+		}
+		hardwareIndex = 0;
+		$("#hardwareIndex").val(hardwareIndex);
+	}
+
+	function deleteRow(row) {
+		$("#table-" + row).remove();
+
+		//recalcular los hardwareIndex de cada fila posterior a la eliminada de la tabla
+		for (let i = row + 1; i < hardwareIndex; i++) {
+
+			const tableRow = $("#table-" + i);
+			tableRow.attr("id", `table-${i - 1}`);
+			tableRow.find(".no-pdf").find("button").attr("onclick", `deleteRow(${i - 1})`);
+		}
+
+		hardwareIndex--;
+		$("#hardwareIndex").val(hardwareIndex);
+	}
+
+</script>
+
+		<script>
+
+	function deleteFiles(guid) {
+		var numberAgreement = $("#numeroAcuerdo").val();
+		var justificacionGuid = $("#guid").val();
+		var estado = $("#estadoJustificacion").val();
+		$.ajax({
+			url: './deleteFile?guid=' + guid + '&numberAgreement=' + numberAgreement + "&justificacionGuid=" + justificacionGuid + "&estado=" + estado,
+			type: 'post',
+			data: {},
+			success: function (response) {
+				// if the response contains any errors, replace the form
+				loadListFiles();
+			},
+			error: function (e) {
+				$("#processAlert").removeClass('d-none');
+				$("#processAlert").html(e.responseText);
+			}
+		});
+
+	}
+
+	function loadListFiles() {
+
+		var guid = $("#guid").val();;
+		var numberAgreement = $("#numeroAcuerdo").val();
+		var hardware = '&hardware=false';
+		let pagaAda2Benef = '';
+		var showDRAbono='&showDRAbono=';
+		var showDRAbonoAutonomo='&showDRAbonoAutonomo=';
+		// Segunda convocatoria
+		if ($("#hardwareCheck").length) {
+			hardware = "&hardware=" + $('#hardwareCheck').prop('checked');
+		}
+
+		if ($("#pagaDigitalizadorABeneficiario").length) {
+			pagaAda2Benef = "&pagaDigitalizadorABeneficiario=" + $('#pagaDigitalizadorABeneficiario').val();
+		}
+		if ($("#showDRAbono").length) {
+			if($('#showDRAbono').val()){
+				showDRAbono = showDRAbono + $('#showDRAbono').val();
+			}
+			if(!$('#showDRAbono').val()){
+				showDRAbono = showDRAbono + 'false';
+			}
+		}else{
+			showDRAbono = showDRAbono + 'false';
+		}
+		if ($("#showDRAbonoAutonomo").length) {
+			if($('#showDRAbonoAutonomo').val()){
+				showDRAbonoAutonomo = showDRAbonoAutonomo + $('#showDRAbonoAutonomo').val();
+			}
+			if(!$('#showDRAbonoAutonomo').val()){
+				showDRAbonoAutonomo = showDRAbonoAutonomo + 'false';
+			}
+		}else{
+			showDRAbonoAutonomo = showDRAbonoAutonomo + 'false';
+		}
+		$.ajax({
+			url: './getFiles/' + guid + '/' + $('#estadoJustificacion').val() + '/' + hasError + '?numberAgreement=' + numberAgreement + hardware + pagaAda2Benef+showDRAbono+showDRAbonoAutonomo,
+			type: 'get',
+			data: {},
+			success: function (response) {
+				$('#listDocumentJustification').html(response);
+				disableOnCorrectionListDoc();
+					   if ($('#cambiosFuncionalidadCheck').prop('checked')) {
+							$("#capturasPantallaSolucionSegundaFase").removeClass('d-none');
+							
+						} else {
+							$("#capturasPantallaSolucionSegundaFase").addClass('d-none');
+						}
+			}
+		});
+
+	}
+</script>
+		<script>
+	function uploadFacture(e) {
+
+		$("#facturaFileAlert").addClass('d-none');
+		$("#facturaFileAlertError").addClass('d-none');
+
+
+		e.preventDefault();
+
+		var data = new FormData();
+		var guid = $("#guid").val();
+
+		if ($('#facturaFile').prop('files')[0] === undefined) {
+
+			$("#facturaFileAlert").removeClass('d-none');
+			$("#facturaFileAlert").html("No ha seleccionado ninguna factura para su subida al sistema");
+
+		} else {
+
+			data.append("fileupload", $('#facturaFile').prop('files')[0]);
+
+			$("#facturaFileDiv").addClass('d-none');
+			$("#facturaFileLoading").removeClass('d-none');
+
+
+			data.append("type", "FACTURAE_XSIG");
+			var agreementNumber = $("#numeroAcuerdo").val();
+			data.append("agreementNumber", agreementNumber);
+			data.append("justificationCode", agreementNumber + "-001");
+			data.append("justificationType", "1");
+			data.append("amount", $("#total").text());
+			data.append("justificationGuid", guid);
+			data.append("estado", $("#estadoJustificacion").val());
+			
+			//Especifico Para la categoria PTS, comprobamos si el campo existe y tiene valor antes de añadirlo a la llamada
+			if($("#hardwareInfoMarca").length){
+				var $d = $("#hardwareInfoMarca");
+					if ($d.length != 0) {
+						if ($d.val()!=null){
+	  						if ($d.val().length != 0 ) {
+	  							data.append("hardwareMarca", $("#hardwareInfoMarca").val());
+	  						}
+	  					}
+					}
+			}
+			if($("#hardwareInfoModelo").length){
+				var $d = $("#hardwareInfoModelo");
+					if ($d.length != 0) {
+	  					if ($d.val()!=null){	
+	  						if ($d.val().length != 0 ) {
+								data.append("hardwareModelo", $("#hardwareInfoModelo").val());
+	  						}
+	  					}
+					}
+			}
+			if($("#hardwareInfoOtraMarca").length){
+				var $d = $("#hardwareInfoOtraMarca");
+					if ($d.length != 0) {
+						if ($d.val()!=null){
+	  						if ($d.val().length != 0 ) {
+								data.append("hardwareMarca", $("#hardwareInfoOtraMarca").val());
+	  						}
+	  					}
+					}
+			}
+			if($("#hardwareInfoOtroModelo").length){
+				var $d = $("#hardwareInfoOtroModelo");
+					if ($d.length != 0) {
+						if ($d.val()!=null){
+	  						if ($d.val().length != 0 ) {
+								data.append("hardwareModelo", $("#hardwareInfoOtroModelo").val());
+	  						}
+	  					}
+					}
+			}
+			if($("#hardwareInfoNumSerie").length){
+				var $d = $("#hardwareInfoNumSerie");
+					if ($d.length != 0) {
+						if ($d.val()!=null){
+	  						if ($d.val().length != 0 ) {
+								data.append("hardwareNumSerie", $("#hardwareInfoNumSerie").val());
+	  						}
+	  					}
+					}
+			}
+			if($('#sobremesaNuevoCheck').prop('checked')){
+				data.append("sobremesanuevo", true);
+				
+				if($("#monitorPositionJobSecureSecondMarca").length){
+					data.append("monitorMarca", $("#monitorPositionJobSecureSecondMarca").val());
+				}
+				if($("#monitorPositionJobSecureSecondModelo").length){
+					data.append("monitorModelo", $("#monitorPositionJobSecureSecondModelo").val());
+				}
+				if($("#monitorPositionJobSecureSecondNumSerie").length){
+					data.append("monitorNumSerie", $("#monitorPositionJobSecureSecondNumSerie").val());
+				}
+			}
+			$.ajax({
+				type: "POST",
+				enctype: 'multipart/form-data',
+				url: "./uploadFileFactura",
+				data: data,
+				processData: false, //prevent jQuery from automatically transforming the data into a query string
+				contentType: false,
+				cache: false,
+				timeout: 600000,
+				success: function (data) {
+
+					$("#facturaFileLoading").addClass('d-none');
+					$("#facturaFileDiv").removeClass('d-none');
+					loadListFiles();
+					document.getElementById('facturaFile').value = "";
+				},
+				error: function (e) {
+					$("#facturaFileAlert").removeClass('d-none');
+					$("#facturaFileAlert").html(e.responseText);
+					$("#facturaFileLoading").addClass('d-none');
+					$("#facturaFileDiv").removeClass('d-none');
+				}
+			});
+
+		}
+
+
+	}
+
+</script>
+		<script>
+	function uploadjustifAbono(e) {
+
+		e.preventDefault();
+
+		$("#justifAbonoFileAlert").addClass('d-none');
+		$("#justifAbonoFileAlertError").addClass('d-none');
+
+		var data = new FormData();
+		var guid = $("#guid").val();
+
+		if ($('#justifAbonoFile').prop('files')[0] === undefined) {
+
+			$("#justifAbonoFileAlert").removeClass('d-none');
+			$("#justifAbonoFileAlert").html("No ha seleccionado ningún justificante de abono de la factura para su subida al sistema");
+
+		}
+		else {
+
+			data.append("fileupload", $('#justifAbonoFile').prop('files')[0]);
+
+
+			$("#justifAbonoFileDiv").addClass('d-none');
+			$("#justifAbonoFileLoading").removeClass('d-none');
+
+			data.append("type", "JUSTIF_ABONO");
+			var agreementNumber = $("#numeroAcuerdo").val();
+			data.append("agreementNumber", agreementNumber);
+			data.append("justificationCode", agreementNumber + "-001");
+			data.append("justificationType", "1");
+			data.append("justificationGuid", guid);
+			data.append("estado", $("#estadoJustificacion").val());
+
+
+			$.ajax({
+				type: "POST",
+				enctype: 'multipart/form-data',
+				url: "./uploadFile",
+				data: data,
+				processData: false, //prevent jQuery from automatically transforming the data into a query string
+				contentType: false,
+				cache: false,
+				timeout: 600000,
+				success: function (data) {
+
+					$("#justifAbonoFileLoading").addClass('d-none');
+					$("#justifAbonoFileDiv").removeClass('d-none');
+					loadListFiles();
+					document.getElementById('justifAbonoFile').value = "";
+
+				},
+				error: function (e) {
+					$("#justifAbonoFileAlert").removeClass('d-none');
+					$("#justifAbonoFileAlert").html(e.responseText);
+					$("#justifAbonoFileLoading").addClass('d-none');
+					$("#justifAbonoFileDiv").removeClass('d-none');
+				}
+			});
+
+		}
+
+	}
+</script>
+		<script>
+	function uploadjusti(e) {
+
+		e.preventDefault();
+
+		$("#justifFileAlert").addClass('d-none');
+		$("#justifFileAlertError").addClass('d-none');
+
+		var data = new FormData();
+		var guid = $("#guid").val();
+
+		if ($('#justifFile').prop('files')[0] === undefined) {
+			$("#justifFileAlert").removeClass('d-none');
+			$("#justifFileAlert").html("No ha seleccionado ningún justificante de formalización del dominio asociado para su subida al sistema");
+		} else {
+
+
+			data.append("fileupload", $('#justifFile').prop('files')[0]);
+
+			$("#justifFileDiv").addClass('d-none');
+			$("#justifFileLoading").removeClass('d-none');
+
+			data.append("type", "JUS_DOMINIO");
+			var agreementNumber = $("#numeroAcuerdo").val();
+			data.append("agreementNumber", agreementNumber);
+			data.append("justificationCode", agreementNumber + "-001");
+			data.append("justificationType", "1");
+			data.append("justificationGuid", guid);
+			data.append("estado", $("#estadoJustificacion").val());
+
+
+			$.ajax({
+				type: "POST",
+				enctype: 'multipart/form-data',
+				url: "./uploadFile",
+				data: data,
+				processData: false, //prevent jQuery from automatically transforming the data into a query string
+				contentType: false,
+				cache: false,
+				timeout: 600000,
+				success: function (data) {
+
+					$("#justifFileLoading").addClass('d-none');
+					$("#justifFileDiv").removeClass('d-none');
+					loadListFiles();
+					document.getElementById('justifFile').value = "";
+				},
+				error: function (e) {
+					$("#justifFileAlert").removeClass('d-none');
+					$("#justifFileAlert").html(e.responseText);
+					$("#justifFileLoading").addClass('d-none');
+					$("#justifFileDiv").removeClass('d-none');
+				}
+			});
+
+		}
+
+	}
+
+
+</script>
+		<script>
+	function uploadCaptura(e) {
+
+		e.preventDefault();
+
+		$("#capturaFileAlert").addClass('d-none');
+		$("#capturaFileAlertError").addClass('d-none');
+
+		var data = new FormData();
+		var guid = $("#guid").val();
+
+		if ($('#capturaFile').prop('files')[0] === undefined) {
+
+			$("#capturaFileAlert").removeClass('d-none');
+			$("#capturaFileAlert").html("No ha seleccionado ningún documento de captura de la solución implantada");
+
+		}
+		else {
+
+
+			data.append("fileupload", $('#capturaFile').prop('files')[0]);
+
+			$("#capturaFileDiv").addClass('d-none');
+			$("#capturaFileLoading").removeClass('d-none');
+
+			data.append("type", "CAP_EVI_SOL");
+			var agreementNumber = $("#numeroAcuerdo").val();
+			data.append("agreementNumber", agreementNumber);
+			data.append("justificationCode", agreementNumber + "-001");
+			data.append("justificationType", "1");
+			data.append("justificationGuid", guid);
+			data.append("estado", $("#estadoJustificacion").val());
+
+
+
+			$.ajax({
+				type: "POST",
+				enctype: 'multipart/form-data',
+				url: "./uploadFile",
+				data: data,
+				processData: false, //prevent jQuery from automatically transforming the data into a query string
+				contentType: false,
+				cache: false,
+				timeout: 600000,
+				success: function (data) {
+
+					$("#capturaFileLoading").addClass('d-none');
+					$("#capturaFileDiv").removeClass('d-none');
+					loadListFiles();
+					document.getElementById('capturaFile').value = "";
+				},
+				error: function (e) {
+					$("#capturaFileAlert").removeClass('d-none');
+					$("#capturaFileAlert").html(e.responseText);
+					$("#capturaFileLoading").addClass('d-none');
+					$("#capturaFileDiv").removeClass('d-none');
+				}
+			});
+		}
+	}
+</script>
+		<script>
+	function uploadLogFile(e) {
+
+		$("#logFileAlert").addClass('d-none');
+		$("#logFileAlertError").addClass('d-none');
+		e.preventDefault();
+
+		var data = new FormData();
+		var guid = $("#guid").val();
+
+		if ($('#logFile').prop('files')[0] === undefined) {
+
+			$("#logFileAlert").removeClass('d-none');
+			$("#logFileAlert").html("No ha seleccionado ningún documento de log de acceso a la solución o registro de acceso a la solución implantada");
+
+		} else {
+
+			data.append("fileupload", $('#logFile').prop('files')[0]);
+
+			$("#logFileDiv").addClass('d-none');
+			$("#logFileLoading").removeClass('d-none');
+
+			data.append("type", "LOGS_ACCESO");
+			var agreementNumber = $("#numeroAcuerdo").val();
+			data.append("agreementNumber", agreementNumber);
+			data.append("justificationCode", agreementNumber + "-001");
+			data.append("justificationType", "1");
+			data.append("justificationGuid", guid);
+			data.append("estado", $("#estadoJustificacion").val());
+
+
+
+			$.ajax({
+				type: "POST",
+				enctype: 'multipart/form-data',
+				url: "./uploadFile",
+				data: data,
+				processData: false, //prevent jQuery from automatically transforming the data into a query string
+				contentType: false,
+				cache: false,
+				timeout: 600000,
+				success: function (data) {
+
+					$("#logFileLoading").addClass('d-none');
+					$("#logFileDiv").removeClass('d-none');
+					loadListFiles();
+					document.getElementById('logFile').value = "";
+				},
+				error: function (e) {
+					$("#logFileAlert").removeClass('d-none');
+					$("#logFileAlert").html(e.responseText);
+					$("#logFileLoading").addClass('d-none');
+					$("#logFileDiv").removeClass('d-none');
+				}
+			});
+
+		}
+	}
+</script>
+		<script>
+	function uploadFotografiaHardware(e) {
+
+		$("#fotografiaHardwareFileAlert").addClass('d-none');
+		$("#fotografiaHardwareFileAlertError").addClass('d-none');
+		e.preventDefault();
+
+		var data = new FormData();
+		var guid = $("#guid").val();
+
+		if ($('#fotografiaHardwareFile').prop('files')[0] === undefined) {
+
+			$("#fotografiaHardwareFileAlert").removeClass('d-none');
+			$("#fotografiaHardwareFileAlert").html("Se deben adjuntar evidencias gráficas (fotografías) de los dispositivos suministrados en el campo “Documentación Acreditativa”.");
+
+		} else {
+
+			data.append("fileupload", $('#fotografiaHardwareFile').prop('files')[0]);
+
+			$("#fotografiaHardareFileDiv").addClass('d-none');
+			$("#fotografiasHardwareFileLoading").removeClass('d-none');
+
+			data.append("type", "FOT_HARD");
+			var agreementNumber = $("#numeroAcuerdo").val();
+			data.append("agreementNumber", agreementNumber);
+			data.append("justificationCode", agreementNumber + "-001");
+			data.append("justificationType", "1");
+			data.append("justificationGuid", guid);
+			data.append("estado", $("#estadoJustificacion").val());
+
+
+
+			$.ajax({
+				type: "POST",
+				enctype: 'multipart/form-data',
+				url: "./uploadFile",
+				data: data,
+				processData: false, //prevent jQuery from automatically transforming the data into a query string
+				contentType: false,
+				cache: false,
+				timeout: 600000,
+				success: function (data) {
+
+					$("#fotografiasHardwareFileLoading").addClass('d-none');
+					$("#fotografiaHardareFileDiv").removeClass('d-none');
+					loadListFiles();
+					document.getElementById('fotografiaHardwareFile').value = "";
+				},
+				error: function (e) {
+					$("#fotografiaHardwareFileAlert").removeClass('d-none');
+					$("#fotografiaHardwareFileAlert").html(e.responseText);
+					$("#fotografiasHardwareFileLoading").addClass('d-none');
+					$("#fotografiaHardareFileDiv").removeClass('d-none');
+				}
+			});
+
+		}
+	}
+
+</script>
+
+		<script>
+	$(document).on('show.bs.modal', '#modalConfirmarBorradoDocumento', function (event) {
+		var button = $(event.relatedTarget);
+		var subjId = button.data('whatever');
+		var functionAct = "deleteFiles('" + subjId + "')";
+		$('#aceptarBorrado').attr("onclick", functionAct);
+	});
+</script>
+		<script>
+	function disableOnCorrectionForm() {
+		const memoriaTecnica = 0;
+		const desgloseCostes = 1;
+		/*<![CDATA[*/
+		var estado=3;
+		if (estado == 6) {
+		
+			$('#fabricante').attr('disabled', true);
+			$('#version').attr('disabled', true);
+			
+			var blocksDisabledOnCorrection = [];
+			/*]]>*/
+			blocksDisabledOnCorrection?.forEach(correctionBlock => {
+				switch (correctionBlock) {
+					case 0:
+						$("#memoriaTecnica :input").each(function () {
+							this.disabled = true;
+						});
+						$("#memoriaTecnica #addProducto").off("click");
+						break;
+					case 1:
+						$("#desgloseCostes :input").each(function () {
+							this.disabled = true;
+						});
+						break;
+				}
+			});
+			if(blocksDisabledOnCorrection!=null){
+				if (!blocksDisabledOnCorrection.includes(memoriaTecnica)) {
+					$("#memoria-tecnica-subsanacion").removeClass('d-none');
+				}
+			
+				if (!blocksDisabledOnCorrection.includes(desgloseCostes)) {
+					$("#desglose-costes-subsanacion").removeClass('d-none');
+				}
+			}
+		}
+	}
+
+	function disableOnCorrectionListDoc() {
+		const documentacionAcreditativa = 2;
+		const factura = 3;
+		const justificanteAbono = 4;
+		/*<![CDATA[*/
+		var estado=3;
+		if (estado == 6) {
+			
+			var blocksDisabledOnCorrection = [];
+			/*]]>*/
+			blocksDisabledOnCorrection?.forEach(correctionBlock => {
+				switch (correctionBlock) {
+					case 2:
+						$("#evidenciasDoc :input").each(function () {
+							this.disabled = true;
+						})
+						$('span[id^="evidenciaRemoveBtn_"]').remove()
+						break;
+					case 3:
+						$("#facturaFileDiv :input").each(function () {
+							this.disabled = true;
+						})
+						$('#facturaFileDelBtn').remove();
+						break;
+					case 4:
+						$("#justifAbonoFileDiv :input").each(function () {
+							this.disabled = true;
+						})
+						$('#justifAbonoFileDelBtn').remove();
+						break;
+				}
+			});
+			if(blocksDisabledOnCorrection!=null){	
+				if (!blocksDisabledOnCorrection.includes(factura)) {
+					/*<![CDATA[*/
+					var isFeatureFlagActivate = "true";
+			}
+			if (isFeatureFlagActivate === "true") {
+				$("#documentacion-acreditativa-subsanacion").removeClass('d-none');
+			} else {
+				$("#factura-subsanacion").removeClass('d-none');
+			}
+			/*]]>*/
+
+		}
+		if(blocksDisabledOnCorrection!=null){	
+			if (!blocksDisabledOnCorrection.includes(justificanteAbono)) {
+				/*<![CDATA[*/
+				var isFeatureFlagActivate = "true";
+		}
+		if (isFeatureFlagActivate === "true") {
+			$("#documentacion-acreditativa-subsanacion").removeClass('d-none');
+		} else {
+			$("#justificante-abono-subsanacion").removeClass('d-none');
+		}
+		/*]]>*/
+
+	}
+	if(blocksDisabledOnCorrection!=null){	
+		if (!blocksDisabledOnCorrection.includes(documentacionAcreditativa)) {
+			$("#documentacion-acreditativa-subsanacion").removeClass('d-none');
+		}
+	}
+            }
+        }
+</script>
+		
+		<script>
+
+			$("#horas").change(function () {
+				let horasInput = $("#horas");
+				let valorParseado = parseFloat(horasInput.val());
+				if (!valorParseado && isNaN(valorParseado)) {
+					horasInput.val("0.0");
+				}
+			});
+
+		</script>
+
+	</div></div></main>
+	<script src="/justificaciones/styles/js/include-HTML.js"></script>
+
+	<!-- Inicio Footer -->
+	<div class="mt-auto">
+		<footer><!-- Inicio Footer -->
+<footer class="footer mt-auto pt-2 pb-1">
+    <div class="container">
+        <div class="section-footer-logos d-flex justify-content-center mb-1">
+             <div style="background: url(/portal/common/img/header.png) no-repeat top/contain; width: 1000px;height: 40px;" class="logo_footer_1"></div>
+        </div>
+    </div>
+</footer>
+<!-- Fin Footer --></footer>
+	</div>
+	
+	<!-- Fin Footer -->
+
+
+
+</body></html>
