@@ -45,6 +45,7 @@ SEL = {
     "btn_clave_cert": "button:has-text(\"Acceso DNIe / Certificado electrónico\")",
     "btn_aceptar_clave": "button:has-text(\"Aceptar\")",
     "btn_advanced_search": "#advancedSearch",
+    "select_estado": "#estadoAcuerdo",  # Selector de estado en búsqueda avanzada
     "table_justificaciones": "#tableJustificaciones",
     "btn_presentar": "#submitForm",
     "btn_firma_clave": "#submitfirmaNotCrypto",
