@@ -65,29 +65,10 @@
       </div>
     </div>
 
-    <!-- 2. Opciones de Ejecución -->
+    <!-- 2. Control del Robot -->
     <div class="card mb-3">
       <div class="card-body">
-        <div class="section-title mb-3">2. Opciones de Ejecución</div>
-
-        <div class="row g-3">
-          <div class="col-12 col-md-4">
-            <label for="selSpeed" class="form-label">Velocidad</label>
-            <select id="selSpeed" class="form-select">
-              <option value="rapido">Rápido</option>
-              <option value="medio" selected>Medio</option>
-              <option value="lento">Lento</option>
-            </select>
-            <div class="form-text">Ajusta tiempos de espera y ritmo de clics.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3. Control del Robot -->
-    <div class="card mb-3">
-      <div class="card-body">
-        <div class="section-title mb-3">3. Control del Robot</div>
+        <div class="section-title mb-3">2. Control del Robot</div>
 
         <div class="d-flex flex-column flex-sm-row gap-2 justify-content-center">
           <button id="btnStart" class="btn btn-success btn-wide">
@@ -187,7 +168,6 @@
     // Botones
     const btnStart = document.getElementById('btnStart');
     const btnStop = document.getElementById('btnStop');
-    const selSpeed = document.getElementById('selSpeed');
 
     function currentCategoria() {
       return chkKC.checked ? 'KC' : 'KD';
@@ -201,8 +181,7 @@
       }
       const body = {
         categoria: currentCategoria(),
-        thumbprint: thumb,
-        speed: selSpeed.value
+        thumbprint: thumb
       };
       fetch('/api/start', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)})
         .then(r => r.json())

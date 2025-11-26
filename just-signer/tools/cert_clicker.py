@@ -172,21 +172,52 @@ def main():
         print("[cert_clicker] No se encontraron filas en el diálogo.")
         sys.exit(1)
 
+    # CRÍTICO: Buscar activamente el certificado correcto por serial (más específico) o CN
     picked = False
-    for r in rows:
+    matched_row = None
+    
+    print(f"[cert_clicker] Buscando certificado: Serial={args.serial[:16]}... CN={args.cn or 'N/A'}")
+    print(f"[cert_clicker] Total de filas encontradas: {len(rows)}")
+    
+    # Prioridad 1: Coincidir por número de serie (más específico)
+    for i, r in enumerate(rows):
         txt = row_text(r)
         n = norm(txt)
-        if (target and (target in n or n in target)) or (subj and subj in n):
-            try:
-                r.click_input()
-                print(f"[cert_clicker] Seleccionada fila: {txt.strip()[:140]}")
-                picked = True
+        if target and (target in n or n in target or target[:16] in n):
+            matched_row = r
+            print(f"[cert_clicker] Fila {i} coincide por serial: {txt.strip()[:100]}")
+            break
+    
+    # Prioridad 2: Coincidir por CN si no hay match por serial
+    if not matched_row and subj:
+        for i, r in enumerate(rows):
+            txt = row_text(r)
+            n = norm(txt)
+            if subj and subj in n:
+                matched_row = r
+                print(f"[cert_clicker] Fila {i} coincide por CN: {txt.strip()[:100]}")
                 break
-            except Exception:
-                continue
+
+    if not matched_row:
+        print(f"[cert_clicker] NO se encontró el certificado correcto entre {len(rows)} filas")
+        # Imprimir todas las filas disponibles para diagnóstico
+        for i, r in enumerate(rows):
+            txt = row_text(r)
+            print(f"[cert_clicker] Fila {i}: {txt.strip()[:100]}")
+        sys.exit(1)
+
+    # Seleccionar activamente la fila correcta
+    try:
+        matched_row.click_input()
+        picked = True
+        time.sleep(0.3)  # Pequeña espera para asegurar selección
+        print(f"[cert_clicker] Certificado correcto seleccionado")
+    except Exception as e:
+        print(f"[cert_clicker] Error al hacer clic en la fila: {e}")
+        sys.exit(2)
 
     if not picked:
-        print("[cert_clicker] No se localizó la fila que coincide por serie/CN.")
+        print("[cert_clicker] No se pudo seleccionar el certificado")
         sys.exit(1)
 
     ok = click_accept(dlg)

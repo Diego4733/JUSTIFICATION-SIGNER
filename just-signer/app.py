@@ -27,13 +27,6 @@ PORT = 8771
 URL_PORTAL = "https://portal.gestion.sedepkd.red.gob.es/portal/espacioAD"
 HEADLESS = False            # Navegador visible
 BROWSER_CHANNEL = "chrome"  # Lanzar Google Chrome real
-DEFAULT_SPEED = "medio"     # rapido | medio | lento
-
-DELAY_PRESETS = {
-    "rapido": 0.25,
-    "medio": 0.6,
-    "lento": 1.2,
-}
 
 ENGINE_TAG = "async-only-1"
 
@@ -70,7 +63,6 @@ def add_no_cache_headers(response):
 STATE = {
     "server": "Conectado",
     "robot": "Detenido",
-    "speed": DEFAULT_SPEED,
 }
 
 def emit_status():
@@ -171,7 +163,6 @@ async_robot = AsyncRobot(
     status_cb=emit_status,
     url_portal=URL_PORTAL,
     selectors=SEL,
-    delay_presets=DELAY_PRESETS,
     headless=HEADLESS,
     browser_channel=BROWSER_CHANNEL,
 )
@@ -225,10 +216,6 @@ def api_open():
     La sesión Playwright del robot se abre al pulsar 'Iniciar Proceso'.
     """
     try:
-        data = request.get_json(force=True) or {}
-        speed = (data.get("speed", DEFAULT_SPEED) or DEFAULT_SPEED)
-        async_robot.set_speed(speed)
-
         opened = False
         chrome_path = get_chrome_path()
         if chrome_path and os.path.isfile(chrome_path):
@@ -291,13 +278,11 @@ def api_start():
         if not serial:
             return jsonify({"ok": False, "error": "No se pudo resolver el certificado seleccionado"}), 400
 
-        speed = data.get("speed", DEFAULT_SPEED)
-        async_robot.set_speed(speed)
         log("[Async] start: categoría=%s" % categoria)
 
         STATE["robot"] = "En ejecución"
         emit_status()
-        async_robot.start(categoria, serial, speed, cn, issuer_cn)
+        async_robot.start(categoria, serial, cn, issuer_cn)
         return jsonify({"ok": True})
     except Exception as e:
         STATE["robot"] = "Detenido"

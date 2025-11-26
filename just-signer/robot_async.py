@@ -29,7 +29,6 @@ class AsyncRobot:
         status_cb: Callable[[], None],
         url_portal: str,
         selectors: Dict[str, str],
-        delay_presets: Dict[str, float],
         headless: bool = False,
         browser_channel: str = "chrome",
     ):
@@ -37,13 +36,11 @@ class AsyncRobot:
         self.emit_status = status_cb
         self.URL_PORTAL = url_portal
         self.SEL = selectors
-        self.DELAY_PRESETS = delay_presets
         self.headless = headless
         self.browser_channel = browser_channel
 
         # Estado
-        self.speed = "medio"
-        self.delay = self.DELAY_PRESETS.get(self.speed, 0.6)
+        self.delay = 0.15  # Delay mínimo inteligente para dar tiempo a JavaScript/animaciones
         self.stop_flag = asyncio.Event()
 
         # Objetos Playwright
@@ -66,23 +63,26 @@ class AsyncRobot:
         asyncio.set_event_loop(self.loop)
         self.loop.run_forever()
 
-    def set_speed(self, speed: str):
-        if speed not in self.DELAY_PRESETS:
-            speed = "medio"
-        self.speed = speed
-        self.delay = self.DELAY_PRESETS[speed]
-        self.log(f"[Robot] Velocidad: {self.speed} (delay {self.delay}s)")
-
-    def start(self, categoria: str, serial: str, speed: Optional[str] = None, cn: Optional[str] = None, issuer_cn: Optional[str] = None):
-        if speed:
-            self.set_speed(speed)
+    def start(self, categoria: str, serial: str, cn: Optional[str] = None, issuer_cn: Optional[str] = None):
         # Construir política dinámica de auto-selección (si tenemos datos)
         try:
             filt: Dict[str, Dict[str, str]] = {}
+            
+            # CAMBIO CRÍTICO: NO usar SERIALNUMBER en el filtro porque Chrome no lo respeta bien
+            # En su lugar, usar solo CN que es más confiable, y reforzar la selección manual
+            # con el número de serie en los helpers nativos (cert_clicker y UIA)
             if cn:
                 filt["SUBJECT"] = {"CN": cn}
+                self.log(f"[Robot] Configurando certificado específico: CN='{cn}', Serial='{serial[:16]}...'")
+            elif serial:
+                # Si no hay CN, intentar solo con serial (aunque es menos confiable)
+                serial_formatted = ':'.join([serial[i:i+2] for i in range(0, len(serial), 2)])
+                filt["SUBJECT"] = {"SERIALNUMBER": serial_formatted}
+                self.log(f"[Robot] Configurando certificado por Serial: '{serial[:16]}...'")
+                
             if issuer_cn:
                 filt["ISSUER"] = {"CN": issuer_cn}
+                
             if filt:
                 entries = [
                     {"pattern": "https://pasarela.clave.gob.es", "filter": filt},
@@ -91,10 +91,11 @@ class AsyncRobot:
                     {"pattern": "https://*.ident.clave.gob.es", "filter": filt},
                 ]
                 self._auto_select_arg = json.dumps(entries, ensure_ascii=False)
-                self.log(f"[Robot] AutoSelectCertificateForUrls (SUBJECT='{cn or ''}' ISSUER='{issuer_cn or ''}')")
+                self.log(f"[Robot] AutoSelectCertificateForUrls configurado con CN del certificado")
             else:
                 self._auto_select_arg = None
-        except Exception:
+        except Exception as e:
+            self.log(f"[Robot] Error configurando auto-selección: {e}")
             self._auto_select_arg = None
         # Lanzar corrida
         fut = asyncio.run_coroutine_threadsafe(self._run_full(categoria, serial, cn), self.loop)
@@ -116,9 +117,13 @@ class AsyncRobot:
         args = ["--start-maximized"]
         try:
             if getattr(self, "_auto_select_arg", None):
-                args.append(f"--auto-select-certificate-for-urls={self._auto_select_arg}")
-        except Exception:
-            pass
+                auto_select_arg = self._auto_select_arg
+                args.append(f"--auto-select-certificate-for-urls={auto_select_arg}")
+                self.log(f"[Robot] Flag de auto-selección aplicado: {auto_select_arg[:200]}...")
+        except Exception as e:
+            self.log(f"[Robot] No se pudo aplicar flag de auto-selección: {e}")
+        
+        self.log(f"[Robot] Argumentos de Chrome: {args}")
         self._browser = await self._pw.chromium.launch(
             headless=self.headless,
             channel=self.browser_channel,
@@ -173,13 +178,16 @@ class AsyncRobot:
             await self.page.click(self.SEL["kc_justificaciones"], timeout=15000)
 
         await self._sleep(1.2)
+        
+        # Detectar y corregir error "Not Found" si aparece
+        await self._detect_and_fix_not_found()
 
     # ---------- UIA (Windows) para diálogo nativo de certificados ----------
     async def _uia_pick_cert(self, serial: str, cn: Optional[str] = None, timeout: float = 10.0) -> bool:
         """
         Intenta seleccionar por UI Automation (pywinauto) el certificado en el diálogo nativo
-        y pulsar 'Aceptar'. Coincide por prefijo de número de serie y/o por CN.
-        Devuelve True si pudo aceptar el diálogo.
+        y pulsar 'Aceptar'. DEBE buscar y seleccionar activamente el certificado correcto.
+        Devuelve True si pudo seleccionar el certificado correcto y aceptar el diálogo.
         """
         def norm(s: Optional[str]) -> str:
             return re.sub(r"[^A-Z0-9]", "", (s or "").upper())
@@ -215,6 +223,7 @@ class AsyncRobot:
             time.sleep(0.3)
 
         if not dlg:
+            self.log("[UIA] No se encontró el diálogo de certificado")
             return False
 
         try:
@@ -237,7 +246,13 @@ class AsyncRobot:
                 except Exception:
                     rows = []
 
+            if not rows:
+                self.log("[UIA] No se encontraron filas en el diálogo")
+                return False
+
+            # CRÍTICO: Buscar activamente el certificado correcto por serial Y CN
             picked = False
+            matched_row = None
             def row_texts(r):
                 try:
                     parts = []
@@ -250,33 +265,59 @@ class AsyncRobot:
                 except Exception:
                     return ""
 
-            for r in rows:
+            self.log(f"[UIA] Buscando certificado: Serial={serial[:16]}... CN={cn or 'N/A'}")
+            
+            for i, r in enumerate(rows):
                 txt = row_texts(r)
                 n = norm(txt)
-                if (target and (target in n or n in target)) or (subj and subj in n):
-                    try:
-                        r.click_input()
-                        picked = True
-                        break
-                    except Exception:
-                        continue
+                
+                # Prioridad 1: Coincidir por número de serie (más específico)
+                if target and (target in n or n in target or target[:16] in n):
+                    matched_row = r
+                    self.log(f"[UIA] Fila {i} coincide por serial: {txt[:100]}")
+                    break
+                
+                # Prioridad 2: Coincidir por CN si no hay match por serial
+                if subj and subj in n:
+                    if matched_row is None:
+                        matched_row = r
+                        self.log(f"[UIA] Fila {i} coincide por CN: {txt[:100]}")
+
+            if not matched_row:
+                self.log(f"[UIA] NO se encontró el certificado correcto entre {len(rows)} filas")
+                return False
+
+            # Seleccionar activamente la fila correcta
+            try:
+                matched_row.click_input()
+                picked = True
+                time.sleep(0.3)  # Pequeña espera para asegurar selección
+                self.log("[UIA] Certificado correcto seleccionado")
+            except Exception as e:
+                self.log(f"[UIA] Error al hacer clic en la fila: {e}")
+                return False
 
             if not picked:
+                self.log("[UIA] No se pudo seleccionar el certificado")
                 return False
 
             # Botón Aceptar
             try:
                 btn = dlg.child_window(title_re="Aceptar|Accept", control_type="Button").wrapper_object()
                 btn.click_input()
+                self.log("[UIA] Botón Aceptar pulsado")
                 return True
             except Exception:
                 # Intentar con tecla Enter
                 try:
                     dlg.type_keys("{ENTER}")
+                    self.log("[UIA] Enter pulsado")
                     return True
-                except Exception:
+                except Exception as e:
+                    self.log(f"[UIA] Error al aceptar: {e}")
                     return False
-        except Exception:
+        except Exception as e:
+            self.log(f"[UIA] Error general: {e}")
             return False
 
     def _run_cert_clicker(self, serial: str, cn: Optional[str], secs: float = 1.0) -> bool:
@@ -374,42 +415,32 @@ class AsyncRobot:
             raise RuntimeError("Número de serie no proporcionado")
 
         self.log("[Robot] Seleccionando certificado en Cl@ve por Número de serie...")
-        # Intento 0: carrera rápida (helper nativo + UIA) en bucle corto para evitar timeouts de la pasarela
+        
+        # PASO 1: Hacer clic en el botón "Acceso DNIe / Certificado electrónico" PRIMERO
         try:
-            for _ in range(8):  # ~ 8 * (0.3s + llamadas rápidas) ≈ 3-4s
+            self.log("[Robot] Haciendo clic en 'Acceso DNIe / Certificado electrónico'...")
+            await self.page.click(self.SEL["btn_clave_cert"], timeout=6000)
+            await self._sleep(0.5)  # Pequeña espera para que aparezca el diálogo
+        except Exception as e:
+            self.log(f"[Robot] No se pudo hacer clic en el botón de certificado: {e}")
+            # Si no existe el botón, tal vez ya está en la pantalla de selección
+            pass
+        
+        # PASO 2: Ahora sí, intentar métodos rápidos (helper nativo + UIA) 
+        # porque el diálogo ya debería estar abierto
+        try:
+            for _ in range(10):  # ~ 10 * (0.25s + llamadas rápidas) ≈ 4-5s
                 ok_helper = await asyncio.to_thread(self._run_cert_clicker, serial, cn, 2.0)
                 if ok_helper:
-                    self.log("[Robot] Certificado seleccionado por helper local y aceptado (rápido).")
+                    self.log("[Robot] Certificado seleccionado por helper local y aceptado.")
                     await self._sleep(0.6)
                     return
                 ok_native = await self._uia_pick_cert(serial, cn, timeout=2.0)
                 if ok_native:
-                    self.log("[Robot] Certificado seleccionado por diálogo nativo (UIA) y aceptado (rápido).")
+                    self.log("[Robot] Certificado seleccionado por diálogo nativo (UIA) y aceptado.")
                     await self._sleep(0.6)
                     return
-                await asyncio.sleep(0.3)
-        except Exception:
-            pass
-
-        # Intentar pulsar el botón de acceso por certificado (si existe en DOM)
-        try:
-            await self.page.click(self.SEL["btn_clave_cert"], timeout=6000)
-            # Carrera inmediata tras abrir la opción
-            try:
-                for _ in range(10):  # ~ 10 * (0.25s + llamadas rápidas) ≈ 4-5s
-                    ok_helper2 = await asyncio.to_thread(self._run_cert_clicker, serial, cn, 2.0)
-                    if ok_helper2:
-                        self.log("[Robot] Certificado seleccionado por helper local tras abrir opción de certificado.")
-                        await self._sleep(0.6)
-                        return
-                    ok_native2 = await self._uia_pick_cert(serial, cn, timeout=2.0)
-                    if ok_native2:
-                        self.log("[Robot] Certificado seleccionado por diálogo nativo (UIA) tras abrir opción de certificado.")
-                        await self._sleep(0.6)
-                        return
-                    await asyncio.sleep(0.25)
-            except Exception:
-                pass
+                await asyncio.sleep(0.25)
         except Exception:
             pass
 
@@ -559,7 +590,8 @@ class AsyncRobot:
                     pass
 
             if not picked:
-                raise RuntimeError(f"No se encontró el certificado con Nº de serie {serial} en Cl@ve")
+                self.log(f"[Robot] ✗ NO se encontró el certificado correcto entre {len(serial_hits)} certificados disponibles")
+                return False  # Retornar False en lugar de lanzar error
 
         # Aceptar
         try:
@@ -574,56 +606,129 @@ class AsyncRobot:
                 except Exception:
                     pass
         await self._sleep(2.0)
+        return True  # Éxito al seleccionar y aceptar el certificado
 
-    async def authenticate_if_needed(self, serial: str, cn: Optional[str] = None):
+    async def authenticate_if_needed(self, serial: str, cn: Optional[str] = None, categoria: Optional[str] = None, max_retries: int = 2):
         if await self._detect_clave():
             self.log("[Robot] Autenticación requerida en Cl@ve")
-            # Forzar velocidad rápida durante autenticación
-            prev_speed = self.speed
-            try:
-                self.set_speed("rapido")
-            except Exception:
-                prev_speed = "medio"
-            # Arrancar watcher residente (cierre inmediato del diálogo si aparece)
-            self._start_cert_watcher(serial, cn)
-            try:
-                await self._select_cert_in_clave(serial, cn)
-                await self.page.wait_for_load_state("networkidle", timeout=30000)
-                if await self._detect_clave():
-                    raise RuntimeError("No fue posible completar la autenticación en Cl@ve")
-                self.log("[Robot] Autenticado en Cl@ve")
-            finally:
-                # Detener watcher y restaurar velocidad
-                self._stop_cert_watcher()
+            
+            for attempt in range(1, max_retries + 1):
+                # Arrancar watcher residente (cierre inmediato del diálogo si aparece)
+                self._start_cert_watcher(serial, cn)
                 try:
-                    self.set_speed(prev_speed)
-                except Exception:
-                    pass
+                    self.log(f"[Robot] Intento de autenticación {attempt}/{max_retries}")
+                    cert_selected = await self._select_cert_in_clave(serial, cn)
+                    
+                    if cert_selected is False:
+                        # Certificado no encontrado en la lista
+                        self.log(f"[Robot] ⚠ Certificado no encontrado en intento {attempt}/{max_retries}")
+                        if attempt < max_retries and categoria:
+                            self.log("[Robot] 🔄 Navegando a página de inicio para reintentar...")
+                            # Cerrar diálogo de certificados si está abierto
+                            try:
+                                await self.page.keyboard.press("Escape")
+                                await self._sleep(0.5)
+                            except Exception:
+                                pass
+                            # Navegar a justificaciones desde inicio
+                            await self.navigate_to_justificaciones(categoria)
+                            await self._sleep(1.0)
+                            continue  # Reintentar
+                        else:
+                            # Agotados los reintentos o no hay categoría
+                            raise RuntimeError(f"No se encontró el certificado correcto después de {max_retries} intentos")
+                    
+                    # Certificado seleccionado correctamente
+                    await self.page.wait_for_load_state("networkidle", timeout=30000)
+                    if await self._detect_clave():
+                        raise RuntimeError("No fue posible completar la autenticación en Cl@ve")
+                    self.log(f"[Robot] ✓ Autenticado en Cl@ve (intento {attempt}/{max_retries})")
+                    break  # Éxito, salir del bucle
+                    
+                finally:
+                    # Detener watcher
+                    self._stop_cert_watcher()
 
     async def _scan_rows_and_open_first_pending(self) -> bool:
         try:
             table = self.page.locator(self.SEL["table_justificaciones"])
             await table.wait_for(timeout=20000)
-
+            
+            # CRÍTICO: Esperar activamente a que la tabla tenga contenido
+            # La tabla puede estar visible pero sin filas después de una recarga/re-renderizado
             rows = table.locator("tbody tr")
-            count = await rows.count()
+            max_wait_attempts = 30  # 30 intentos × 0.5s = 15 segundos máximo
+            count = 0
+            
+            self.log("[Robot] Esperando a que la tabla tenga contenido...")
+            for attempt in range(max_wait_attempts):
+                count = await rows.count()
+                if count > 0:
+                    self.log(f"[Robot] ✓ Tabla lista con {count} expedientes (intento {attempt + 1}/{max_wait_attempts})")
+                    break
+                if attempt < max_wait_attempts - 1:
+                    await asyncio.sleep(0.5)
+                else:
+                    self.log(f"[Robot] ⚠ Advertencia: Tabla sin filas después de {max_wait_attempts * 0.5}s")
+            
+            if count == 0:
+                self.log("[Robot] ⚠ La tabla no tiene filas después de esperar. No hay expedientes para procesar.")
+                return False
+            
+            self.log(f"[Robot] Procesando {count} expedientes en la tabla")
+            
             for i in range(count):
                 if self.stop_flag.is_set():
                     return False
                 row = rows.nth(i)
                 try:
-                    estado_text = (await row.locator("td").nth(3).inner_text(timeout=5000)).strip()
-                except Exception:
-                    continue
-                if "Pdte. presentar" in estado_text:
-                    link = row.locator("td").nth(0).locator("a")
+                    # Leer todas las celdas de la fila primero
+                    cells = row.locator("td")
+                    cell_count = await cells.count()
+                    self.log(f"[Robot] Fila {i} tiene {cell_count} columnas")
+                    
+                    # Leer el código del expediente (columna 0)
+                    link = cells.nth(0).locator("a")
+                    cod = ""
                     if await link.count() > 0:
-                        cod = (await link.inner_text()).strip()
-                        self.log(f"[Robot] Abriendo expediente {cod} (Estado: {estado_text})")
-                        await link.click(timeout=10000)
-                        await self.page.wait_for_load_state("domcontentloaded", timeout=20000)
-                        await self._sleep(0.8)
-                        return True
+                        cod = (await link.inner_text(timeout=10000)).strip()
+                    else:
+                        cod = (await cells.nth(0).inner_text(timeout=10000)).strip()
+                    
+                    # Leer el estado - puede estar en columna 3, 4, o la última
+                    estado_text = ""
+                    # Intentar leer todas las columnas para encontrar el estado
+                    for col_idx in range(cell_count):
+                        try:
+                            texto = (await cells.nth(col_idx).inner_text(timeout=10000)).strip()
+                            if "Pdte" in texto or "presentar" in texto or "Presentado" in texto or "Aprobado" in texto:
+                                estado_text = texto
+                                self.log(f"[Robot] Estado encontrado en columna {col_idx}: '{estado_text}'")
+                                break
+                        except Exception:
+                            continue
+                    
+                    if not estado_text:
+                        self.log(f"[Robot] Expediente {cod}: No se pudo leer el estado, saltando...")
+                        continue
+                    else:
+                        self.log(f"[Robot] Expediente {cod}: Estado='{estado_text}'")
+                        
+                        # CRÍTICO: Filtro estricto - SOLO "Pdte. presentar" exacto
+                        if estado_text == "Pdte. presentar":
+                            if await link.count() > 0:
+                                self.log(f"[Robot] Abriendo expediente {cod} (Estado: {estado_text})")
+                                await link.click(timeout=10000)
+                                # CRÍTICO: Esperar a networkidle, no domcontentloaded
+                                await self.page.wait_for_load_state("networkidle", timeout=30000)
+                                await self._sleep(0.8)
+                                return True
+                        else:
+                            self.log(f"[Robot] Expediente {cod} saltado: Estado no es 'Pdte. presentar' (es '{estado_text}')")
+                            continue
+                except Exception as e:
+                    self.log(f"[Robot] Error al procesar fila {i}: {e}")
+                    continue
             return False
         except Exception as e:
             self.log(f"[Robot] Error al buscar expedientes: {e}")
@@ -633,6 +738,7 @@ class AsyncRobot:
         """
         Vuelve al listado de justificaciones. Si detecta que está atascado en la pasarela
         de Cl@ve, navega directamente a la URL del listado y re-autentica si es necesario.
+        CRÍTICO: Siempre re-aplica la búsqueda avanzada para mantener el filtro de "Pdte. presentar"
         """
         current_url = (self.page.url or "").lower()
         
@@ -640,88 +746,89 @@ class AsyncRobot:
         if "pasarela.clave.gob.es" in current_url or "clave.gob.es" in current_url:
             self.log("[Robot] Detectada redirección a Cl@ve, navegando directamente al listado...")
             try:
-                # Construir URL del listado según categoría
-                if categoria == "KD":
-                    list_url = "https://portal.gestion.sedepkd.red.gob.es/justificaciones/tic/business-intelligence-2"
-                else:
-                    list_url = "https://portal.gestion.sedepkd.red.gob.es/justificaciones/tic/kit-consulting-2"
-                
-                await self.page.goto(list_url, wait_until="domcontentloaded", timeout=20000)
-                await self._sleep(1.0)
+                # Navegar a la página principal de justificaciones
+                await self.navigate_to_justificaciones(categoria)
                 
                 # Verificar si necesita re-autenticación
                 if await self._detect_clave():
-                    self.log("[Robot] Re-autenticación requerida después de navegación directa...")
-                    await self.authenticate_if_needed(serial, cn)
+                    self.log("[Robot] Re-autenticación requerida después de navegación...")
+                    await self.authenticate_if_needed(serial, cn, categoria)
                 
+                # RE-APLICAR búsqueda avanzada para mantener el filtro
+                await self._use_advanced_search()
                 return
             except Exception as nav_err:
                 self.log(f"[Robot] Error al navegar directamente: {nav_err}")
         
-        # Intento normal con go_back
+            # Intento normal con go_back
         try:
             await self.page.go_back(timeout=15000)
             await self.page.wait_for_load_state("networkidle", timeout=15000)
             
+            # Detectar y corregir error "Not Found" después de go_back
+            await self._detect_and_fix_not_found()
+            
             # Verificar si seguimos en pasarela después de go_back
             current_url = (self.page.url or "").lower()
             if "pasarela.clave.gob.es" in current_url or "clave.gob.es" in current_url:
-                self.log("[Robot] Aún en pasarela después de go_back, navegando directamente...")
-                if categoria == "KD":
-                    list_url = "https://portal.gestion.sedepkd.red.gob.es/justificaciones/tic/business-intelligence-2"
-                else:
-                    list_url = "https://portal.gestion.sedepkd.red.gob.es/justificaciones/tic/kit-consulting-2"
-                await self.page.goto(list_url, wait_until="domcontentloaded", timeout=20000)
-                await self._sleep(1.0)
+                self.log("[Robot] Aún en pasarela después de go_back, navegando...")
+                await self.navigate_to_justificaciones(categoria)
                 
                 # Verificar si necesita re-autenticación
                 if await self._detect_clave():
-                    self.log("[Robot] Re-autenticación requerida después de navegación directa...")
-                    await self.authenticate_if_needed(serial, cn)
+                    self.log("[Robot] Re-autenticación requerida...")
+                    await self.authenticate_if_needed(serial, cn, categoria)
+                
+                # RE-APLICAR búsqueda avanzada
+                await self._use_advanced_search()
+            else:
+                # Verificar si perdimos el filtro de búsqueda avanzada
+                # Si la URL no contiene los parámetros de búsqueda, re-aplicar
+                if "search" not in current_url and "advanced" not in current_url:
+                    self.log("[Robot] Filtro de búsqueda perdido, re-aplicando búsqueda avanzada...")
+                    await self._use_advanced_search()
         except Exception:
-            # Fallback: recargar o navegar directamente
+            # Fallback: navegar y re-aplicar búsqueda
             try:
-                if categoria == "KD":
-                    list_url = "https://portal.gestion.sedepkd.red.gob.es/justificaciones/tic/business-intelligence-2"
-                else:
-                    list_url = "https://portal.gestion.sedepkd.red.gob.es/justificaciones/tic/kit-consulting-2"
-                await self.page.goto(list_url, wait_until="domcontentloaded", timeout=20000)
-                await self._sleep(1.0)
+                self.log("[Robot] Error en go_back, navegando directamente y re-aplicando búsqueda...")
+                await self.navigate_to_justificaciones(categoria)
                 
-                # Verificar si necesita re-autenticación
                 if await self._detect_clave():
-                    self.log("[Robot] Re-autenticación requerida después de navegación directa...")
-                    await self.authenticate_if_needed(serial, cn)
-            except Exception:
-                await self.page.reload(wait_until="networkidle")
+                    await self.authenticate_if_needed(serial, cn, categoria)
+                
+                await self._use_advanced_search()
+            except Exception as e:
+                self.log(f"[Robot] Error crítico en navegación: {e}")
+                raise
 
-    async def _try_presentar_autofirma(self) -> bool:
+
+    async def _detect_and_fix_not_found(self) -> bool:
+        """
+        Detecta si aparece el error 'Not Found' en la página y lo corrige refrescando.
+        Retorna True si no hay error o se solucionó, False si el error persiste.
+        """
         try:
-            if await self.page.locator(self.SEL["btn_presentar"]).count() == 0:
-                return False
-            await self.page.click(self.SEL["btn_presentar"], timeout=8000)
-            self.log("[Robot] Pulsado 'Presentar' (AutoFirma). Esperando resultado...")
-            for _ in range(40):
-                await asyncio.sleep(0.5)
-                if await self.page.locator(self.SEL["btn_presentar"]).count() == 0:
-                    self.log("[Robot] 'Presentar' ya no está visible (posible éxito).")
+            not_found = self.page.locator("text=Not Found")
+            if await not_found.count() > 0:
+                self.log("[Robot] ⚠ Error 'Not Found' detectado. Refrescando página...")
+                await self.page.reload(wait_until="networkidle", timeout=15000)
+                await self._sleep(1.0)
+                # Verificar que se solucionó
+                if await not_found.count() == 0:
+                    self.log("[Robot] ✓ Página refrescada correctamente")
                     return True
-                try:
-                    if await self.page.locator(self.SEL["btn_presentar"]).first.is_disabled():
-                        self.log("[Robot] 'Presentar' deshabilitado (posible éxito).")
-                        return True
-                except Exception:
-                    pass
-            self.log("[Robot] No se detectó progreso suficiente con AutoFirma en tiempo razonable.")
-            return False
+                else:
+                    self.log("[Robot] ✗ Error 'Not Found' persiste después de refrescar")
+                    return False
+            return True  # No hay error
         except Exception as e:
-            self.log(f"[Robot] Error al intentar 'Presentar': {e}")
-            return False
+            self.log(f"[Robot] Advertencia al verificar 'Not Found': {e}")
+            return True  # Continuar si hay error en la verificación
 
     async def _try_firma_clave(self, serial: str, cn: Optional[str] = None) -> bool:
         try:
-            if await self.page.locator(self.SEL["btn_firma_clave"]).count() == 0:
-                return False
+            self.log("[Robot] Buscando botón 'Firma con Cl@ve y presentar'...")
+            btn_firma = self.page.locator(self.SEL["btn_firma_clave"])
             
             # Esperar a que desaparezca el spinner si existe
             try:
@@ -733,47 +840,47 @@ class AsyncRobot:
             except Exception:
                 pass  # Si no hay spinner o ya desapareció, continuar
             
-            await self.page.click(self.SEL["btn_firma_clave"], timeout=8000)
-            self.log("[Robot] Pulsado 'Firma con Cl@ve y presentar'.")
-            await self._sleep(1.0)
+            if await btn_firma.count() == 0:
+                self.log("[Robot] ✗ Botón 'Firma con Cl@ve' no encontrado")
+                return False
+            
+            self.log("[Robot] ✓ Botón 'Firma con Cl@ve' encontrado")
+            # TIMEOUT AUMENTADO: 8s → 30s para dar tiempo a la firma digital
+            await btn_firma.click(timeout=30000)
+            self.log("[Robot] Pulsado 'Firma con Cl@ve y presentar'. Esperando firma digital...")
+            # ESPERA AUMENTADA: 1.0s → 3.0s después del clic
+            await self._sleep(3.0)
+            
             if await self._detect_clave():
-                self.log("[Robot] Pasarela Cl@ve detectada, seleccionando certificado...")
+                self.log("[Robot] Pasarela Cl@ve detectada durante firma, seleccionando certificado SIN watcher...")
+                # CRÍTICO: NO usar watcher durante la firma de expedientes
+                # El watcher acepta demasiado rápido sin verificar el certificado correcto
+                # Usar solo los métodos que verifican activamente (UIA y cert_clicker con timeout largo)
                 await self._select_cert_in_clave(serial, cn)
                 await self.page.wait_for_load_state("networkidle", timeout=30000)
-            for _ in range(30):
+            
+            # CICLO DE VERIFICACIÓN AUMENTADO: 30 intentos → 60 intentos (30 segundos totales)
+            for _ in range(60):
                 await asyncio.sleep(0.5)
-                if (
-                    await self.page.locator(self.SEL["btn_firma_clave"]).count() == 0
-                    and await self.page.locator(self.SEL["btn_presentar"]).count() == 0
-                ):
-                    self.log("[Robot] Botones de firma ya no visibles (posible éxito).")
+                # Solo verificar el botón de Cl@ve, sin referencias a AutoFirma
+                if await btn_firma.count() == 0:
+                    self.log("[Robot] Botón de firma ya no visible (posible éxito).")
                     return True
                 try:
-                    p_disabled = await self.page.locator(self.SEL["btn_presentar"]).first.is_disabled()
+                    if await btn_firma.first.is_disabled():
+                        self.log("[Robot] Botón de firma deshabilitado (posible éxito).")
+                        return True
                 except Exception:
-                    p_disabled = True
-                try:
-                    c_disabled = await self.page.locator(self.SEL["btn_firma_clave"]).first.is_disabled()
-                except Exception:
-                    c_disabled = True
-                if p_disabled and c_disabled:
-                    self.log("[Robot] Botones deshabilitados (posible éxito).")
-                    return True
-            self.log("[Robot] No se detectó confirmación clara tras firmar con Cl@ve.")
+                    pass
+            self.log("[Robot] No se detectó confirmación clara tras firmar con Cl@ve (timeout).")
             return False
         except Exception as e:
             self.log(f"[Robot] Error al intentar 'Firma con Cl@ve y presentar': {e}")
             return False
 
     async def _sign_current_record(self, serial: str, cn: Optional[str] = None) -> bool:
-        # PRIORIDAD 1: Firma con Cl@ve (integrada con certificado digital)
-        if await self._try_firma_clave(serial, cn):
-            return True
-        # FALLBACK: AutoFirma (aplicación de escritorio)
-        self.log("[Robot] Firma con Cl@ve no disponible, intentando con AutoFirma...")
-        if await self._try_presentar_autofirma():
-            return True
-        return False
+        # Solo firma con Cl@ve, sin fallback
+        return await self._try_firma_clave(serial, cn)
 
     async def _use_advanced_search(self):
         """Usa la búsqueda avanzada para filtrar solo expedientes 'Pdte. presentar'"""
@@ -790,21 +897,110 @@ class AsyncRobot:
             # Paso 2: Seleccionar "Pdte. presentar" (valor "3") en el desplegable de estado
             self.log("[Robot] Seleccionando estado 'Pdte. presentar' (valor: 3)...")
             await self.page.select_option(self.SEL["select_estado"], value="3", timeout=10000)
+            self.log("[Robot] Estado seleccionado correctamente.")
             await self._sleep(0.5)
             
-            # Paso 3: Hacer clic en el botón buscar del formulario
-            self.log("[Robot] Ejecutando búsqueda...")
-            # El botón buscar tiene id="advancedSearch" en la página de búsqueda
-            await self.page.click("#advancedSearch", timeout=10000)
-            await self._sleep(1.5)
+            # Paso 3: Hacer clic en el botón buscar con reintentos y verificación
+            search_button = self.page.locator("#advancedSearch")
+            max_attempts = 2
             
-            # Esperar a que se carguen los resultados
-            await self.page.wait_for_load_state("networkidle", timeout=20000)
+            for attempt in range(1, max_attempts + 1):
+                try:
+                    self.log(f"[Robot] Intento {attempt}/{max_attempts}: Esperando que el botón de búsqueda esté listo...")
+                    
+                    # Esperar a que el botón esté visible y habilitado
+                    await search_button.wait_for(state="visible", timeout=5000)
+                    is_enabled = await search_button.is_enabled()
+                    self.log(f"[Robot] Botón de búsqueda - Visible: ✓, Habilitado: {'✓' if is_enabled else '✗'}")
+                    
+                    if not is_enabled:
+                        self.log("[Robot] Botón deshabilitado, esperando...")
+                        await self._sleep(0.5)
+                    
+                    # Intentar el clic
+                    self.log(f"[Robot] Haciendo clic en buscar (intento {attempt}/{max_attempts})...")
+                    
+                    if attempt == 1:
+                        # Primer intento: clic normal
+                        await search_button.click(timeout=5000)
+                    else:
+                        # Segundo intento: clic forzado o Enter
+                        self.log("[Robot] Usando clic forzado...")
+                        try:
+                            await search_button.click(force=True, timeout=5000)
+                        except Exception:
+                            self.log("[Robot] Clic forzado falló, intentando Enter en el formulario...")
+                            await self.page.keyboard.press("Enter")
+                    
+                    self.log("[Robot] Clic ejecutado, esperando resultados...")
+                    await self._sleep(1.0)
+                    
+                    # Verificar que apareció la tabla de resultados
+                    self.log("[Robot] Verificando que apareció la tabla de resultados...")
+                    table = self.page.locator(self.SEL["table_justificaciones"])
+                    
+                    try:
+                        await table.wait_for(state="visible", timeout=8000)
+                        self.log("[Robot] Tabla visible, esperando a que termine de cargar...")
+                        
+                        # CRÍTICO: Esperar networkidle ANTES de contar filas
+                        # Esto asegura que la página termine de cargar y la tabla se renderice con datos
+                        try:
+                            await self.page.wait_for_load_state("networkidle", timeout=15000)
+                            self.log("[Robot] ✓ Página en networkidle después de buscar")
+                        except Exception as net_err:
+                            self.log(f"[Robot] Advertencia: No se alcanzó networkidle: {net_err}")
+                        
+                        # Ahora sí, esperar activamente a que la tabla tenga contenido
+                        rows = table.locator("tbody tr")
+                        max_wait_attempts = 30  # 30 intentos × 0.5s = 15 segundos máximo
+                        row_count = 0
+                        
+                        self.log("[Robot] Verificando contenido de la tabla...")
+                        for attempt in range(max_wait_attempts):
+                            row_count = await rows.count()
+                            if row_count > 0:
+                                self.log(f"[Robot] ✓ Tabla cargada con {row_count} filas (intento {attempt + 1}/{max_wait_attempts})")
+                                break
+                            if attempt < max_wait_attempts - 1:
+                                await asyncio.sleep(0.5)
+                            else:
+                                self.log(f"[Robot] ⚠ Advertencia: Tabla visible pero sin datos después de {max_wait_attempts * 0.5}s")
+                        
+                        # Si aún no hay filas después de esperar, podría ser un problema
+                        if row_count == 0:
+                            self.log("[Robot] ⚠ La tabla no tiene filas. Puede que no haya expedientes o hubo un error.")
+                        
+                        self.log("[Robot] ✓ Búsqueda avanzada completada exitosamente.")
+                        
+                        # Detectar y corregir error "Not Found" después de la búsqueda
+                        await self._detect_and_fix_not_found()
+                        
+                        return True
+                        
+                    except Exception as table_err:
+                        self.log(f"[Robot] ✗ Tabla no apareció después del clic: {table_err}")
+                        if attempt < max_attempts:
+                            self.log(f"[Robot] Reintentando... ({attempt + 1}/{max_attempts})")
+                            await self._sleep(1.0)
+                            continue
+                        else:
+                            raise RuntimeError("La tabla de resultados no apareció después de hacer clic en buscar")
+                
+                except Exception as click_err:
+                    self.log(f"[Robot] Error en intento {attempt}: {click_err}")
+                    if attempt < max_attempts:
+                        await self._sleep(1.0)
+                        continue
+                    else:
+                        raise
             
-            self.log("[Robot] Búsqueda avanzada completada. Procesando resultados...")
-            return True
+            # Si llegamos aquí, ningún intento funcionó
+            self.log("[Robot] ✗ No se pudo completar la búsqueda después de todos los intentos")
+            return False
+            
         except Exception as e:
-            self.log(f"[Robot] Error al usar búsqueda avanzada: {e}")
+            self.log(f"[Robot] ✗ Error crítico al usar búsqueda avanzada: {e}")
             return False
 
     async def _run_full(self, categoria: str, serial: str, cn: Optional[str] = None):
@@ -812,7 +1008,7 @@ class AsyncRobot:
             self.stop_flag.clear()
             await self._close()  # garantizar estado limpio
             await self.navigate_to_justificaciones(categoria)
-            await self.authenticate_if_needed(serial, cn)
+            await self.authenticate_if_needed(serial, cn, categoria)
 
             # Usar búsqueda avanzada para filtrar solo "Pdte. presentar"
             search_ok = await self._use_advanced_search()
@@ -827,6 +1023,10 @@ class AsyncRobot:
             
             while not self.stop_flag.is_set():
                 self.log("[Robot] Buscando expedientes en la página actual...")
+                
+                # Detectar y corregir error "Not Found" antes de escanear
+                await self._detect_and_fix_not_found()
+                
                 try:
                     opened = await self._scan_rows_and_open_first_pending()
                     error_count = 0  # Resetear contador si funciona
@@ -834,14 +1034,10 @@ class AsyncRobot:
                     error_count += 1
                     self.log(f"[Robot] Error al buscar expedientes (intento {error_count}/{max_errors}): {e}")
                     if error_count >= max_errors:
-                        self.log("[Robot] Demasiados errores consecutivos. Reiniciando proceso completo desde página inicial...")
-                        await self._close()
-                        await asyncio.sleep(2)
-                        # Navegar a la página inicial y reiniciar todo el proceso
-                        await self._ensure_browser()
-                        await self.page.goto("https://portal.gestion.sedepkd.red.gob.es/justificaciones/tic/", wait_until="networkidle", timeout=20000)
-                        await self._sleep(1.0)
-                        await self.authenticate_if_needed(serial, cn)
+                        self.log("[Robot] Demasiados errores consecutivos. Navegando a página inicial...")
+                        # Navegar a la página inicial sin cerrar Chrome
+                        await self.navigate_to_justificaciones(categoria)
+                        await self.authenticate_if_needed(serial, cn, categoria)
                         # Volver a aplicar búsqueda avanzada
                         search_ok = await self._use_advanced_search()
                         if not search_ok:
@@ -879,16 +1075,81 @@ class AsyncRobot:
                 except Exception:
                     expediente_id = ""
 
-                self.log("[Robot] Intentando firmar expediente (Preferencia: Cl@ve, Fallback: AutoFirma)...")
+                # CRÍTICO: Esperar a que la página del expediente cargue completamente
+                self.log("[Robot] Esperando a que cargue la página del expediente...")
+                
+                # 1. Esperar networkidle para asegurar que la página termine de cargar
+                try:
+                    await self.page.wait_for_load_state("networkidle", timeout=20000)
+                    self.log("[Robot] ✓ Página en estado 'networkidle'")
+                except Exception as e:
+                    self.log(f"[Robot] Advertencia: No se alcanzó 'networkidle': {e}")
+                
+                # 2. Espera activa de hasta 10 segundos buscando que aparezca el botón de firma
+                self.log("[Robot] Esperando activamente a que aparezca el botón de firma...")
+                max_wait_button = 20  # 20 intentos × 0.5s = 10 segundos
+                button_appeared = False
+                
+                for attempt in range(max_wait_button):
+                    try:
+                        btn_clave_count = await self.page.locator(self.SEL["btn_firma_clave"]).count()
+                        
+                        if btn_clave_count > 0:
+                            button_appeared = True
+                            self.log(f"[Robot] ✓ Botón de firma detectado (intento {attempt + 1}/{max_wait_button})")
+                            break
+                    except Exception:
+                        pass
+                    
+                    if attempt < max_wait_button - 1:
+                        await asyncio.sleep(0.5)
+                
+                if not button_appeared:
+                    self.log("[Robot] ⚠ No apareció el botón de firma después de 10 segundos")
+                
+                # 3. Si aparece spinner, esperarlo
+                try:
+                    self.log("[Robot] Verificando si hay spinner de carga...")
+                    spinner = self.page.locator("#spinner-div")
+                    if await spinner.count() > 0:
+                        self.log("[Robot] Esperando a que desaparezca el spinner...")
+                        await spinner.wait_for(state="hidden", timeout=15000)
+                        self.log("[Robot] ✓ Spinner desaparecido")
+                        await self._sleep(1.5)  # Espera adicional aumentada de 0.5s a 1.5s
+                    else:
+                        await self._sleep(1.0)  # Pequeña espera si no hay spinner
+                except Exception as spinner_err:
+                    self.log(f"[Robot] Advertencia: Error con spinner: {spinner_err}")
+                    await self._sleep(1.0)
+                
+                # 4. Verificación final: esperar explícitamente a que el botón esté visible y listo
+                self.log("[Robot] Verificación final: esperando botón de firma con Cl@ve...")
+                button_found = False
+                try:
+                    # Esperar al botón de Cl@ve - timeout aumentado a 15s
+                    await self.page.wait_for_selector(self.SEL["btn_firma_clave"], timeout=15000, state="visible")
+                    self.log("[Robot] ✓ Botón 'Firma con Cl@ve' detectado y visible")
+                    button_found = True
+                except Exception as btn_err:
+                    self.log(f"[Robot] ✗ No se detectó el botón de firma: {btn_err}")
+                
+                if not button_found:
+                    self.log("[Robot] ✗ No se encontró botón de firma después de esperar. Saltando expediente...")
+                    # CRÍTICO: Marcar como fallido solo si no hay botón (problema estructural)
+                    if expediente_id:
+                        failed_expedientes.add(expediente_id)
+                    await self._go_back_to_list(categoria, serial, cn)
+                    continue
+                
+                self.log("[Robot] Intentando firmar expediente con Cl@ve...")
                 ok = await self._sign_current_record(serial, cn)
                 if ok:
                     total_firmados += 1
-                    self.log("[Robot] Expediente firmado. Volviendo al listado...")
+                    self.log("[Robot] ✓ Expediente firmado exitosamente. Volviendo al listado...")
                 else:
-                    self.log("[Robot] No fue posible completar la firma.")
-                    if expediente_id:
-                        failed_expedientes.add(expediente_id)
-                        self.log(f"[Robot] Marcando expediente {expediente_id} como fallido para evitar bucles.")
+                    # CRÍTICO: NO marcar como fallido si falla por timeout
+                    # El expediente puede reintentarse en la siguiente pasada
+                    self.log(f"[Robot] ✗ No fue posible completar la firma (posible timeout). Continuando con siguiente expediente...")
                 
                 try:
                     await self._go_back_to_list(categoria, serial, cn)
@@ -898,11 +1159,15 @@ class AsyncRobot:
                     self.log(f"[Robot] Error al volver al listado: {nav_err}")
                     error_count += 1
                     if error_count >= max_errors:
-                        self.log("[Robot] Demasiados errores de navegación. Reiniciando navegador...")
-                        await self._close()
-                        await asyncio.sleep(2)
+                        self.log("[Robot] Demasiados errores de navegación. Navegando a página inicial...")
+                        # Navegar a la página inicial sin cerrar Chrome
                         await self.navigate_to_justificaciones(categoria)
-                        await self.authenticate_if_needed(serial, cn)
+                        await self.authenticate_if_needed(serial, cn, categoria)
+                        # Volver a aplicar búsqueda avanzada
+                        search_ok = await self._use_advanced_search()
+                        if not search_ok:
+                            self.log("[Robot] No se pudo reestablecer la búsqueda avanzada. Abortando...")
+                            break
                         error_count = 0
                         failed_expedientes.clear()
                     else:
@@ -919,7 +1184,7 @@ class AsyncRobot:
                             # Verificar si necesita re-autenticación
                             if await self._detect_clave():
                                 self.log("[Robot] Re-autenticación requerida...")
-                                await self.authenticate_if_needed(serial, cn)
+                                await self.authenticate_if_needed(serial, cn, categoria)
                             error_count = 0  # Resetear si funciona la recuperación
                         except Exception:
                             self.log("[Robot] No se pudo recuperar la navegación.")

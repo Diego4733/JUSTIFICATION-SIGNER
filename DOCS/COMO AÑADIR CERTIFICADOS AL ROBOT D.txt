@@ -1,0 +1,53 @@
+COMO AÑADIR CERTIFICADOS AL ROBOT DE FIRMAS
+
+1. Pulsar Windows + "R" 
+2. Introduce -> REGEDIT
+3. En la barra de búsqueda introduce: HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Chrome\AutoSelectCertificateForUrls
+4. Haz clic derecho en el espacio en blanco > Nuevo > Valor de cadena.
+5. Nómbralo con el valor que toque
+6. Haz doble clic en la carpetilla que acabas de crear. 
+7. Pega el siguiente código:
+
+{
+  "pattern": "https://*.agenciatributaria.gob.es",
+  "filter": {
+    "SUBJECT": { "CN": "ASUNTO_DEL_SEGUNDO_CERTIFICADO" },
+    "ISSUER": { "CN": "EMISOR_DEL_SEGUNDO_CERTIFICADO" }
+  }
+}
+
+7.1 Para encontrar el SUBJECT abre tu certificado en certificados y busca el campo "Emisor", después copia el valor "CN=…"
+7.2Para encontrar el ISSUER abre tu certificado en certificados y busca el campo "Sujetor", después copia el valor "CN=…"
+
+8. Después de completar bien el código, pulsa aceptar.	
+
+
+
+EJEMPLO:  
+
+{
+  "pattern": "https://*.la-url-de-la-web-aqui.es",
+  "filter": {
+    "SUBJECT": { "CN": "42821419L JOSE MANUEL RIVERO (R: B76345024)" },
+    "ISSUER": { "CN": "AC Representación" }
+  }
+}
+
+--------------------------------------
+
+{
+  "pattern": "https://*.la-url-de-la-web-aqui.es",
+  "filter": {
+    "SUBJECT": { "CN": "54195535Z PABLO USERA (R: B21980321)" },
+    "ISSUER": { "CN": "AC Representación" }
+  }
+}
+
+-------------------------------------
+{
+  "pattern": "https://*.red.gob.es",
+  "filter": {
+    "SUBJECT": { "CN": "YUSTA PLIEGO PABLO - 11086279A" },
+    "ISSUER": { "CN": "AC FNMT Usuarios" }
+  }
+}
