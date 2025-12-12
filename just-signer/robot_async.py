@@ -883,7 +883,7 @@ class AsyncRobot:
         return await self._try_firma_clave(serial, cn)
 
     async def _use_advanced_search(self):
-        """Usa la búsqueda avanzada para filtrar solo expedientes 'Pdte. presentar'"""
+        """Usa la búsqueda avanzada para filtrar solo expedientes 'Pdte. presentar' con NIF hardcodeado"""
         try:
             # Paso 1: Hacer clic en el botón que navega a la página de búsqueda avanzada
             self.log("[Robot] Navegando a la página de búsqueda avanzada...")
@@ -898,6 +898,28 @@ class AsyncRobot:
             self.log("[Robot] Seleccionando estado 'Pdte. presentar' (valor: 3)...")
             await self.page.select_option(self.SEL["select_estado"], value="3", timeout=10000)
             self.log("[Robot] Estado seleccionado correctamente.")
+            await self._sleep(0.5)
+            
+            # Paso 3: Introducir el NIF hardcodeado en el campo nifIniciador
+            NIF_HARDCODEADO = "54195535Z"
+            self.log(f"[Robot] Introduciendo NIF hardcodeado: {NIF_HARDCODEADO}...")
+            
+            # Intentar encontrar y rellenar el campo NIF
+            try:
+                nif_input = self.page.locator(self.SEL["input_nif"])
+                await nif_input.wait_for(state="visible", timeout=10000)
+                await nif_input.fill(NIF_HARDCODEADO)
+                self.log("[Robot] ✓ NIF introducido correctamente.")
+            except Exception as e:
+                self.log(f"[Robot] ⚠ Error al introducir NIF: {e}")
+                self.log("[Robot] Intentando con método alternativo (click + type)...")
+                try:
+                    await self.page.click(self.SEL["input_nif"], timeout=5000)
+                    await self.page.type(self.SEL["input_nif"], NIF_HARDCODEADO, delay=50)
+                    self.log("[Robot] ✓ NIF introducido con método alternativo.")
+                except Exception as e2:
+                    self.log(f"[Robot] ✗ No se pudo introducir el NIF: {e2}")
+            
             await self._sleep(0.5)
             
             # Paso 3: Hacer clic en el botón buscar con reintentos y verificación
